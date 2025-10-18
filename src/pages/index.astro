@@ -1,11 +1,102 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// Page: Homepage (/)
+// Description: Main landing page for RefugiosLibresDignos
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="RefugiosLibresDignos - Espacios seguros, libres y dignos en los Pirineos"
+  description="Rehabilitamos refugios de montaña abandonados en los Pirineos para ofrecer espacios seguros, libres y dignos a personas en situación de vulnerabilidad."
+>
+  <!-- Hero Section -->
+  <section class="relative bg-forest-green text-white py-20 md:py-32">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+        RefugiosLibresDignos en Pirineos
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+        Espacios seguros, libres y dignos
+      </p>
+      <a
+        href="/refugios"
+        class="btn-primary inline-block"
+      >
+        Explora Refugios
+      </a>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6 text-center">
+          Nuestro Proyecto
+        </h2>
+        <div class="prose prose-lg mx-auto text-center">
+          <p class="text-lg text-forest-green/90 mb-4">
+            RefugiosLibresDignos es una organización dedicada a la rehabilitación de refugios de
+            montaña abandonados en los Pirineos, transformándolos en espacios seguros y dignos
+            para personas en situación de vulnerabilidad.
+          </p>
+          <p class="text-lg text-forest-green/90 mb-8">
+            Nuestro objetivo es combinar la conservación del patrimonio montañero con la acción
+            social, creando refugios libres que sirvan a las comunidades que más lo necesitan.
+          </p>
+        </div>
+        <div class="text-center">
+          <a href="/proyecto" class="btn-secondary">
+            Conoce Más
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Refuges Section (Placeholder) -->
+  <section class="py-16 bg-tan/30">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
+        Refugios Destacados
+      </h2>
+      <div class="text-center text-forest-green/70">
+        <p class="mb-6">Próximamente: Galería de refugios rehabilitados</p>
+        <a href="/refugios" class="btn-primary">
+          Ver Todos los Refugios
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Section (Placeholder) -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
+        Nuestros Patrocinadores
+      </h2>
+      <div class="text-center text-forest-green/70">
+        <p class="mb-6">Gracias a quienes hacen posible este proyecto</p>
+        <a href="/patrocinadores" class="btn-secondary">
+          Ver Patrocinadores
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-16 bg-forest-green text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Apoya el Proyecto
+      </h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
+        Tu apoyo hace posible que sigamos rehabilitando refugios y ofreciendo espacios dignos a
+        quienes más lo necesitan.
+      </p>
+      <a href="/contacto" class="btn bg-sunrise-orange text-white hover:bg-sunrise-orange/90">
+        Contáctanos
+      </a>
+    </div>
+  </section>
+</BaseLayout>

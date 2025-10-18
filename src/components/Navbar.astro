@@ -1,0 +1,115 @@
+---
+// Component: Navbar.astro
+// Description: Responsive navigation bar with logo and menu links
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/proyecto', label: 'Proyecto' },
+  { href: '/refugios', label: 'Refugios' },
+  { href: '/patrocinadores', label: 'Patrocinadores' },
+  { href: '/contacto', label: 'Contacto' },
+];
+
+function isActive(href: string) {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+}
+---
+
+<nav
+  class="sticky top-0 z-50 bg-forest-green text-white shadow-md"
+  aria-label="Main navigation"
+>
+  <div class="container mx-auto flex items-center justify-between py-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center space-x-2 text-xl font-bold hover:text-lime-green transition-colors">
+      <!-- TODO: Replace with actual logo -->
+      <span>RefugiosLibresDignos</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex space-x-6">
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'transition-colors hover:text-lime-green focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded px-2 py-1',
+                isActive(href) ? 'font-bold text-sunrise-orange' : 'text-white',
+              ]}
+              aria-current={isActive(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-button"
+      class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-sunrise-orange"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu (Hidden by default) -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-forest-green border-t border-lime-green"
+  >
+    <ul class="flex flex-col space-y-2 p-4">
+      {
+        navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'block px-4 py-2 rounded transition-colors hover:bg-lime-green focus:outline-none focus:ring-2 focus:ring-sunrise-orange',
+                isActive(href) ? 'font-bold bg-sunrise-orange' : '',
+              ]}
+              aria-current={isActive(href) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

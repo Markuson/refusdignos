@@ -1,0 +1,83 @@
+/* RefugiosLibresDignos Global Styles */
+@import 'tailwindcss';
+
+:root {
+  --color-forest-green: #27582E;
+  --color-sunrise-orange: #E78A33;
+  --color-lime-green: #648D21;
+  --color-tan: #D8C28E;
+  --color-off-white: #E5E5E5;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-forest-green);
+  background-color: white;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-forest-green);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+.btn {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 300ms ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-forest-green);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-lime-green);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-sunrise-orange);
+  border: 2px solid var(--color-sunrise-orange);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-sunrise-orange);
+  color: white;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

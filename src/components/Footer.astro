@@ -1,0 +1,85 @@
+---
+// Component: Footer.astro
+// Description: Site footer with legal links, social media, and contact info
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { platform: 'Facebook', url: '#', icon: 'facebook' },
+  { platform: 'Instagram', url: '#', icon: 'instagram' },
+  { platform: 'Twitter', url: '#', icon: 'twitter' },
+];
+
+const legalLinks = [
+  { label: 'Privacidad', href: '/legal/privacidad' },
+  { label: 'Términos', href: '/legal/terminos' },
+  { label: 'Cookies', href: '/legal/cookies' },
+];
+---
+
+<footer class="bg-tan text-forest-green mt-16">
+  <div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- About Section -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">RefugiosLibresDignos</h3>
+        <p class="text-sm">
+          Rehabilitando refugios de montaña en los Pirineos para ofrecer espacios seguros, libres y dignos.
+        </p>
+      </div>
+
+      <!-- Legal Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          {
+            legalLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="hover:text-sunrise-orange transition-colors focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Social Media & Contact -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Conéctate</h3>
+        <div class="flex space-x-4 mb-4">
+          {
+            socialLinks.map((social) => (
+              <a
+                href={social.url}
+                aria-label={social.platform}
+                class="w-10 h-10 flex items-center justify-center bg-forest-green text-white rounded-full hover:bg-lime-green transition-colors focus:outline-none focus:ring-2 focus:ring-sunrise-orange"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* TODO: Replace with actual icons */}
+                <span class="text-xs">{social.icon[0].toUpperCase()}</span>
+              </a>
+            ))
+          }
+        </div>
+        <p class="text-sm">
+          Email: <a
+            href="mailto:info@refusdignos.org"
+            class="hover:text-sunrise-orange transition-colors focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded"
+          >
+            info@refusdignos.org
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-forest-green/20 mt-8 pt-6 text-center text-sm">
+      <p>&copy; {currentYear} RefugiosLibresDignos. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
