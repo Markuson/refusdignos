@@ -2,7 +2,7 @@
 
 **Version:** 1.0
 **Date:** 2025-10-18
-**Status:** Planning Phase
+**Status:** In Progress - Week 2
 **Target Duration:** 4 weeks
 
 ---
@@ -66,8 +66,8 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 **Total Duration:** 4 weeks (160 hours estimated effort)
 
 **Key Milestones:**
-- Week 1: Foundation complete, basic homepage deployed
-- Week 2: All content pages functional
+- ✅ Week 1: Foundation complete, all pages created
+- 🔄 Week 2: Content pages created, pending Formspree integration
 - Week 3: Refuge showcase complete
 - Week 4: Production deployment with Lighthouse ≥95/90
 
@@ -93,20 +93,20 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Project Initialization** (Story 1.1)
-   - [ ] Run `pnpm create astro@latest refusdignos --template basics --typescript strict`
-   - [ ] Install dependencies: TailwindCSS, @astrojs/sitemap, @astrojs/tailwind
-   - [ ] Install dev dependencies: ESLint, Prettier, plugins
-   - [ ] Configure `astro.config.mjs` with integrations
-   - [ ] Configure `tsconfig.json` for strict mode
-   - [ ] Set up `.eslintrc.cjs` and `.prettierrc.cjs`
-   - [ ] Create `.gitignore` and initialize git repository
-   - [ ] Write README.md with setup instructions
-   - [ ] Test: `pnpm dev` and `pnpm build` run successfully
+   - [x] Run `pnpm create astro@latest refusdignos --template basics --typescript strict`
+   - [x] Install dependencies: TailwindCSS, @astrojs/sitemap, @astrojs/tailwind
+   - [x] Install dev dependencies: ESLint, Prettier, plugins
+   - [x] Configure `astro.config.mjs` with integrations
+   - [x] Configure `tsconfig.json` for strict mode
+   - [x] Set up `.eslintrc.cjs` and `.prettierrc.cjs`
+   - [x] Create `.gitignore` and initialize git repository
+   - [x] Write README.md with setup instructions
+   - [x] Test: `pnpm dev` and `pnpm build` run successfully
 
 2. **Design System Configuration** (Story 1.2 - Part 1)
    - [ ] Download Inter font files (woff2 format: 400, 600, 700 weights)
    - [ ] Place fonts in `/public/fonts/`
-   - [ ] Configure `tailwind.config.mjs` with custom colors:
+   - [x] Configure `tailwind.config.mjs` with custom colors:
      - forest-green: #27582E
      - sunrise-orange: #E78A33
      - lime-green: #648D21
@@ -125,27 +125,27 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Global Styles** (Story 1.2 - Part 2)
-   - [ ] Create `/src/styles/global.css`
-   - [ ] Add Tailwind imports (@tailwind base, components, utilities)
-   - [ ] Add @font-face declarations with font-display: swap
-   - [ ] Define CSS custom properties (colors, spacing, shadows)
-   - [ ] Add base styles (body, html, reset)
-   - [ ] Create utility classes (.sr-only, focus-visible styles)
-   - [ ] Add custom button component classes
-   - [ ] Add prose styles for markdown content
-   - [ ] Test: Verify CSS bundle < 50KB after purging
+   - [x] Create `/src/styles/global.css`
+   - [x] Add Tailwind imports (@tailwind base, components, utilities)
+   - [x] Add @font-face declarations with font-display: swap
+   - [x] Define CSS custom properties (colors, spacing, shadows)
+   - [x] Add base styles (body, html, reset)
+   - [x] Create utility classes (.sr-only, focus-visible styles)
+   - [x] Add custom button component classes
+   - [x] Add prose styles for markdown content
+   - [x] Test: Verify CSS bundle < 50KB after purging
 
 2. **Footer Component** (Story 1.4)
-   - [ ] Create `/src/components/Footer.astro`
-   - [ ] Add semantic `<footer>` element
+   - [x] Create `/src/components/Footer.astro`
+   - [x] Add semantic `<footer>` element
    - [ ] Implement sections: Legal, Social Media, Contact
-   - [ ] Add legal links (placeholder pages for now)
-   - [ ] Add social media icon links with ARIA labels
-   - [ ] Add contact email or placeholder
-   - [ ] Add copyright notice with dynamic year
-   - [ ] Style with Tailwind (tan background)
-   - [ ] Responsive layout: multi-column → stacked
-   - [ ] Test: Keyboard navigation, screen reader
+   - [x] Add legal links (placeholder pages for now)
+   - [x] Add social media icon links with ARIA labels
+   - [x] Add contact email or placeholder
+   - [x] Add copyright notice with dynamic year
+   - [x] Style with Tailwind (tan background)
+   - [x] Responsive layout: multi-column → stacked
+   - [x] Test: Keyboard navigation, screen reader
 
 **Deliverable:** Global styles configured, Footer component complete
 
@@ -156,33 +156,33 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Navigation Bar** (Story 1.3)
-   - [ ] Create `/src/components/Navbar.astro`
-   - [ ] Add semantic `<nav>` element
-   - [ ] Add logo placeholder/image
-   - [ ] Add desktop horizontal menu (Inicio, Proyecto, Refugios, Patrocinadores, Contacto)
-   - [ ] Implement mobile hamburger menu toggle
-   - [ ] Add mobile menu overlay with vertical links
+   - [x] Create `/src/components/Navbar.astro`
+   - [x] Add semantic `<nav>` element
+   - [x] Add logo placeholder/image
+   - [x] Add desktop horizontal menu (Inicio, Proyecto, Refugios, Patrocinadores, Contacto)
+   - [x] Implement mobile hamburger menu toggle
+   - [x] Add mobile menu overlay with vertical links
    - [ ] Highlight active page (current path detection)
-   - [ ] Style: forest-green background, white text
-   - [ ] Add ARIA attributes (menu toggle, mobile menu)
-   - [ ] Make navbar sticky with proper z-index
-   - [ ] Test: Keyboard navigation, touch targets (44x44px)
-   - [ ] Test: Cross-browser (Chrome, Firefox, Safari, Edge)
+   - [x] Style: forest-green background, white text
+   - [x] Add ARIA attributes (menu toggle, mobile menu)
+   - [x] Make navbar sticky with proper z-index
+   - [x] Test: Keyboard navigation, touch targets (44x44px)
+   - [x] Test: Cross-browser (Chrome, Firefox, Safari, Edge)
 
 2. **Base Layout Template** (Story 1.5)
-   - [ ] Create `/src/layouts/BaseLayout.astro`
-   - [ ] Define props interface (title, description, ogImage)
-   - [ ] Add `lang="es"` attribute on `<html>`
-   - [ ] Add viewport meta tag
-   - [ ] Create SEO meta tags (title, description, OG, Twitter Cards)
-   - [ ] Add canonical URL tag
-   - [ ] Include Navbar component
-   - [ ] Add semantic `<main>` element with slot
-   - [ ] Include Footer component
-   - [ ] Add font preload hints
-   - [ ] Configure favicon
-   - [ ] Implement sticky footer pattern (flexbox)
-   - [ ] Test: SEO meta tags visible in page source
+   - [x] Create `/src/layouts/BaseLayout.astro`
+   - [x] Define props interface (title, description, ogImage)
+   - [x] Add `lang="es"` attribute on `<html>`
+   - [x] Add viewport meta tag
+   - [x] Create SEO meta tags (title, description, OG, Twitter Cards)
+   - [x] Add canonical URL tag
+   - [x] Include Navbar component
+   - [x] Add semantic `<main>` element with slot
+   - [x] Include Footer component
+   - [x] Add font preload hints
+   - [x] Configure favicon
+   - [x] Implement sticky footer pattern (flexbox)
+   - [x] Test: SEO meta tags visible in page source
 
 **Deliverable:** Navbar and BaseLayout components complete
 
@@ -193,19 +193,19 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Homepage** (Story 1.6)
-   - [ ] Create `/src/pages/index.astro` using BaseLayout
-   - [ ] Add hero section with placeholder image
-   - [ ] Add project name heading (H1)
-   - [ ] Add tagline/subtitle (1 sentence)
-   - [ ] Add placeholder sections (Proyecto summary, Featured refuges, Sponsors, Final CTA)
+   - [x] Create `/src/pages/index.astro` using BaseLayout
+   - [x] Add hero section with placeholder image
+   - [x] Add project name heading (H1)
+   - [x] Add tagline/subtitle (1 sentence)
+   - [x] Add placeholder sections (Proyecto summary, Featured refuges, Sponsors, Final CTA)
    - [ ] Style responsively (mobile, tablet, desktop)
-   - [ ] Populate SEO metadata (title, description)
-   - [ ] Test: Page loads < 2 seconds
-   - [ ] Test: No console errors
-   - [ ] Test: All navigation links functional (may 404 temporarily)
-   - [ ] Test: Responsive on mobile, tablet, desktop
-   - [ ] Run Axe DevTools - zero critical violations
-   - [ ] Test: Lighthouse accessibility score
+   - [x] Populate SEO metadata (title, description)
+   - [x] Test: Page loads < 2 seconds
+   - [x] Test: No console errors
+   - [x] Test: All navigation links functional (may 404 temporarily)
+   - [x] Test: Responsive on mobile, tablet, desktop
+   - [x] Run Axe DevTools - zero critical violations
+   - [x] Test: Lighthouse accessibility score
 
 **Deliverable:** Basic homepage deployed locally
 
@@ -266,20 +266,20 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Project Page** (Story 2.1)
-   - [ ] Create `/src/pages/proyecto.astro` using BaseLayout
-   - [ ] Add hero section with compelling image (volunteers/work)
-   - [ ] Add mission section (2-3 paragraphs)
-   - [ ] Add values section (bullet points or cards)
-   - [ ] Add impact section (statistics/achievements - can use placeholders)
-   - [ ] Add team section (photos + bios - optional, can defer)
-   - [ ] Add CTA linking to Sponsors or Contact
-   - [ ] Optimize images with Astro's `<Image>` component
-   - [ ] Implement semantic HTML (H1 → H3 hierarchy)
-   - [ ] Add SEO metadata (keywords about refuges, Pyrineos)
-   - [ ] Add descriptive alt text to all images
-   - [ ] Verify navbar link works
-   - [ ] Test: Lighthouse performance ≥90 mobile
-   - [ ] Test: Responsive design (mobile, tablet, desktop)
+   - [x] Create `/src/pages/proyecto.astro` using BaseLayout
+   - [x] Add hero section with compelling image (volunteers/work)
+   - [x] Add mission section (2-3 paragraphs)
+   - [x] Add values section (bullet points or cards)
+   - [x] Add impact section (statistics/achievements - can use placeholders)
+   - [x] Add team section (photos + bios - optional, can defer)
+   - [x] Add CTA linking to Sponsors or Contact
+   - [x] Optimize images with Astro's `<Image>` component
+   - [x] Implement semantic HTML (H1 → H3 hierarchy)
+   - [x] Add SEO metadata (keywords about refuges, Pyrineos)
+   - [x] Add descriptive alt text to all images
+   - [x] Verify navbar link works
+   - [x] Test: Lighthouse performance ≥90 mobile
+   - [x] Test: Responsive design (mobile, tablet, desktop)
 
 **Deliverable:** Project page complete with mission and values
 
@@ -290,19 +290,19 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Legal Pages** (Story 2.2)
-   - [ ] Create `/src/pages/legal/` directory
-   - [ ] Create `privacidad.astro` with BaseLayout
-   - [ ] Create `terminos.astro` with BaseLayout
-   - [ ] Create `cookies.astro` with BaseLayout
-   - [ ] Add SEO metadata for each page
-   - [ ] Structure content with clear sections and headings
-   - [ ] Add GDPR-compliant language (privacy policy template)
-   - [ ] Add contact email for privacy inquiries
-   - [ ] Display "Last updated" date on each page
-   - [ ] Verify footer links navigate correctly
-   - [ ] Use readable typography with line spacing
-   - [ ] Test: WCAG AA contrast requirements
-   - [ ] Test: Content is scannable and clear
+   - [x] Create `/src/pages/legal/` directory
+   - [x] Create `privacidad.astro` with BaseLayout
+   - [x] Create `terminos.astro` with BaseLayout
+   - [x] Create `cookies.astro` with BaseLayout
+   - [x] Add SEO metadata for each page
+   - [x] Structure content with clear sections and headings
+   - [x] Add GDPR-compliant language (privacy policy template)
+   - [x] Add contact email for privacy inquiries
+   - [x] Display "Last updated" date on each page
+   - [x] Verify footer links navigate correctly
+   - [x] Use readable typography with line spacing
+   - [x] Test: WCAG AA contrast requirements
+   - [x] Test: Content is scannable and clear
 
 **Note:** Legal content can be placeholder text initially, to be replaced with client-provided final text
 
@@ -315,9 +315,9 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Sponsors Page** (Story 2.3)
-   - [ ] Create `/src/pages/patrocinadores.astro` using BaseLayout
-   - [ ] Add introductory section (2-3 sentences)
-   - [ ] Define sponsor data structure (hardcoded array for MVP)
+   - [x] Create `/src/pages/patrocinadores.astro` using BaseLayout
+   - [x] Add introductory section (2-3 sentences)
+   - [x] Define sponsor data structure (hardcoded array for MVP)
      ```typescript
      interface Sponsor {
        name: string;
@@ -326,18 +326,18 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
        type: 'empresa' | 'institución' | 'particular';
      }
      ```
-   - [ ] Create sample sponsor data (4-6 sponsors)
-   - [ ] Implement responsive logo grid (3-4 cols desktop, 2 tablet, 1 mobile)
-   - [ ] Optimize logos with Astro `<Image>` component
-   - [ ] Add hover effect (subtle scale/opacity)
-   - [ ] Make logos clickable (new tab, rel="noopener noreferrer")
-   - [ ] Add "Become a Sponsor" CTA section
-   - [ ] Link CTA to Contact page
-   - [ ] Add proper alt text to all logos
-   - [ ] Differentiate sponsor types with headings (if applicable)
-   - [ ] Verify navbar link works
-   - [ ] Test: Lighthouse performance ≥90 mobile
-   - [ ] Test: Responsive grid reflow
+   - [x] Create sample sponsor data (4-6 sponsors)
+   - [x] Implement responsive logo grid (3-4 cols desktop, 2 tablet, 1 mobile)
+   - [x] Optimize logos with Astro `<Image>` component
+   - [x] Add hover effect (subtle scale/opacity)
+   - [x] Make logos clickable (new tab, rel="noopener noreferrer")
+   - [x] Add "Become a Sponsor" CTA section
+   - [x] Link CTA to Contact page
+   - [x] Add proper alt text to all logos
+   - [x] Differentiate sponsor types with headings (if applicable)
+   - [x] Verify navbar link works
+   - [x] Test: Lighthouse performance ≥90 mobile
+   - [x] Test: Responsive grid reflow
 
 **Deliverable:** Sponsors page with logo grid complete
 
@@ -348,32 +348,32 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Contact Page - Layout** (Story 2.4 - Part 1)
-   - [ ] Create `/src/pages/contacto.astro` using BaseLayout
-   - [ ] Implement 2-column layout (desktop) → stack (mobile)
-   - [ ] Add social media links section (left column)
-     - [ ] Facebook link with icon
-     - [ ] Instagram link with icon
-     - [ ] Twitter link with icon
-     - [ ] Organization email display
-   - [ ] Add contact form (right column)
-     - [ ] Name field (required, text input)
-     - [ ] Email field (required, email input)
-     - [ ] Message field (required, textarea, 6 rows)
-     - [ ] Honeypot field (hidden, for spam prevention)
-     - [ ] Submit button (primary style)
-   - [ ] Associate labels with inputs (for/id)
-   - [ ] Add placeholder text to fields
-   - [ ] Style form with Tailwind
+   - [x] Create `/src/pages/contacto.astro` using BaseLayout
+   - [x] Implement 2-column layout (desktop) → stack (mobile)
+   - [x] Add social media links section (left column)
+     - [x] Facebook link with icon
+     - [x] Instagram link with icon
+     - [x] Twitter link with icon
+     - [x] Organization email display
+   - [x] Add contact form (right column)
+     - [x] Name field (required, text input)
+     - [x] Email field (required, email input)
+     - [x] Message field (required, textarea, 6 rows)
+     - [x] Honeypot field (hidden, for spam prevention)
+     - [x] Submit button (primary style)
+   - [x] Associate labels with inputs (for/id)
+   - [x] Add placeholder text to fields
+   - [x] Style form with Tailwind
 
 2. **Contact Page - Form Integration** (Story 2.4 - Part 2)
-   - [ ] Sign up for Formspree account (free tier)
-   - [ ] Create contact form endpoint
-   - [ ] Add Formspree endpoint to environment variables
+   - [x] Sign up for Formspree account (free tier)
+   - [x] Create contact form endpoint
+   - [x] Add Formspree endpoint to environment variables
      ```bash
      PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
      ```
-   - [ ] Configure form action to Formspree endpoint
-   - [ ] Add HTML5 validation (required attributes, email type)
+   - [x] Configure form action to Formspree endpoint
+   - [x] Add HTML5 validation (required attributes, email type)
 
 **Deliverable:** Contact page layout and basic form complete
 
@@ -384,16 +384,16 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Contact Page - Validation & Enhancement** (Story 2.4 - Part 3)
-   - [ ] Add client-side validation script
-     - [ ] Email regex validation
-     - [ ] Inline error messages
-     - [ ] Error message styling
-   - [ ] Implement submit button states
-     - [ ] Disable button while submitting
+   - [x] Add client-side validation script
+     - [x] Email regex validation
+     - [x] Inline error messages
+     - [x] Error message styling
+   - [x] Implement submit button states
+     - [x] Disable button while submitting
      - [ ] Show loading state (optional)
    - [ ] Add success message div (hidden initially)
-   - [ ] Add error handling for failed submissions
-   - [ ] Add ARIA attributes for form validation
+   - [x] Add error handling for failed submissions
+   - [x] Add ARIA attributes for form validation
    - [ ] Test form submission to Formspree
    - [ ] Verify email received
    - [ ] Test: Keyboard navigation through form
