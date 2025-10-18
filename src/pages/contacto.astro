@@ -1,0 +1,199 @@
+---
+// Page: Contacto (/contacto)
+// Description: Contact form and social media links
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contacto - RefugiosLibresDignos"
+  description="Ponte en contacto con RefugiosLibresDignos para colaborar, consultas o más información sobre nuestros refugios."
+>
+  <!-- Hero Section -->
+  <section class="bg-forest-green text-white py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Contacta con Nosotros</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+        Estamos aquí para escucharte
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <!-- Social Media & Info -->
+        <div>
+          <h2 class="text-2xl font-bold text-forest-green mb-6">Síguenos</h2>
+          <div class="space-y-4 mb-8">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
+            >
+              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
+                F
+              </div>
+              <span class="font-semibold">Facebook</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
+            >
+              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
+                I
+              </div>
+              <span class="font-semibold">Instagram</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
+            >
+              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
+                T
+              </div>
+              <span class="font-semibold">Twitter</span>
+            </a>
+          </div>
+
+          <div class="bg-tan/30 p-6 rounded-lg">
+            <h3 class="text-lg font-semibold text-forest-green mb-3">Email</h3>
+            <a
+              href="mailto:info@refusdignos.org"
+              class="text-sunrise-orange hover:underline"
+            >
+              info@refusdignos.org
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-bold text-forest-green mb-6">Envíanos un mensaje</h2>
+          <form class="space-y-4" method="POST" action="#">
+            <!-- Name Field -->
+            <div>
+              <label for="nombre" class="block text-sm font-semibold text-forest-green mb-2">
+                Nombre <span class="text-sunrise-orange">*</span>
+              </label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                class="w-full px-4 py-2 border border-off-white rounded focus:outline-none focus:ring-2 focus:ring-sunrise-orange"
+                placeholder="Tu nombre"
+              />
+            </div>
+
+            <!-- Email Field -->
+            <div>
+              <label for="email" class="block text-sm font-semibold text-forest-green mb-2">
+                Email <span class="text-sunrise-orange">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border border-off-white rounded focus:outline-none focus:ring-2 focus:ring-sunrise-orange"
+                placeholder="tu@email.com"
+              />
+            </div>
+
+            <!-- Message Field -->
+            <div>
+              <label for="mensaje" class="block text-sm font-semibold text-forest-green mb-2">
+                Mensaje <span class="text-sunrise-orange">*</span>
+              </label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                required
+                rows="6"
+                class="w-full px-4 py-2 border border-off-white rounded focus:outline-none focus:ring-2 focus:ring-sunrise-orange resize-none"
+                placeholder="Escribe tu mensaje aquí..."
+              ></textarea>
+            </div>
+
+            <!-- Honeypot Field (hidden) -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary w-full">
+              Enviar Mensaje
+            </button>
+          </form>
+
+          <p class="text-sm text-forest-green/70 mt-4">
+            * Campos requeridos. Nos pondremos en contacto contigo lo antes posible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="py-16 bg-tan/30">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-2xl font-bold text-forest-green mb-6">
+          ¿Tienes preguntas sobre los refugios?
+        </h2>
+        <p class="text-lg text-forest-green/90 mb-6">
+          Visita nuestra página de refugios para conocer cada proyecto en detalle, o consulta
+          nuestra sección sobre el proyecto para entender mejor nuestra misión.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/refugios" class="btn-secondary">
+            Ver Refugios
+          </a>
+          <a href="/proyecto" class="btn-secondary">
+            Nuestro Proyecto
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Simple client-side form validation
+  const form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(form);
+      const nombre = formData.get('nombre');
+      const email = formData.get('email');
+      const mensaje = formData.get('mensaje');
+
+      // Basic validation
+      if (!nombre || !email || !mensaje) {
+        alert('Por favor, completa todos los campos requeridos.');
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email as string)) {
+        alert('Por favor, introduce un email válido.');
+        return;
+      }
+
+      // TODO: Integrate with Formspree in Week 2
+      alert('Formulario listo para integración con Formspree. Implementaremos esto en la próxima fase.');
+
+      // Reset form
+      form.reset();
+    });
+  }
+</script>

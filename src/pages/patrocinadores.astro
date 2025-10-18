@@ -1,0 +1,121 @@
+---
+// Page: Patrocinadores (/patrocinadores)
+// Description: Showcase sponsors and encourage new sponsorships
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Placeholder sponsor data
+const sponsors = {
+  empresas: [
+    { nombre: 'Empresa Ejemplo 1', logo: '/favicon.svg', url: '#' },
+    { nombre: 'Empresa Ejemplo 2', logo: '/favicon.svg', url: '#' },
+    { nombre: 'Empresa Ejemplo 3', logo: '/favicon.svg', url: '#' },
+    { nombre: 'Empresa Ejemplo 4', logo: '/favicon.svg', url: '#' },
+  ],
+  instituciones: [
+    { nombre: 'Institución Ejemplo 1', logo: '/favicon.svg', url: '#' },
+    { nombre: 'Institución Ejemplo 2', logo: '/favicon.svg', url: '#' },
+  ],
+};
+---
+
+<BaseLayout
+  title="Nuestros Patrocinadores - RefugiosLibresDignos"
+  description="Conoce a las empresas e instituciones que hacen posible la rehabilitación de refugios en los Pirineos."
+>
+  <!-- Hero Section -->
+  <section class="bg-forest-green text-white py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Nuestros Patrocinadores</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto">
+        Gracias a quienes hacen posible este proyecto
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-lg text-forest-green/90 mb-8">
+          RefugiosLibresDignos no sería posible sin el apoyo de empresas, instituciones y
+          particulares comprometidos con la acción social. Cada contribución, grande o pequeña,
+          suma en la construcción de espacios dignos para quienes más lo necesitan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Empresas Section -->
+  <section class="py-16 bg-tan/30">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Empresas</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+        {
+          sponsors.empresas.map((sponsor) => (
+            <a
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center"
+              aria-label={sponsor.nombre}
+            >
+              <div class="text-center">
+                <div class="w-20 h-20 mx-auto mb-3 bg-tan/30 rounded flex items-center justify-center">
+                  <span class="text-forest-green/50 text-xs">Logo</span>
+                </div>
+                <p class="text-sm text-forest-green font-semibold">{sponsor.nombre}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Instituciones Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Instituciones</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {
+          sponsors.instituciones.map((sponsor) => (
+            <a
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center"
+              aria-label={sponsor.nombre}
+            >
+              <div class="text-center">
+                <div class="w-24 h-24 mx-auto mb-3 bg-tan/30 rounded flex items-center justify-center">
+                  <span class="text-forest-green/50 text-xs">Logo</span>
+                </div>
+                <p class="text-sm text-forest-green font-semibold">{sponsor.nombre}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-forest-green text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Quieres sumarte?</h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
+        Hay muchas formas de colaborar: patrocinio económico, donación de materiales,
+        voluntariado técnico, o difusión del proyecto. Cada aporte cuenta.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contacto" class="btn bg-sunrise-orange text-white hover:bg-sunrise-orange/90">
+          Contáctanos
+        </a>
+        <a href="/proyecto" class="btn-secondary bg-white/10 border-white text-white hover:bg-white hover:text-forest-green">
+          Conoce el Proyecto
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

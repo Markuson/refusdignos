@@ -1,0 +1,145 @@
+---
+// Page: Proyecto (/proyecto)
+// Description: Organization mission, values, and impact
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Nuestro Proyecto - RefugiosLibresDignos"
+  description="Conoce nuestra misión de rehabilitar refugios de montaña en los Pirineos para ofrecer espacios seguros, libres y dignos a personas en situación de vulnerabilidad."
+>
+  <!-- Hero Section -->
+  <section class="bg-forest-green text-white py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Nuestro Proyecto</h1>
+      <p class="text-xl md:text-2xl max-w-3xl">
+        Rehabilitando refugios de montaña para crear espacios seguros, libres y dignos
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
+          Nuestra Misión
+        </h2>
+        <div class="prose prose-lg">
+          <p class="text-lg text-forest-green/90 mb-4">
+            RefugiosLibresDignos nace de la necesidad de combinar la conservación del patrimonio
+            montañero de los Pirineos con la acción social directa. Nuestra misión es rescatar
+            refugios abandonados y transformarlos en espacios de acogida para personas en
+            situación de vulnerabilidad.
+          </p>
+          <p class="text-lg text-forest-green/90 mb-4">
+            Cada refugio que rehabilitamos es "brindado" a un colectivo específico: personas sin
+            hogar, víctimas de violencia de género, refugiados, jóvenes en riesgo de exclusión, o
+            cualquier grupo que necesite un espacio seguro y digno.
+          </p>
+          <p class="text-lg text-forest-green/90">
+            No se trata solo de restaurar edificios, sino de crear comunidades de apoyo mutuo
+            donde la montaña se convierte en un lugar de sanación, oportunidad y dignidad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 bg-tan/30">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-12 text-center">
+        Nuestros Valores
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Value 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">🏔️</div>
+          <h3 class="text-xl font-semibold text-forest-green mb-3">
+            Dignidad
+          </h3>
+          <p class="text-forest-green/80">
+            Cada persona merece un espacio seguro y acogedor, sin importar su situación.
+            Los refugios son lugares de dignidad, no de caridad.
+          </p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">🤝</div>
+          <h3 class="text-xl font-semibold text-forest-green mb-3">
+            Comunidad
+          </h3>
+          <p class="text-forest-green/80">
+            Construimos redes de apoyo mutuo donde beneficiarios, voluntarios y colaboradores
+            trabajan juntos en un proyecto común.
+          </p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="text-4xl mb-4">♻️</div>
+          <h3 class="text-xl font-semibold text-forest-green mb-3">
+            Sostenibilidad
+          </h3>
+          <p class="text-forest-green/80">
+            Rehabilitamos con técnicas respetuosas con el medio ambiente y el patrimonio,
+            recuperando lo existente antes que construir de nuevo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8">
+          Nuestro Impacto
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div>
+            <div class="text-5xl font-bold text-sunrise-orange mb-2">3</div>
+            <p class="text-lg text-forest-green">Refugios en proceso</p>
+          </div>
+          <div>
+            <div class="text-5xl font-bold text-sunrise-orange mb-2">50+</div>
+            <p class="text-lg text-forest-green">Voluntarios activos</p>
+          </div>
+          <div>
+            <div class="text-5xl font-bold text-sunrise-orange mb-2">100+</div>
+            <p class="text-lg text-forest-green">Personas beneficiadas</p>
+          </div>
+        </div>
+        <p class="text-lg text-forest-green/90 mb-8">
+          Desde 2023, hemos trabajado incansablemente para recuperar el patrimonio montañero y
+          ponerlo al servicio de quienes más lo necesitan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-forest-green text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Únete al Proyecto
+      </h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
+        Ya seas empresa, institución o particular, tu apoyo hace posible que sigamos
+        construyendo espacios dignos en los Pirineos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/patrocinadores" class="btn-primary">
+          Conoce a Nuestros Patrocinadores
+        </a>
+        <a href="/contacto" class="btn bg-sunrise-orange text-white hover:bg-sunrise-orange/90">
+          Contáctanos
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
