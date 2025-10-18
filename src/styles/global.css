@@ -31,18 +31,24 @@ body {
 }
 
 .skip-to-content {
-  position: absolute;
-  top: -40px;
-  left: 0;
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
   background: var(--color-forest-green);
   color: white;
-  padding: 8px 16px;
+  padding: 12px 24px;
   text-decoration: none;
-  z-index: 100;
+  z-index: 9999;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: top 0.3s ease;
 }
 
 .skip-to-content:focus {
-  top: 0;
+  top: 20px;
+  outline: 2px solid var(--color-sunrise-orange);
+  outline-offset: 2px;
 }
 
 .btn {
