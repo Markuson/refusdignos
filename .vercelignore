@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Development
+.astro
+.vscode
+*.log
+.DS_Store
+
+# Documentation
+docs
+AGENTS.md
+
+# Git
+.git
+.gitignore
+
+# Testing
+*.test.*
+*.spec.*

@@ -366,14 +366,14 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
    - [x] Style form with Tailwind
 
 2. **Contact Page - Form Integration** (Story 2.4 - Part 2)
-   - [x] Sign up for Formspree account (free tier)
-   - [x] Create contact form endpoint
-   - [x] Add Formspree endpoint to environment variables
-     ```bash
-     PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
-     ```
-   - [x] Configure form action to Formspree endpoint
-   - [x] Add HTML5 validation (required attributes, email type)
+   - [ ] TODO: Research and select form handling solution (Formspree, Netlify Forms, or alternative)
+   - [ ] Sign up for chosen form service account
+   - [ ] Create contact form endpoint
+   - [ ] Add form endpoint to environment variables if needed
+   - [ ] Configure form action to service endpoint
+   - [ ] Add HTML5 validation (required attributes, email type)
+
+   **Note:** Form integration postponed - requires research to determine best solution for production needs.
 
 **Deliverable:** Contact page layout and basic form complete
 
@@ -394,9 +394,9 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
    - [ ] Add success message div (hidden initially)
    - [x] Add error handling for failed submissions
    - [x] Add ARIA attributes for form validation
-   - [ ] Test form submission to Formspree
-   - [ ] Verify email received
-   - [ ] Test: Keyboard navigation through form
+   - [ ] TODO: Test form submission once service selected
+   - [ ] TODO: Verify email received
+   - [x] Test: Keyboard navigation through form
    - [ ] Test: Screen reader announces errors
    - [ ] Test: Form works across browsers
    - [ ] Run Axe DevTools on contact page
