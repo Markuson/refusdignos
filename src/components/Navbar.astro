@@ -25,11 +25,11 @@ function isActive(href: string) {
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out navbar-solid"
   aria-label="Main navigation"
 >
-  <div class="container mx-auto flex items-center justify-between py-4 px-4">
+  <div class="container mx-auto flex items-center justify-between py-3 pl-4 pr-2">
     <!-- Logo -->
     <a
       href="/"
-      class="flex items-center space-x-2 text-xl font-bold transition-colors"
+      class="flex items-center space-x-2 text-lg font-bold transition-colors"
       style="color: #284c3e;"
     >
       <!-- TODO: Replace with actual logo -->
@@ -37,16 +37,16 @@ function isActive(href: string) {
     </a>
 
     <!-- Desktop Navigation -->
-    <ul class="hidden md:flex space-x-6">
+    <ul class="hidden md:flex space-x-2 ml-auto mr-0">
       {
         navLinks.map(({ href, label }) => (
           <li>
             <a
               href={href}
               class:list={[
-                'transition-colors focus:outline-none focus:ring-2 rounded px-3 py-2',
+                'transition-colors focus:outline-none focus:ring-2 rounded px-3 py-1.5 text-sm',
                 isActive(href)
-                  ? 'font-bold'
+                  ? 'font-semibold'
                   : '',
               ]}
               style={
@@ -127,16 +127,23 @@ function isActive(href: string) {
 </nav>
 
 <style>
+  #main-navbar {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
   .navbar-solid {
     background: white;
     box-shadow: none;
+    transform: translateZ(0);
   }
 
   .navbar-glass {
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateZ(8px);
   }
 </style>
 
@@ -156,7 +163,7 @@ function isActive(href: string) {
   // Toggle glass effect on scroll
   let ticking = false;
   const navbar = document.getElementById('main-navbar');
-  const scrollThreshold = 50;
+  const scrollThreshold = 10; // Changed from 50 to 10 for earlier animation
 
   function updateNavbar() {
     const currentScrollY = window.scrollY;

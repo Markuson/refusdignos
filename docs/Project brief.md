@@ -27,10 +27,10 @@ Categoría: Brief
 
 **Dominio:** Sitio web para una organización dedicada a la rehabilitación de refugios de montaña en los Pirineos.
 
-**Visión:** Comunicar la misión, mostrar los refugios rehabilitados, **brindar espacios seguros y libres en la montaña**, captar socios y patrocinadores, y permitir en el futuro la autogestión del contenido, donaciones y venta de merchandising.
+**Visión:** Comunicar la misión de devolver dignidad a los refugios libres del Pirineo, mostrar los refugios rehabilitados, **inspirar respeto y cuidado por los espacios compartidos**, captar colaboradores y patrocinadores, y permitir en el futuro la autogestión del contenido, donaciones y venta de merchandising.
 
 **Estrategia por iteraciones:**
-- **Iteración I (MVP):** Sitio **estático** con Astro, con contenido codificado directamente en el código. Secciones: **Proyecto**, **Refugios** (carrusel de tarjetas), **Contacto** (redes sociales + formulario de contacto), **Patrocinadores**. Cada **Refugio** tendrá una página individual con carrusel de imágenes, descripción y a quién es brindado.
+- **Iteración I (MVP):** Sitio **estático** con Astro, con contenido codificado directamente en el código. Secciones: **Proyecto**, **Refugios** (carrusel de tarjetas), **Contacto** (redes sociales + formulario de contacto), **Patrocinadores**. Cada **Refugio** tendrá una página individual con carrusel de imágenes, descripción y a qué asociación está brindado.
 - **Iteración II:** Conexión con **Strapi CMS** para gestión completa del contenido (refugios, imágenes, patrocinadores, páginas estáticas, navegación).
 - **Iteración III:** Añadir **mapa interactivo** de los Pirineos con los refugios geolocalizados y enlaces a sus fichas.
 - **Iteración IV:** Añadir **alta de socios** con registro y **métodos de pago** adecuados para patrocinios y cuotas (proveedor y flujo por definir y estudiar).
