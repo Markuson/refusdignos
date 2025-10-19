@@ -3,13 +3,6 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      colors: {
-        'forest-green': '#27582E',
-        'sunrise-orange': '#E78A33',
-        'lime-green': '#648D21',
-        'tan': '#D8C28E',
-        'off-white': '#E5E5E5',
-      },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },

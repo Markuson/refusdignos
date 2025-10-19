@@ -255,35 +255,38 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 
 | Rol | Color | Código | Uso principal | Descripción |
 | --- | --- | --- | --- | --- |
-| **Color Primario** | Forest Green | `#27582E` | Encabezados, texto principal, fondo de la barra de navegación, botones primarios (CTAs) | Base sólida y confiable, evoca naturaleza y estabilidad. |
+| **Color Primario** | Forest Green | `#284c3e` | Encabezados, texto principal, fondo de la barra de navegación, botones primarios (CTAs) | Base sólida y confiable, evoca naturaleza y estabilidad. |
 | **Color Secundario (Acento 1)** | Sunrise Orange/Red | `#E78A33` | Botones secundarios, elementos interactivos (hover), cajas informativas o acentos visuales de alto impacto | Energía y atención. |
 | **Color Secundario (Acento 2)** | Lime/Light Green | `#648D21` | Iconos de características, etiquetas, fondos ligeros de secciones de contenido | Aporta frescura y vitalidad. |
 | **Color Base** | Pure White | `#FFFFFF` | Fondo principal, cajas de texto, áreas de máxima legibilidad | Diseño limpio y moderno. |
-| **Color Terciario (Texto/Detalle)** | Off-White/Light Gray | `#E5E5E5` | Subtítulos, notas, bordes o líneas divisorias | Suaviza contrastes y mantiene legibilidad. |
+| **Color Terciario (Texto/Detalle)** | Off-White/Light Gray | `#f7f4ef` | Subtítulos, notas, bordes o líneas divisorias | Suaviza contrastes y mantiene legibilidad. |
+| **Color Fondo Claro** | Light Warm Background | `#f9f8f4` | Fondos alternativos suaves, áreas de contenido secundario | Fondo cálido muy sutil para alternancia de secciones. |
 | **Neutral Cálido (Opcional)** | Tan/Beige | `#D8C28E` | Fondos de tarjetas, testimonios, pie de página | Tacto cálido, terroso y acogedor. |
 
 ### Guía de Estilo UI (botones, fondos, tipografía y estados de interacción)
 
 ### Botones
 
-- **Primarios:** fondo `#27582E` (Forest Green), texto blanco, borde 4px redondeado, hover `#648D21` (Lime Green), transición 0.2s.
+- **Primarios:** fondo `#284c3e` (Forest Green), texto blanco, borde 4px redondeado, hover `#648D21` (Lime Green), transición 0.2s.
 - **Secundarios:** borde `#E78A33` (Sunrise Orange), texto `#E78A33`, hover fondo `#E78A33` con texto blanco.
-- **Desactivados:** fondo `#E5E5E5`, texto `#648D21` a 50% opacidad.
+- **Desactivados:** fondo `#f7f4ef`, texto `#648D21` a 50% opacidad.
 
 ### Fondos
 
 - Fondo principal: blanco puro `#FFFFFF`.
+- Fondo secundario (secciones alternas): off-white `#f7f4ef`.
+- Fondo terciario (áreas suaves): light warm `#f9f8f4`.
 - Secciones destacadas o alternadas: beige cálido `#D8C28E` o verde claro `#648D21` con 10% opacidad.
 
 ### Tipografía
 
 - **Fuente base:** Inter, sans-serif.
 - **Jerarquía:**
-    - H1: 40–48px, color `#27582E`, peso 700.
+    - H1: 40–48px, color `#284c3e`, peso 700.
     - H2: 32px, color `#27582E`, peso 600.
     - H3: 24px, color `#648D21`, peso 600.
     - Texto base: 16–18px, color `#27582E`.
-    - Texto secundario: 14px, color `#E5E5E5`.
+    - Texto secundario: 14px, color `#f7f4ef`.
 
 ### Estados de Interacción
 

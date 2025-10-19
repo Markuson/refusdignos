@@ -3,24 +3,41 @@
 // Description: Main landing page for RefugiosLibresDignos
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/hero sample.webp';
 ---
 
 <BaseLayout
-  title="RefugiosLibresDignos - Espacios seguros, libres y dignos en los Pirineos"
-  description="Rehabilitamos refugios de montaña abandonados en los Pirineos para ofrecer espacios seguros, libres y dignos a personas en situación de vulnerabilidad."
+  title="Refugioslibresdignos - Espacios seguros, libres y dignos"
+  description="Restauramos y cuidamos refugios libres del Pirineo, manteniendo viva la esencia del acceso libre, el esfuerzo compartido y el respeto por la naturaleza."
 >
   <!-- Hero Section -->
-  <section class="relative bg-forest-green text-white py-20 md:py-32">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-        RefugiosLibresDignos en Pirineos
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+  <section class="relative text-white py-20 md:py-32 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <Image
+        src={heroImage}
+        alt="Refugio de montaña en los Pirineos"
+        class="w-full h-full object-cover"
+        loading="eager"
+        widths={[640, 768, 1024, 1280, 1536]}
+        sizes="100vw"
+      />
+      <!-- Dark overlay for better text readability -->
+      <div class="absolute inset-0 bg-forest-green/60"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
         Espacios seguros, libres y dignos
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto drop-shadow-lg">
+        Restauramos y cuidamos refugios libres del Pirineo, manteniendo viva la esencia del acceso libre, el esfuerzo compartido y el respeto por la naturaleza.
       </p>
       <a
         href="/refugios"
-        class="btn-primary inline-block"
+        class="btn btn-primary"
       >
         Explora Refugios
       </a>
@@ -28,7 +45,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Mission Section -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-background-light">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6 text-center">
@@ -46,7 +63,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </p>
         </div>
         <div class="text-center">
-          <a href="/proyecto" class="btn-secondary">
+          <a href="/proyecto" class="btn btn-secondary">
             Conoce Más
           </a>
         </div>
@@ -55,14 +72,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Featured Refuges Section (Placeholder) -->
-  <section class="py-16 bg-tan/30">
+  <section class="py-16 bg-background-dark">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
         Refugios Destacados
       </h2>
       <div class="text-center text-forest-green/70">
         <p class="mb-6">Próximamente: Galería de refugios rehabilitados</p>
-        <a href="/refugios" class="btn-primary">
+        <a href="/refugios" class="btn btn-primary">
           Ver Todos los Refugios
         </a>
       </div>
@@ -70,14 +87,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- Sponsors Section (Placeholder) -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-background-light">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
         Nuestros Patrocinadores
       </h2>
       <div class="text-center text-forest-green/70">
         <p class="mb-6">Gracias a quienes hacen posible este proyecto</p>
-        <a href="/patrocinadores" class="btn-secondary">
+        <a href="/patrocinadores" class="btn btn-secondary">
           Ver Patrocinadores
         </a>
       </div>
@@ -94,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         Tu apoyo hace posible que sigamos rehabilitando refugios y ofreciendo espacios dignos a
         quienes más lo necesitan.
       </p>
-      <a href="/contacto" class="btn bg-sunrise-orange text-white hover:bg-sunrise-orange/90">
+      <a href="/contacto" class="btn btn-secondary">
         Contáctanos
       </a>
     </div>

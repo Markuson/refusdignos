@@ -1097,6 +1097,8 @@ export default defineConfig({
 
 ### TailwindCSS Configuration
 
+**Note:** This project uses Tailwind CSS v4. Colors are defined using the `@theme` directive in CSS rather than in the JavaScript configuration file.
+
 ```javascript
 // tailwind.config.mjs
 /** @type {import('tailwindcss').Config} */
@@ -1105,11 +1107,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        'forest-green': '#27582E',
+        'forest-green': '#284c3e',
         'sunrise-orange': '#E78A33',
         'lime-green': '#648D21',
         'tan': '#D8C28E',
-        'off-white': '#E5E5E5',
+        'background-dark': '#f7f4ef',
+        'background-light': '#f9f8f4',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -1145,10 +1148,18 @@ export default {
 ```css
 /* src/styles/global.css */
 
-/* Tailwind base, components, utilities */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind CSS v4 Import */
+@import 'tailwindcss';
+
+/* Custom Theme Colors for Tailwind v4 */
+@theme {
+  --color-forest-green: #284c3e;
+  --color-sunrise-orange: #E78A33;
+  --color-lime-green: #648D21;
+  --color-tan: #D8C28E;
+  --color-background-light: #f9f8f4;
+  --color-background-dark: #f7f4ef;
+}
 
 /* Font Face Declarations */
 @font-face {
@@ -1182,7 +1193,7 @@ export default {
   --color-sunrise-orange: #E78A33;
   --color-lime-green: #648D21;
   --color-tan: #D8C28E;
-  --color-off-white: #E5E5E5;
+  --color-off-white: #f7f4ef;
   --color-white: #FFFFFF;
 
   /* Typography */

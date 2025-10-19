@@ -104,17 +104,17 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
    - [x] Test: `pnpm dev` and `pnpm build` run successfully
 
 2. **Design System Configuration** (Story 1.2 - Part 1)
-   - [ ] Download Inter font files (woff2 format: 400, 600, 700 weights)
-   - [ ] Place fonts in `/public/fonts/`
+   - [x] Download Inter font files (woff2 format: 400, 600, 700 weights)
+   - [x] Place fonts in `/public/fonts/`
    - [x] Configure `tailwind.config.mjs` with custom colors:
-     - forest-green: #27582E
+     - forest-green: #284c3e
      - sunrise-orange: #E78A33
      - lime-green: #648D21
      - tan: #D8C28E
-     - off-white: #E5E5E5
-   - [ ] Add custom font family (Inter)
-   - [ ] Add custom typography scale (H1, H2, H3, body sizes)
-   - [ ] Add custom spacing, border-radius, transitions
+     - off-white: #f7f4ef
+   - [x] Add custom font family (Inter)
+   - [x] Add custom typography scale (H1, H2, H3, body sizes)
+   - [x] Add custom spacing, border-radius, transitions
 
 **Deliverable:** Initialized Astro project with configured design system
 
@@ -138,7 +138,7 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 2. **Footer Component** (Story 1.4)
    - [x] Create `/src/components/Footer.astro`
    - [x] Add semantic `<footer>` element
-   - [ ] Implement sections: Legal, Social Media, Contact
+   - [x] Implement sections: Legal, Social Media, Contact
    - [x] Add legal links (placeholder pages for now)
    - [x] Add social media icon links with ARIA labels
    - [x] Add contact email or placeholder

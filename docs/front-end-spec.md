@@ -801,7 +801,7 @@ graph TD
 **Technical Specs:**
 ```css
 .btn-primary {
-  background: #27582E;
+  background: #284c3e;
   color: #FFFFFF;
   border-radius: 4px;
   padding: 12px 24px;
@@ -894,7 +894,7 @@ graph TD
 
 **Technical Specs:**
 - Height: 64px (desktop), 56px (mobile)
-- Background: forest-green (#27582E)
+- Background: forest-green (#284c3e)
 - Text: white
 - Logo max-height: 48px
 - Hamburger icon: 24x24px, 3 bars
@@ -947,7 +947,7 @@ graph TD
 
 **Technical Specs:**
 - Height: 48px (input), auto (textarea)
-- Border: 1px solid #E5E5E5
+- Border: 1px solid #f7f4ef
 - Border-radius: 4px
 - Padding: 12px 16px
 - Focus outline: 2px #E78A33
@@ -990,11 +990,12 @@ The visual identity evokes the natural beauty of the Pyrenees mountains while ma
 
 | Color Type | Hex Code | Usage |
 |------------|----------|-------|
-| **Primary** | #27582E (Forest Green) | Headers, main text, navbar background, primary buttons/CTAs - evokes nature, stability, trust |
+| **Primary** | #284c3e (Forest Green) | Headers, main text, navbar background, primary buttons/CTAs - evokes nature, stability, trust |
 | **Accent 1** | #E78A33 (Sunrise Orange) | Secondary buttons, hover states, focus indicators, links - adds energy and attention |
 | **Accent 2** | #648D21 (Lime Green) | Icons, labels, H3 headings, button hover - provides freshness and vitality |
 | **Base** | #FFFFFF (Pure White) | Main background, content areas, card backgrounds - clean and modern |
-| **Tertiary** | #E5E5E5 (Off-White) | Subtitles, borders, dividers, secondary text - softens contrasts |
+| **Background Dark** | #f7f4ef (Off-White) | Subtitles, borders, dividers, secondary text - softens contrasts |
+| **Background Light** | #f9f8f4 (Light Warm) | Alternative section backgrounds, subtle content areas - very light warm tone |
 | **Neutral Warm** | #D8C28E (Tan/Beige) | Card backgrounds, testimonials, footer, section alternation - warm and welcoming |
 | **Success** | #648D21 (Lime Green) | Success messages, positive feedback, "finalizado" badge |
 | **Warning** | #E78A33 (Sunrise Orange) | Important notices, "en-obra" badge |
@@ -1002,9 +1003,9 @@ The visual identity evokes the natural beauty of the Pyrenees mountains while ma
 
 **Color Accessibility:**
 - All text/background combinations meet WCAG AA contrast requirements (4.5:1 minimum)
-- Forest Green on White: 7.1:1 (Pass)
+- Forest Green on White: 6.8:1 (Pass)
 - Sunrise Orange on White: 3.8:1 (Pass for large text only)
-- White on Forest Green: 7.1:1 (Pass)
+- White on Forest Green: 6.8:1 (Pass)
 
 ---
 

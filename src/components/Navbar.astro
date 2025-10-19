@@ -1,6 +1,6 @@
 ---
 // Component: Navbar.astro
-// Description: Responsive navigation bar with logo and menu links
+// Description: Responsive navigation bar with glass effect and hide-on-scroll animation
 
 const currentPath = Astro.url.pathname;
 
@@ -21,13 +21,17 @@ function isActive(href: string) {
 ---
 
 <nav
-  class="sticky top-0 z-50 text-white shadow-md"
-  style="background-color: #27582E;"
+  id="main-navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out navbar-solid"
   aria-label="Main navigation"
 >
-  <div class="container mx-auto flex items-center justify-between py-4">
+  <div class="container mx-auto flex items-center justify-between py-4 px-4">
     <!-- Logo -->
-    <a href="/" class="flex items-center space-x-2 text-xl font-bold transition-colors" style="color: white;">
+    <a
+      href="/"
+      class="flex items-center space-x-2 text-xl font-bold transition-colors"
+      style="color: #284c3e;"
+    >
       <!-- TODO: Replace with actual logo -->
       <span>RefugiosLibresDignos</span>
     </a>
@@ -40,9 +44,19 @@ function isActive(href: string) {
             <a
               href={href}
               class:list={[
-                'transition-colors hover:text-lime-green focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded px-2 py-1',
-                isActive(href) ? 'font-bold text-sunrise-orange' : 'text-white',
+                'transition-colors focus:outline-none focus:ring-2 rounded px-3 py-2',
+                isActive(href)
+                  ? 'font-bold'
+                  : '',
               ]}
+              style={
+                isActive(href)
+                  ? 'color: #E78A33; background-color: rgba(231, 138, 51, 0.1);'
+                  : 'color: #284c3e;'
+              }
+              onmouseover={!isActive(href) ? "this.style.color='#648D21'" : ''}
+              onmouseout={!isActive(href) ? "this.style.color='#284c3e'" : ''}
+              onfocus="this.style.outlineColor='#E78A33'"
               aria-current={isActive(href) ? 'page' : undefined}
             >
               {label}
@@ -55,7 +69,9 @@ function isActive(href: string) {
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-button"
-      class="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-sunrise-orange"
+      class="md:hidden p-2 rounded focus:outline-none focus:ring-2"
+      style="color: #284c3e;"
+      onfocus="this.style.outlineColor='#E78A33'"
       aria-label="Toggle mobile menu"
       aria-expanded="false"
     >
@@ -79,7 +95,7 @@ function isActive(href: string) {
   <div
     id="mobile-menu"
     class="hidden md:hidden border-t"
-    style="background-color: #27582E; border-color: #648D21;"
+    style="border-color: rgba(40, 76, 62, 0.2);"
   >
     <ul class="flex flex-col space-y-2 p-4">
       {
@@ -88,9 +104,17 @@ function isActive(href: string) {
             <a
               href={href}
               class:list={[
-                'block px-4 py-2 rounded transition-colors hover:bg-lime-green focus:outline-none focus:ring-2 focus:ring-sunrise-orange',
-                isActive(href) ? 'font-bold bg-sunrise-orange' : '',
+                'block px-4 py-2 rounded transition-colors focus:outline-none focus:ring-2',
+                isActive(href) ? 'font-bold' : '',
               ]}
+              style={
+                isActive(href)
+                  ? 'color: white; background-color: #E78A33;'
+                  : 'color: #284c3e;'
+              }
+              onmouseover={!isActive(href) ? "this.style.backgroundColor='rgba(100, 141, 33, 0.1)'" : ''}
+              onmouseout={!isActive(href) ? "this.style.backgroundColor='transparent'" : ''}
+              onfocus="this.style.outlineColor='#E78A33'"
               aria-current={isActive(href) ? 'page' : undefined}
             >
               {label}
@@ -101,6 +125,20 @@ function isActive(href: string) {
     </ul>
   </div>
 </nav>
+
+<style>
+  .navbar-solid {
+    background: white;
+    box-shadow: none;
+  }
+
+  .navbar-glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+</style>
 
 <script>
   // Mobile menu toggle
@@ -114,4 +152,35 @@ function isActive(href: string) {
       mobileMenu.classList.toggle('hidden');
     });
   }
+
+  // Toggle glass effect on scroll
+  let ticking = false;
+  const navbar = document.getElementById('main-navbar');
+  const scrollThreshold = 50;
+
+  function updateNavbar() {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > scrollThreshold) {
+      // Scrolled down - apply glass effect
+      navbar?.classList.remove('navbar-solid');
+      navbar?.classList.add('navbar-glass');
+    } else {
+      // At top - solid white background
+      navbar?.classList.remove('navbar-glass');
+      navbar?.classList.add('navbar-solid');
+    }
+
+    ticking = false;
+  }
+
+  // Initial check on page load
+  updateNavbar();
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  });
 </script>

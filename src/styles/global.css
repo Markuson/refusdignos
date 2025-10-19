@@ -1,13 +1,42 @@
 /* RefugiosLibresDignos Global Styles */
 @import 'tailwindcss';
 
-:root {
-  --color-forest-green: #27582E;
+@theme {
+  --color-forest-green: #284c3e;
   --color-sunrise-orange: #E78A33;
   --color-lime-green: #648D21;
   --color-tan: #D8C28E;
-  --color-off-white: #E5E5E5;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-background-light: #f9f8f4;
+  --color-background-dark: #f7f4ef;
+}
+
+/* Font Declarations */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-latin-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
@@ -53,12 +82,13 @@ body {
 
 .btn {
   display: inline-block;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  padding: 1rem 2rem;
   font-weight: 600;
   transition: all 300ms ease;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
@@ -67,18 +97,21 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: var(--color-lime-green);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.15);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--color-sunrise-orange);
+  background-color: var(--color-sunrise-orange);
+  color: white;
   border: 2px solid var(--color-sunrise-orange);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-sunrise-orange);
-  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.15);
 }
 
 @media (prefers-reduced-motion: reduce) {

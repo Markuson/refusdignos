@@ -156,7 +156,7 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 - **Accent 1 (Sunrise Orange #E78A33):** Secondary buttons, hover states, high-impact elements - adds energy and attention
 - **Accent 2 (Lime Green #648D21):** Icons, labels, light section backgrounds - provides freshness and vitality
 - **Base (Pure White #FFFFFF):** Main background, content areas - clean and modern
-- **Tertiary (Off-White #E5E5E5):** Subtitles, borders, dividers - softens contrasts
+- **Tertiary (Off-White #f7f4ef):** Subtitles, borders, dividers - softens contrasts
 - **Neutral Warm (Tan/Beige #D8C28E):** Card backgrounds, testimonials, footer - warm and welcoming
 
 **Typography:**
@@ -165,12 +165,12 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 - **H2:** 32px, #27582E, weight 600
 - **H3:** 24px, #648D21, weight 600
 - **Body:** 16-18px, #27582E
-- **Secondary text:** 14px, #E5E5E5
+- **Secondary text:** 14px, #f7f4ef
 
 **Button Styles:**
 - **Primary:** Background #27582E, white text, 4px border-radius, hover changes to #648D21
 - **Secondary:** Border #E78A33, text #E78A33, hover fills background with #E78A33 and white text
-- **Disabled:** Background #E5E5E5, text #648D21 at 50% opacity
+- **Disabled:** Background #f7f4ef, text #648D21 at 50% opacity
 
 **Interaction States:**
 - Smooth transitions (0.2-0.3s) on all state changes
@@ -367,7 +367,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 
 **Acceptance Criteria:**
 
-1. TailwindCSS config extends theme with custom colors: `forest-green` (#27582E), `sunrise-orange` (#E78A33), `lime-green` (#648D21), `tan` (#D8C28E), `off-white` (#E5E5E5)
+1. TailwindCSS config extends theme with custom colors: `forest-green` (#27582E), `sunrise-orange` (#E78A33), `lime-green` (#648D21), `tan` (#D8C28E), `off-white` (#f7f4ef)
 2. Inter font family added to font stack and configured as default sans-serif
 3. Inter font files downloaded and stored in `/public/fonts/` directory
 4. Custom spacing, border-radius, and transition utilities added to Tailwind config matching design specs
