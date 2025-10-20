@@ -1,1 +1,1 @@
-export const CONTACT_EMAIL = 'info@refusdignos.org';
+export const CONTACT_EMAIL = 'hola@refugioslibresdignos.com';

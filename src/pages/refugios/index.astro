@@ -79,7 +79,7 @@ const refugios = [
     estado: 'Finalizado',
     altitud: '1280m',
     capacidad: '15 personas',
-    descripcion: 'El refugio donde empezó todo. Nuestro primer proyecto hace tres años. Completamente transformado de una cuadra abandonada a un espacio acogedor que ha inspirado a cientos de montañeros. Incluye todas nuestras señas de identidad: mesa, biblioteca, guitarra y panel de experiencias.',
+    descripcion: 'El refugio donde empezó todo. Nuestro primer proyecto en 2022. Completamente transformado de una cuadra abandonada a un espacio acogedor que ha inspirado a cientos de montañeros. Incluye todas nuestras señas de identidad: mesa, biblioteca, guitarra y panel de experiencias.',
     destacados: ['Nuestro primer refugio', 'Mayor capacidad', 'Sala común amplia', 'Historia del proyecto'],
     fecha: 'Mayo 2022',
   },
@@ -126,12 +126,14 @@ function getEstadoBadgeColor(estado: string) {
   description="Descubre los refugios libres que estamos rehabilitando para crear espacios seguros y dignos."
 >
   <!-- Hero Section -->
-  <section class="bg-forest-green text-white pb-16 md:pb-24" style="margin-top: -64px; padding-top: 80px;">
+  <section class="bg-background-dark text-forest-green" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Nuestros Refugios</h1>
-      <p class="text-xl md:text-2xl max-w-3xl mx-auto">
-        Proyectos de rehabilitación de refugios libres
-      </p>
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Nuestros Refugios</h1>
+        <p class="text-xl md:text-2xl fade-in-up">
+          Proyectos de rehabilitación de refugios libres
+        </p>
+      </div>
     </div>
   </section>
 
@@ -141,51 +143,46 @@ function getEstadoBadgeColor(estado: string) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           refugios.map((refugio) => (
-            <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              {/* Placeholder Image */}
-              <div class="bg-tan/30 h-48 flex items-center justify-center">
-                <span class="text-forest-green/50 text-sm">Imagen próximamente</span>
-              </div>
-
-              {/* Card Content */}
-              <div class="p-6">
-                <div class="flex items-start justify-between mb-3">
-                  <h2 class="text-2xl font-semibold text-forest-green">{refugio.nombre}</h2>
-                  <span
-                    class={`px-3 py-1 rounded-full text-xs font-semibold text-white ${getEstadoBadgeColor(refugio.estado)}`}
-                  >
-                    {refugio.estado}
-                  </span>
+            <a href={`/refugios/${refugio.id}`} class="block">
+              <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer h-full">
+                {/* Placeholder Image */}
+                <div class="bg-tan/30 h-48 flex items-center justify-center">
+                  <span class="text-forest-green/50 text-sm">Imagen próximamente</span>
                 </div>
 
-                <p class="text-sm text-lime-green mb-2">📍 {refugio.ubicacion}</p>
-
-                <div class="flex gap-4 text-xs text-forest-green/70 mb-3">
-                  <span>⛰️ {refugio.altitud}</span>
-                  <span>👥 {refugio.capacidad}</span>
-                  <span>📅 {refugio.fecha}</span>
-                </div>
-
-                <p class="text-forest-green/80 mb-4 line-clamp-3">{refugio.descripcion}</p>
-
-                {refugio.destacados && refugio.destacados.length > 0 && (
-                  <div class="flex flex-wrap gap-2 mb-4">
-                    {refugio.destacados.slice(0, 3).map((destacado) => (
-                      <span class="text-xs bg-tan/30 text-forest-green px-2 py-1 rounded">
-                        {destacado}
-                      </span>
-                    ))}
+                {/* Card Content */}
+                <div class="p-6">
+                  <div class="flex items-start justify-between mb-3">
+                    <h2 class="text-2xl font-semibold text-forest-green">{refugio.nombre}</h2>
+                    <span
+                      class={`px-3 py-1 rounded-full text-xs font-semibold text-white ${getEstadoBadgeColor(refugio.estado)}`}
+                    >
+                      {refugio.estado}
+                    </span>
                   </div>
-                )}
 
-                <a
-                  href={`/refugios/${refugio.id}`}
-                  class="text-sunrise-orange hover:text-sunrise-orange/80 font-semibold transition-colors"
-                >
-                  Leer más →
-                </a>
-              </div>
-            </article>
+                  <p class="text-sm text-lime-green mb-2">📍 {refugio.ubicacion}</p>
+
+                  <div class="flex gap-4 text-xs text-forest-green/70 mb-3">
+                    <span>⛰️ {refugio.altitud}</span>
+                    <span>👥 {refugio.capacidad}</span>
+                    <span>📅 {refugio.fecha}</span>
+                  </div>
+
+                  <p class="text-forest-green/80 mb-4 line-clamp-3">{refugio.descripcion}</p>
+
+                  {refugio.destacados && refugio.destacados.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {refugio.destacados.slice(0, 3).map((destacado) => (
+                        <span class="text-xs bg-tan/30 text-forest-green px-2 py-1 rounded">
+                          {destacado}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            </a>
           ))
         }
       </div>
