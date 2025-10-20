@@ -1,6 +1,7 @@
 ---
 // Page: Privacy Policy (/legal/privacidad)
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CONTACT_EMAIL } from '../../config/constants';
 
 const lastUpdated = '18 de octubre de 2025';
 ---
@@ -59,7 +60,7 @@ const lastUpdated = '18 de octubre de 2025';
         </ul>
         <p>
           Para ejercer estos derechos, contacta con nosotros en{' '}
-          <a href="mailto:info@refusdignos.org">info@refusdignos.org</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
 
         <h2>6. Cookies</h2>
@@ -77,7 +78,7 @@ const lastUpdated = '18 de octubre de 2025';
         <h2>8. Contacto</h2>
         <p>
           Si tienes dudas sobre esta política de privacidad, puedes contactarnos en{' '}
-          <a href="mailto:info@refusdignos.org">info@refusdignos.org</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
       </div>
     </div>

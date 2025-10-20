@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramIcon from '../assets/icons/Instagram.svg';
 import FacebookIcon from '../assets/icons/Facebook.svg';
 import TikTokIcon from '../assets/icons/TikTok.svg';
+import { CONTACT_EMAIL } from '../config/constants';
 ---
 
 <BaseLayout
@@ -68,10 +69,10 @@ import TikTokIcon from '../assets/icons/TikTok.svg';
           <div class="bg-tan/30 p-6 rounded-lg">
             <h3 class="text-lg font-semibold text-forest-green mb-3">Email</h3>
             <a
-              href="mailto:info@refusdignos.org"
+              href={`mailto:${CONTACT_EMAIL}`}
               class="text-sunrise-orange hover:underline"
             >
-              info@refusdignos.org
+              {CONTACT_EMAIL}
             </a>
           </div>
         </div>

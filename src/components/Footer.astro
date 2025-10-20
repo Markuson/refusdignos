@@ -5,6 +5,7 @@
 import InstagramIcon from '../assets/icons/Instagram.svg';
 import FacebookIcon from '../assets/icons/Facebook.svg';
 import TikTokIcon from '../assets/icons/TikTok.svg';
+import { CONTACT_EMAIL } from '../config/constants';
 
 const currentYear = new Date().getFullYear();
 
@@ -83,10 +84,10 @@ const legalLinks = [
         </div>
         <p class="text-sm">
           Email: <a
-            href="mailto:info@refusdignos.org"
+            href={`mailto:${CONTACT_EMAIL}`}
             class="hover:text-sunrise-orange transition-colors focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded"
           >
-            info@refusdignos.org
+            {CONTACT_EMAIL}
           </a>
         </p>
       </div>
