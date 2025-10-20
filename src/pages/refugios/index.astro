@@ -4,31 +4,106 @@
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-// Placeholder data for refuges (will be replaced with Content Collections in Week 3)
+// Placeholder data for refuges (will be replaced with Content Collections later)
 const refugios = [
   {
     id: 1,
-    nombre: 'Refugio de Montgarri',
-    ubicacion: 'Valle de Arán, Lleida',
-    estado: 'En obra',
-    descripcion: 'Antiguo refugio del siglo XIX en proceso de rehabilitación para acoger a víctimas de violencia de género.',
-    imagen: '/favicon.svg', // Placeholder
+    nombre: 'Refugio de Lizara',
+    ubicacion: 'Valle de Aragüés del Puerto, Huesca',
+    estado: 'Finalizado',
+    altitud: '1540m',
+    capacidad: '8 personas',
+    descripcion: 'Antigua cuadra de pastores transformada en un acogedor refugio. Rehabilitado con materiales reciclados, cuenta con chimenea, biblioteca y vistas espectaculares al valle. Brindado a colectivos de montañismo juvenil.',
+    destacados: ['Chimenea funcional', 'Biblioteca de montaña', 'Mesa comunitaria', 'Foco solar'],
+    fecha: 'Abril 2023',
   },
   {
     id: 2,
-    nombre: 'Refugio de Pinet',
-    ubicacion: 'Pallars Sobirà, Lleida',
-    estado: 'Planificado',
-    descripcion: 'Refugio histórico que será dedicado a jóvenes en riesgo de exclusión social.',
-    imagen: '/favicon.svg', // Placeholder
+    nombre: 'Refugio de Estós',
+    ubicacion: 'Valle de Benasque, Huesca',
+    estado: 'Finalizado',
+    altitud: '1890m',
+    capacidad: '10 personas',
+    descripcion: 'Refugio histórico de piedra completamente renovado. Incluye zona de descanso amplia, cocina equipada con menaje básico y un panel de experiencias donde los visitantes dejan sus historias. Dedicado a la comunidad de senderistas.',
+    destacados: ['Panel de experiencias', 'Cocina equipada', 'Botiquín completo', 'Obras de arte local'],
+    fecha: 'Septiembre 2023',
   },
   {
     id: 3,
-    nombre: 'Refugio de Salau',
-    ubicacion: 'Alto Pallars, Lleida',
+    nombre: 'Refugio de Viados',
+    ubicacion: 'Valle de Chistau, Huesca',
+    estado: 'En obra',
+    altitud: '1650m',
+    capacidad: '6 personas',
+    descripcion: 'En proceso de rehabilitación. Esta antigua cabaña de pastores está siendo transformada con especial cuidado en mantener su arquitectura tradicional. Contará con la primera guitarra del proyecto grabada con la frase: "Que las vacas y la música no dejen de sonar en estos valles".',
+    destacados: ['Arquitectura tradicional', 'Guitarra comunitaria', 'Chimenea de piedra'],
+    fecha: 'En proceso',
+  },
+  {
+    id: 4,
+    nombre: 'Refugio de Góriz Bajo',
+    ubicacion: 'Parque Nacional de Ordesa, Huesca',
     estado: 'Finalizado',
-    descripcion: 'Primer refugio completado, brindado a personas en situación de sinhogarismo.',
-    imagen: '/favicon.svg', // Placeholder
+    altitud: '2100m',
+    capacidad: '12 personas',
+    descripcion: 'Uno de nuestros proyectos más emblemáticos. Este refugio de alta montaña ahora ofrece un espacio digno con literas restauradas, zona de cocina completa y un sistema de iluminación solar. La inversión fue de 1200€ en materiales donados y reciclados.',
+    destacados: ['Alta montaña', 'Iluminación solar', '12 literas', 'Extintor de seguridad'],
+    fecha: 'Junio 2024',
+  },
+  {
+    id: 5,
+    nombre: 'Refugio de Bujaruelo',
+    ubicacion: 'Valle de Bujaruelo, Huesca',
+    estado: 'Finalizado',
+    altitud: '1340m',
+    capacidad: '8 personas',
+    descripcion: 'Refugio rehabilitado junto al río Ara. Destaca por su pequeña biblioteca especializada en flora y fauna del Pirineo, y por las pinturas murales que decoran sus paredes. Un lugar perfecto para familias y grupos educativos.',
+    destacados: ['Biblioteca temática', 'Murales artísticos', 'Junto al río', 'Mesa para 10 personas'],
+    fecha: 'Octubre 2023',
+  },
+  {
+    id: 6,
+    nombre: 'Refugio de Bachimaña',
+    ubicacion: 'Valle de Tena, Huesca',
+    estado: 'Planificado',
+    altitud: '2200m',
+    capacidad: '10 personas',
+    descripcion: 'Próximo proyecto para 2025. Esta antigua construcción de piedra requerirá trabajo intensivo en el techo y la estructura. Será nuestro refugio más alto y servirá como punto de apoyo para rutas de alta montaña.',
+    destacados: ['Alta montaña', 'Punto estratégico', 'Vistas panorámicas'],
+    fecha: 'Planificado 2025',
+  },
+  {
+    id: 7,
+    nombre: 'Refugio de Pineta',
+    ubicacion: 'Valle de Pineta, Huesca',
+    estado: 'Finalizado',
+    altitud: '1280m',
+    capacidad: '15 personas',
+    descripcion: 'El refugio donde empezó todo. Nuestro primer proyecto hace tres años. Completamente transformado de una cuadra abandonada a un espacio acogedor que ha inspirado a cientos de montañeros. Incluye todas nuestras señas de identidad: mesa, biblioteca, guitarra y panel de experiencias.',
+    destacados: ['Nuestro primer refugio', 'Mayor capacidad', 'Sala común amplia', 'Historia del proyecto'],
+    fecha: 'Mayo 2022',
+  },
+  {
+    id: 8,
+    nombre: 'Refugio de Biadós',
+    ubicacion: 'Valle de Bielsa, Huesca',
+    estado: 'En obra',
+    altitud: '1580m',
+    capacidad: '8 personas',
+    descripcion: 'Actualmente en fase de acabados. Este refugio será especial por su chimenea de diseño único construida con piedras del entorno. Esperamos finalizarlo antes del verano 2025. Brindado a grupos de montañismo senior.',
+    destacados: ['Chimenea única', 'Piedra local', 'Acceso moderado'],
+    fecha: 'En proceso',
+  },
+  {
+    id: 9,
+    nombre: 'Refugio de Respomuso',
+    ubicacion: 'Valle de Tena, Huesca',
+    estado: 'Planificado',
+    altitud: '2020m',
+    capacidad: '12 personas',
+    descripcion: 'Planificado para verano 2025. Será nuestro proyecto número 20. Esta estructura necesita rehabilitación completa pero tiene un potencial increíble por su ubicación cerca del embalse y las vistas al Balaitus.',
+    destacados: ['Vistas al Balaitus', 'Cerca del embalse', 'Proyecto #20'],
+    fecha: 'Planificado 2025',
   },
 ];
 
@@ -83,9 +158,25 @@ function getEstadoBadgeColor(estado: string) {
                   </span>
                 </div>
 
-                <p class="text-sm text-lime-green mb-3">📍 {refugio.ubicacion}</p>
+                <p class="text-sm text-lime-green mb-2">📍 {refugio.ubicacion}</p>
+
+                <div class="flex gap-4 text-xs text-forest-green/70 mb-3">
+                  <span>⛰️ {refugio.altitud}</span>
+                  <span>👥 {refugio.capacidad}</span>
+                  <span>📅 {refugio.fecha}</span>
+                </div>
 
                 <p class="text-forest-green/80 mb-4 line-clamp-3">{refugio.descripcion}</p>
+
+                {refugio.destacados && refugio.destacados.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {refugio.destacados.slice(0, 3).map((destacado) => (
+                      <span class="text-xs bg-tan/30 text-forest-green px-2 py-1 rounded">
+                        {destacado}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 <a
                   href={`/refugios/${refugio.id}`}
