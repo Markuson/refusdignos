@@ -2,12 +2,28 @@
 // Component: Footer.astro
 // Description: Site footer with legal links, social media, and contact info
 
+import InstagramIcon from '../assets/icons/Instagram.svg';
+import FacebookIcon from '../assets/icons/Facebook.svg';
+import TikTokIcon from '../assets/icons/TikTok.svg';
+
 const currentYear = new Date().getFullYear();
 
 const socialLinks = [
-  { platform: 'Facebook', url: '#', icon: 'facebook' },
-  { platform: 'Instagram', url: '#', icon: 'instagram' },
-  { platform: 'Twitter', url: '#', icon: 'twitter' },
+  {
+    platform: 'Instagram',
+    url: 'https://www.instagram.com/refugioslibresdignos',
+    Icon: InstagramIcon,
+  },
+  {
+    platform: 'Facebook',
+    url: 'https://www.facebook.com/people/Refugios-Libres-Dignos/100087582142068/',
+    Icon: FacebookIcon,
+  },
+  {
+    platform: 'TikTok',
+    url: 'https://www.tiktok.com/@refugioslibresdignos',
+    Icon: TikTokIcon,
+  },
 ];
 
 const legalLinks = [
@@ -60,8 +76,7 @@ const legalLinks = [
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {/* TODO: Replace with actual icons */}
-                <span class="text-xs">{social.icon[0].toUpperCase()}</span>
+                <social.Icon class="w-5 h-5 fill-current" />
               </a>
             ))
           }
