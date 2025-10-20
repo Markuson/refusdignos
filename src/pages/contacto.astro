@@ -3,6 +3,9 @@
 // Description: Contact form and social media links
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InstagramIcon from '../assets/icons/Instagram.svg';
+import FacebookIcon from '../assets/icons/Facebook.svg';
+import TikTokIcon from '../assets/icons/TikTok.svg';
 ---
 
 <BaseLayout
@@ -28,37 +31,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <h2 class="text-2xl font-bold text-forest-green mb-6">Síguenos</h2>
           <div class="space-y-4 mb-8">
             <a
-              href="#"
+              href="https://www.instagram.com/refugioslibresdignos"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
             >
-              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
-                F
-              </div>
-              <span class="font-semibold">Facebook</span>
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
-            >
-              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
-                I
+              <div class="w-10 h-10 bg-forest-green group-hover:bg-lime-green text-white rounded-full flex items-center justify-center transition-colors">
+                <InstagramIcon class="w-5 h-5 fill-current" />
               </div>
               <span class="font-semibold">Instagram</span>
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/people/Refugios-Libres-Dignos/100087582142068/"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
             >
-              <div class="w-10 h-10 bg-forest-green text-white rounded-full flex items-center justify-center">
-                T
+              <div class="w-10 h-10 bg-forest-green group-hover:bg-lime-green text-white rounded-full flex items-center justify-center transition-colors">
+                <FacebookIcon class="w-5 h-5 fill-current" />
               </div>
-              <span class="font-semibold">Twitter</span>
+              <span class="font-semibold">Facebook</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@refugioslibresdignos"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
+            >
+              <div class="w-10 h-10 bg-forest-green group-hover:bg-lime-green text-white rounded-full flex items-center justify-center transition-colors">
+                <TikTokIcon class="w-5 h-5 fill-current" />
+              </div>
+              <span class="font-semibold">TikTok</span>
             </a>
           </div>
 
