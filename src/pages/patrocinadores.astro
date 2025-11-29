@@ -3,99 +3,7 @@
 // Description: Showcase sponsors and encourage new sponsorships
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-// Placeholder sponsor data (fictional companies for demonstration)
-const sponsors = {
-  empresas: [
-    {
-      nombre: 'Montaña Sport',
-      tipo: 'Tienda de equipamiento',
-      descripcion: 'Donación de materiales y equipamiento para refugios',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Maderas Pirineos',
-      tipo: 'Carpintería',
-      descripcion: 'Suministro de madera reciclada y mobiliario',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Pinturas EcoVerde',
-      tipo: 'Materiales de construcción',
-      descripcion: 'Donación de pinturas ecológicas y barnices',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Ferretería Aragonesa',
-      tipo: 'Ferretería',
-      descripcion: 'Herramientas y materiales de construcción',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Librería Montañera',
-      tipo: 'Librería especializada',
-      descripcion: 'Donación de libros para bibliotecas de refugios',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Solar Energy Solutions',
-      tipo: 'Energía renovable',
-      descripcion: 'Sistemas de iluminación solar',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Artesanía del Valle',
-      tipo: 'Artesanía local',
-      descripcion: 'Obras de arte y decoración para refugios',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Transporte Huesca',
-      tipo: 'Transporte',
-      descripcion: 'Transporte de materiales a los valles',
-      logo: '/logo.webp',
-      url: '#'
-    },
-  ],
-  instituciones: [
-    {
-      nombre: 'Federación Aragonesa de Montañismo',
-      tipo: 'Organización deportiva',
-      descripcion: 'Apoyo técnico y difusión del proyecto',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Ayuntamiento de Benasque',
-      tipo: 'Administración local',
-      descripcion: 'Coordinación y permisos',
-      logo: '/logo.webp',
-      url: '#'
-    },
-    {
-      nombre: 'Asociación de Guías de Montaña',
-      tipo: 'Asociación profesional',
-      descripcion: 'Asesoramiento técnico y seguridad',
-      logo: '/logo.webp',
-      url: '#'
-    },
-  ],
-  colaboradores: [
-    { nombre: 'Juan Pérez', aporte: 'Apadrinamiento Refugio de Lizara' },
-    { nombre: 'María García', aporte: 'Donación de menaje y utensilios' },
-    { nombre: 'Carlos Martínez', aporte: 'Apadrinamiento Refugio de Estós' },
-    { nombre: 'Laura Sánchez', aporte: 'Donación de biblioteca completa' },
-    { nombre: 'Pedro López', aporte: 'Guitarras artesanales para 3 refugios' },
-    { nombre: 'Ana Rodríguez', aporte: 'Murales artísticos en Refugio Bujaruelo' },
-  ],
-};
+import { colaboradores } from '../data/colaboradores';
 ---
 
 <BaseLayout
@@ -131,77 +39,51 @@ const sponsors = {
   <!-- Empresas Section -->
   <section class="py-16 bg-background-dark">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Empresas Colaboradoras</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Nuestros Colaboradores</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {
-          sponsors.empresas.map((sponsor) => (
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
+          colaboradores.map((colaborador) => (
+            <a
+              href={colaborador.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 block"
+            >
               <div class="text-center mb-4">
-                <div class="w-20 h-20 mx-auto mb-3 bg-tan/30 rounded flex items-center justify-center">
-                  <span class="text-forest-green/50 text-xs">Logo</span>
-                </div>
-                <h3 class="text-base text-forest-green font-semibold mb-1">{sponsor.nombre}</h3>
-                <p class="text-xs text-sunrise-orange mb-2">{sponsor.tipo}</p>
+                {colaborador.logo ? (
+                  <div class="w-full h-24 mx-auto mb-3 flex items-center justify-center">
+                    <img
+                      src={colaborador.logo}
+                      alt={`Logo de ${colaborador.nombre}`}
+                      class="max-w-full max-h-full object-contain"
+                      style={colaborador.nombre === 'Julián Mairal' ? 'filter: brightness(0) saturate(100%);' : ''}
+                    />
+                  </div>
+                ) : (
+                  <div class="w-20 h-20 mx-auto mb-3 bg-tan/30 rounded flex items-center justify-center">
+                    <span class="text-forest-green/50 text-xs">Logo</span>
+                  </div>
+                )}
+                <h3 class="text-base text-forest-green font-semibold mb-3">{colaborador.nombre}</h3>
               </div>
-              <p class="text-xs text-forest-green/70 text-center">{sponsor.descripcion}</p>
-            </div>
+              <p class="text-xs text-forest-green/70 text-center">{colaborador.descripcion}</p>
+            </a>
           ))
         }
       </div>
     </div>
   </section>
 
-  <!-- Instituciones Section -->
+  <!-- Support Message Section -->
   <section class="py-16 bg-background-light">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Instituciones y Organizaciones</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        {
-          sponsors.instituciones.map((sponsor) => (
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border border-tan/30">
-              <div class="text-center mb-4">
-                <div class="w-24 h-24 mx-auto mb-3 bg-tan/30 rounded-full flex items-center justify-center">
-                  <span class="text-forest-green/50 text-xs">Logo</span>
-                </div>
-                <h3 class="text-base text-forest-green font-semibold mb-1">{sponsor.nombre}</h3>
-                <p class="text-xs text-sunrise-orange mb-2">{sponsor.tipo}</p>
-              </div>
-              <p class="text-xs text-forest-green/70 text-center">{sponsor.descripcion}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Colaboradores Individuales Section -->
-  <section class="py-16 bg-background-dark">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-forest-green mb-6 text-center">Colaboradores Individuales</h2>
-      <p class="text-center text-forest-green/80 mb-12 max-w-2xl mx-auto">
-        Personas que han contribuido de forma especial al proyecto a través de apadrinamientos,
-        donaciones o su talento artístico.
-      </p>
-      <div class="max-w-4xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {
-            sponsors.colaboradores.map((colaborador) => (
-              <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-lime-green/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-lime-green text-xl font-bold">
-                      {colaborador.nombre.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                  <div class="flex-1">
-                    <h3 class="text-sm font-semibold text-forest-green">{colaborador.nombre}</h3>
-                    <p class="text-xs text-forest-green/70">{colaborador.aporte}</p>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-forest-green mb-6">Gracias por hacer esto posible</h2>
+        <p class="text-lg text-forest-green/90 mb-6">
+          Cada uno de estos colaboradores aporta su granito de arena para que los refugios libres
+          puedan seguir siendo espacios dignos y acogedores. Desde productos de calidad
+          hasta servicios especializados, todos son parte fundamental de este proyecto.
+        </p>
       </div>
     </div>
   </section>
@@ -213,9 +95,7 @@ const sponsors = {
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">¿Quieres sumarte?</h2>
         <p class="text-lg text-forest-green/90 mb-8">
           Hay muchas formas de colaborar: patrocinio económico, donación de materiales,
-          apadrinando un refugio, o simplemente difundiendo el proyecto. Si de cada diez personas
-          que pasan por nuestros refugios al menos una termina concienciada de cuidarlos, estaremos
-          cambiando la mentalidad de la gente.
+          apadrinando un refugio, o simplemente difundiendo el proyecto.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/contacto" class="btn btn-primary">
