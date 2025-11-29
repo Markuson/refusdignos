@@ -4,7 +4,6 @@ export const refugios = [
     id: 1,
     nombre: 'Refugio de Lizara',
     ubicacion: 'Valle de Aragüés del Puerto, Huesca',
-    estado: 'Finalizado',
     altitud: '1540m',
     capacidad: '8 personas',
     descripcion: 'Antigua cuadra de pastores transformada en un acogedor refugio. Rehabilitado con materiales reciclados, cuenta con chimenea, biblioteca y vistas espectaculares al valle. Brindado a colectivos de montañismo juvenil.',
@@ -16,7 +15,6 @@ El refugio destaca por su chimenea funcional construida con piedras del entorno,
 
 Brindado especialmente a los colectivos de montañismo juvenil, este refugio se ha convertido en un punto de encuentro para nuevas generaciones de montañeros que aprenden el valor del respeto y el cuidado de estos espacios compartidos.`,
     brindadoA: 'Colectivos de montañismo juvenil y grupos de iniciación a la montaña. Este refugio está dedicado especialmente a quienes dan sus primeros pasos en el Pirineo y aprenden el valor del respeto por los espacios libres.',
-    destacados: ['Chimenea funcional', 'Biblioteca de montaña', 'Mesa comunitaria', 'Foco solar'],
     fecha: 'Abril 2023',
     imagenes: [
       { alt: 'Vista exterior del Refugio de Lizara', caption: 'Fachada principal del refugio' },
@@ -29,7 +27,6 @@ Brindado especialmente a los colectivos de montañismo juvenil, este refugio se 
     id: 2,
     nombre: 'Refugio de Estós',
     ubicacion: 'Valle de Benasque, Huesca',
-    estado: 'Finalizado',
     altitud: '1890m',
     capacidad: '10 personas',
     descripcion: 'Refugio histórico de piedra completamente renovado. Incluye zona de descanso amplia, cocina equipada con menaje básico y un panel de experiencias donde los visitantes dejan sus historias. Dedicado a la comunidad de senderistas.',
@@ -41,7 +38,6 @@ La cocina está equipada con menaje básico donado por familias locales, y cuent
 
 Las paredes del refugio muestran obras de arte local, pequeñas pinturas y grabados realizados por artistas pirenaicos que han querido contribuir al proyecto. Es un refugio que respira historia y comunidad en cada rincón.`,
     brindadoA: 'Comunidad de senderistas y amantes del valle de Benasque. Un espacio donde cada persona que pasa deja su huella en forma de experiencia compartida.',
-    destacados: ['Panel de experiencias', 'Cocina equipada', 'Botiquín completo', 'Obras de arte local'],
     fecha: 'Septiembre 2023',
     imagenes: [
       { alt: 'Refugio de Estós desde el sendero', caption: 'Vista desde el valle de Benasque' },
@@ -54,7 +50,6 @@ Las paredes del refugio muestran obras de arte local, pequeñas pinturas y graba
     id: 3,
     nombre: 'Refugio de Viados',
     ubicacion: 'Valle de Chistau, Huesca',
-    estado: 'En obra',
     altitud: '1650m',
     capacidad: '6 personas',
     descripcion: 'En proceso de rehabilitación. Esta antigua cabaña de pastores está siendo transformada con especial cuidado en mantener su arquitectura tradicional. Contará con la primera guitarra del proyecto grabada con la frase: "Que las vacas y la música no dejen de sonar en estos valles".',
@@ -66,7 +61,6 @@ La chimenea de piedra original está siendo restaurada por un maestro albañil j
 
 Este refugio será especial por su conexión con la tradición: queremos que sea un lugar donde se mantenga viva la memoria de los pastores que habitaron estos valles, combinando funcionalidad moderna con respeto absoluto por el patrimonio arquitectónico.`,
     brindadoA: 'En proceso de decisión. Estamos en conversaciones con asociaciones culturales del valle de Chistau para dedicar este refugio a la preservación de la cultura pastoril pirenaica.',
-    destacados: ['Arquitectura tradicional', 'Guitarra comunitaria', 'Chimenea de piedra'],
     fecha: 'En proceso',
     imagenes: [
       { alt: 'Refugio de Viados en obras', caption: 'Estado actual de la rehabilitación' },
@@ -78,7 +72,6 @@ Este refugio será especial por su conexión con la tradición: queremos que sea
     id: 4,
     nombre: 'Refugio de Góriz Bajo',
     ubicacion: 'Parque Nacional de Ordesa, Huesca',
-    estado: 'Finalizado',
     altitud: '2100m',
     capacidad: '12 personas',
     descripcion: 'Uno de nuestros proyectos más emblemáticos. Este refugio de alta montaña ahora ofrece un espacio digno con literas restauradas, zona de cocina completa y un sistema de iluminación solar. La inversión fue de 1200€ en materiales donados y reciclados.',
@@ -92,7 +85,6 @@ La cocina está equipada con fogones de gas, menaje completo y una despensa dond
 
 Este refugio ha albergado ya a cientos de montañeros y se ha convertido en un punto de referencia para las rutas de alta montaña en Ordesa.`,
     brindadoA: 'Montañeros de alta montaña y grupos de alpinismo. Especialmente dedicado a quienes buscan alcanzar las cimas del Pirineo con respeto y humildad.',
-    destacados: ['Alta montaña', 'Iluminación solar', '12 literas', 'Extintor de seguridad'],
     fecha: 'Junio 2024',
     imagenes: [
       { alt: 'Refugio de Góriz Bajo', caption: 'Vista exterior con Monte Perdido al fondo' },
@@ -105,7 +97,6 @@ Este refugio ha albergado ya a cientos de montañeros y se ha convertido en un p
     id: 5,
     nombre: 'Refugio de Bujaruelo',
     ubicacion: 'Valle de Bujaruelo, Huesca',
-    estado: 'Finalizado',
     altitud: '1340m',
     capacidad: '8 personas',
     descripcion: 'Refugio rehabilitado junto al río Ara. Destaca por su pequeña biblioteca especializada en flora y fauna del Pirineo, y por las pinturas murales que decoran sus paredes. Un lugar perfecto para familias y grupos educativos.',
@@ -117,7 +108,6 @@ La biblioteca temática es otro de los grandes atractivos. Contiene guías de na
 
 La gran mesa para 10 personas facilita las actividades educativas, y varios colegios de la comarca ya han utilizado el refugio como base para sus salidas de educación ambiental.`,
     brindadoA: 'Familias, grupos educativos y amantes de la naturaleza. Un espacio para aprender y conectar con el entorno natural del Pirineo.',
-    destacados: ['Biblioteca temática', 'Murales artísticos', 'Junto al río', 'Mesa para 10 personas'],
     fecha: 'Octubre 2023',
     imagenes: [
       { alt: 'Refugio de Bujaruelo junto al río Ara', caption: 'Ubicación privilegiada junto al agua' },
@@ -130,7 +120,6 @@ La gran mesa para 10 personas facilita las actividades educativas, y varios cole
     id: 6,
     nombre: 'Refugio de Bachimaña',
     ubicacion: 'Valle de Tena, Huesca',
-    estado: 'Planificado',
     altitud: '2200m',
     capacidad: '10 personas',
     descripcion: 'Próximo proyecto para 2025. Esta antigua construcción de piedra requerirá trabajo intensivo en el techo y la estructura. Será nuestro refugio más alto y servirá como punto de apoyo para rutas de alta montaña.',
@@ -144,7 +133,6 @@ La ubicación es estratégica: el refugio servirá como punto de apoyo para múl
 
 Estamos buscando activamente patrocinadores y materiales donados para este proyecto. Si quieres colaborar, contacta con nosotros.`,
     brindadoA: 'Pendiente de decisión. Será dedicado a la comunidad de alpinistas y montañeros experimentados que frecuentan las rutas de alta montaña del Valle de Tena.',
-    destacados: ['Alta montaña', 'Punto estratégico', 'Vistas panorámicas'],
     fecha: 'Planificado 2025',
     imagenes: [
       { alt: 'Refugio de Bachimaña estado actual', caption: 'Construcción original a restaurar' },
@@ -155,7 +143,6 @@ Estamos buscando activamente patrocinadores y materiales donados para este proye
     id: 7,
     nombre: 'Refugio de Pineta',
     ubicacion: 'Valle de Pineta, Huesca',
-    estado: 'Finalizado',
     altitud: '1280m',
     capacidad: '15 personas',
     descripcion: 'El refugio donde empezó todo. Nuestro primer proyecto en 2022. Completamente transformado de una cuadra abandonada a un espacio acogedor que ha inspirado a cientos de montañeros. Incluye todas nuestras señas de identidad: mesa, biblioteca, guitarra y panel de experiencias.',
@@ -169,7 +156,6 @@ Con capacidad para 15 personas, es nuestro refugio más grande. Se ha convertido
 
 Más de 500 personas han pasado por aquí desde su inauguración, y muchas de ellas se han convertido en voluntarias activas del proyecto, participando en la rehabilitación de otros refugios.`,
     brindadoA: 'Todos los montañeros y amantes del Pirineo. Este refugio está dedicado a la comunidad que hizo posible el nacimiento de RefugiosLibresDignos.',
-    destacados: ['Nuestro primer refugio', 'Mayor capacidad', 'Sala común amplia', 'Historia del proyecto'],
     fecha: 'Mayo 2022',
     imagenes: [
       { alt: 'Refugio de Pineta rehabilitado', caption: 'Donde todo comenzó en 2022' },
@@ -183,7 +169,6 @@ Más de 500 personas han pasado por aquí desde su inauguración, y muchas de el
     id: 8,
     nombre: 'Refugio de Biadós',
     ubicacion: 'Valle de Bielsa, Huesca',
-    estado: 'En obra',
     altitud: '1580m',
     capacidad: '8 personas',
     descripcion: 'Actualmente en fase de acabados. Este refugio será especial por su chimenea de diseño único construida con piedras del entorno. Esperamos finalizarlo antes del verano 2025. Brindado a grupos de montañismo senior.',
@@ -197,7 +182,6 @@ El refugio contará con 8 literas cómodas, iluminación solar, una cocina bien 
 
 Será dedicado especialmente a grupos de montañismo senior, esos montañeros experimentados que llevan décadas recorriendo el Pirineo y que tanto nos enseñan sobre el respeto y el conocimiento de la montaña.`,
     brindadoA: 'Grupos de montañismo senior y montañeros experimentados. Un homenaje a quienes llevan décadas cuidando y disfrutando de estos valles.',
-    destacados: ['Chimenea única', 'Piedra local', 'Acceso moderado'],
     fecha: 'En proceso',
     imagenes: [
       { alt: 'Refugio de Biadós en obras', caption: 'Últimos trabajos de rehabilitación' },
@@ -209,7 +193,6 @@ Será dedicado especialmente a grupos de montañismo senior, esos montañeros ex
     id: 9,
     nombre: 'Refugio de Respomuso',
     ubicacion: 'Valle de Tena, Huesca',
-    estado: 'Planificado',
     altitud: '2020m',
     capacidad: '12 personas',
     descripcion: 'Planificado para verano 2025. Será nuestro proyecto número 20. Esta estructura necesita rehabilitación completa pero tiene un potencial increíble por su ubicación cerca del embalse y las vistas al Balaitus.',
@@ -223,7 +206,6 @@ El refugio tendrá capacidad para 12 personas y estamos planificando dotarlo de 
 
 Por ser el proyecto número 20, queremos hacer algo especial: crear un mural fotográfico con imágenes de todos los refugios rehabilitados hasta la fecha, una celebración visual de este movimiento que comenzó con un sueño y se ha convertido en realidad.`,
     brindadoA: 'En proceso de decisión. Estamos barajando dedicarlo a todos los voluntarios que han participado en los 20 proyectos, como homenaje al esfuerzo colectivo.',
-    destacados: ['Vistas al Balaitus', 'Cerca del embalse', 'Proyecto #20'],
     fecha: 'Planificado 2025',
     imagenes: [
       { alt: 'Refugio de Respomuso estado actual', caption: 'Estructura a rehabilitar completamente' },

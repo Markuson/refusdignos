@@ -13,19 +13,6 @@ export async function getStaticPaths() {
 }
 
 const { refugio } = Astro.props;
-
-function getEstadoBadgeColor(estado: string) {
-  switch (estado.toLowerCase()) {
-    case 'finalizado':
-      return 'bg-lime-green text-white';
-    case 'en obra':
-      return 'bg-sunrise-orange text-white';
-    case 'planificado':
-      return 'bg-off-white text-forest-green border border-forest-green';
-    default:
-      return 'bg-off-white text-forest-green';
-  }
-}
 ---
 
 <BaseLayout
@@ -45,18 +32,11 @@ function getEstadoBadgeColor(estado: string) {
     </div>
   </nav>
 
-  <!-- Hero Section with Status -->
+  <!-- Hero Section -->
   <section class="bg-background-dark py-12">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-          <h1 class="text-4xl md:text-5xl font-bold text-forest-green">{refugio.nombre}</h1>
-          <span
-            class={`px-4 py-2 rounded-full text-sm font-semibold ${getEstadoBadgeColor(refugio.estado)} inline-block`}
-          >
-            {refugio.estado}
-          </span>
-        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-forest-green mb-6">{refugio.nombre}</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-forest-green/80">
           <div class="flex items-center gap-2">
@@ -140,25 +120,6 @@ function getEstadoBadgeColor(estado: string) {
       </div>
     </div>
   </section>
-
-  <!-- Destacados Section -->
-  {refugio.destacados && refugio.destacados.length > 0 && (
-    <section class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl font-bold text-forest-green mb-6">Características destacadas</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {refugio.destacados.map((destacado) => (
-              <div class="flex items-center gap-3 bg-tan/20 rounded-lg p-4">
-                <span class="text-2xl">✓</span>
-                <span class="text-forest-green font-medium">{destacado}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- Project Date Section -->
   <section class="py-8 bg-background-light">
