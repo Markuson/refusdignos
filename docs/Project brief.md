@@ -27,11 +27,11 @@ Categoría: Brief
 
 **Dominio:** Sitio web para una organización dedicada a la rehabilitación de refugios de montaña en los Pirineos.
 
-**Visión:** Comunicar la misión de devolver dignidad a los refugios libres del Pirineo, mostrar los refugios rehabilitados, **inspirar respeto y cuidado por los espacios compartidos**, captar colaboradores y patrocinadores, y permitir en el futuro la autogestión del contenido, donaciones y venta de merchandising.
+**Visión:** Comunicar la misión de devolver dignidad a los refugios libres del Pirineo, mostrar los refugios rehabilitados, **inspirar respeto y cuidado por los espacios compartidos**, captar colaboradores y colaboradores, y permitir en el futuro la autogestión del contenido, donaciones y venta de merchandising.
 
 **Estrategia por iteraciones:**
-- **Iteración I (MVP):** Sitio **estático** con Astro, con contenido codificado directamente en el código. Secciones: **Proyecto**, **Refugios** (carrusel de tarjetas), **Contacto** (redes sociales + formulario de contacto), **Patrocinadores**. Cada **Refugio** tendrá una página individual con carrusel de imágenes, descripción y a qué asociación está brindado.
-- **Iteración II:** Conexión con **Strapi CMS** para gestión completa del contenido (refugios, imágenes, patrocinadores, páginas estáticas, navegación).
+- **Iteración I (MVP):** Sitio **estático** con Astro, con contenido codificado directamente en el código. Secciones: **Proyecto**, **Refugios** (carrusel de tarjetas), **Contacto** (redes sociales + formulario de contacto), **Colaboradores**. Cada **Refugio** tendrá una página individual con carrusel de imágenes, descripción y a qué asociación está brindado.
+- **Iteración II:** Conexión con **Strapi CMS** para gestión completa del contenido (refugios, imágenes, colaboradores, páginas estáticas, navegación).
 - **Iteración III:** Añadir **mapa interactivo** de los Pirineos con los refugios geolocalizados y enlaces a sus fichas.
 - **Iteración IV:** Añadir **alta de socios** con registro y **métodos de pago** adecuados para patrocinios y cuotas (proveedor y flujo por definir y estudiar).
 - **Iteración V:** Incorporar una **tienda online** con merchandising (plataforma y logística por definir).
@@ -57,7 +57,7 @@ Categoría: Brief
 4. **Base para Escalabilidad:** Diseñar la arquitectura y el código con una futura integración con CMS en mente.
 5. **Rendimiento Máximo:** Optimizar el sitio para tiempos de carga mínimos, puntuaciones altas en Lighthouse y cumplimiento de buenas prácticas SEO.
 6. **Accesibilidad:** Asegurar que el contenido sea navegable y legible para todos los usuarios, incluyendo accesibilidad básica (WCAG AA donde sea posible).
-7. **Captación de Socios/Patrocinadores (futuras iteraciones):** Definir y habilitar un flujo de **alta de socios** con autenticación y pagos, evaluando opciones de proveedor (Stripe, Redsys, PayPal) y requisitos legales/fiscales.
+7. **Captación de Socios/Colaboradores (futuras iteraciones):** Definir y habilitar un flujo de **alta de socios** con autenticación y pagos, evaluando opciones de proveedor (Stripe, Redsys, PayPal) y requisitos legales/fiscales.
 8. **Preparar Iteraciones Futuras:** Dejar sentadas las bases para mapa, donaciones y tienda.
 
 ### No-Objetivos (Iteración I)
@@ -75,14 +75,14 @@ Categoría: Brief
 ### Tipos de Usuario
 
 1. **Visitantes generales:** Personas interesadas en conocer la organización y sus actividades. Buscan información general y fotografías de los refugios.
-2. **Socios y patrocinadores potenciales:** Individuos o empresas interesadas en apoyar el proyecto. Necesitan conocer cómo colaborar, realizar aportaciones o registrarse como socios.
+2. **Socios y colaboradores potenciales:** Individuos o empresas interesadas en apoyar el proyecto. Necesitan conocer cómo colaborar, realizar aportaciones o registrarse como socios.
 3. **Socios activos:** Usuarios con registro futuro (Iteración IV) que podrán gestionar su perfil, ver beneficios o aportar económicamente.
 4. **Miembros del equipo de la organización:** Usuarios internos que en el futuro (Iteración II+) gestionarán el contenido desde el CMS.
 
 ### Casos de Uso Clave
 
 1. Un visitante accede al sitio, descubre el proyecto y navega por los refugios rehabilitados.
-2. Un patrocinador potencial consulta la sección “Patrocinadores” y contacta mediante el formulario.
+2. Un patrocinador potencial consulta la sección “Colaboradores” y contacta mediante el formulario.
 3. Un futuro socio completa un formulario de alta (Iteración IV) y realiza un pago de inscripción o donación.
 4. Un administrador (organización) actualiza contenido desde el CMS (Iteración II+).
 5. Un usuario navega por el mapa (Iteración III) y accede a la ficha de un refugio específico.
@@ -94,7 +94,7 @@ Categoría: Brief
 ### Iteración I — Sitio Estático (MVP)
 
 - Estructura básica del sitio en Astro con rutas estáticas.
-- Secciones: Proyecto, Refugios, Contacto, Patrocinadores.
+- Secciones: Proyecto, Refugios, Contacto, Colaboradores.
 - Carrusel de refugios con enlaces a fichas individuales.
 - Formulario de contacto funcional (envío por email o servicio externo simple).
 - Diseño responsive con optimización de imágenes y lazy loading.
@@ -103,7 +103,7 @@ Categoría: Brief
 ### Iteración II — Integración con CMS (Strapi)
 
 - Conexión con API de Strapi para obtener contenido dinámico.
-- Panel administrativo para gestionar refugios, patrocinadores y secciones informativas.
+- Panel administrativo para gestionar refugios, colaboradores y secciones informativas.
 - Adaptación del front-end para consumir contenido desde Strapi.
 - Autenticación básica del panel (solo para administradores).
 
@@ -132,11 +132,11 @@ Categoría: Brief
 
 ### 5.1 Mapa del Sitio (Iteración I)
 
-- **/** Inicio: hero + resumen del proyecto + CTA a Refugios y Patrocinadores.
+- **/** Inicio: hero + resumen del proyecto + CTA a Refugios y Colaboradores.
 - **/proyecto**: misión, historia, equipo, metodología, impacto.
 - **/refugios**: listado en carrusel y grid responsive.
 - **/refugios/[slug]**: ficha del refugio con carrusel de imágenes, descripción, personas o comunidades a las que se brinda el refugio, y datos básicos.
-- **/patrocinadores**: listado de logos con enlaces y breve descripción.
+- **/colaboradores**: listado de logos con enlaces y breve descripción.
 - **/contacto**: redes sociales + formulario (envío por email/service).
 - **/legal** (footer): aviso legal, privacidad, cookies.
 
@@ -179,7 +179,7 @@ Categoría: Brief
 - Proyecto: `/proyecto`
 - Refugios (listado): `/refugios`
 - Refugio: `/refugios/[slug]`
-- Patrocinadores: `/patrocinadores`
+- Colaboradores: `/colaboradores`
 - Contacto: `/contacto`
 - Legal: `/legal`
 
@@ -192,7 +192,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - `CardRefugio`: imagen, título, estado, mini-descripción, enlace.
 - `Carousel`: deslizable con controles accesibles.
 - `Gallery`: lightbox opcional (defer).
-- `LogoWall`: grid de patrocinadores.
+- `LogoWall`: grid de colaboradores.
 - `ContactForm`: validación, envío a endpoint externo.
 - `Footer` y `Navbar` con navegación accesible.
 
@@ -310,7 +310,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - **Hero:** imagen de un refugio y mensaje inspirador (“por determinar”).
 - **Bloque Proyecto:** resumen con CTA a sección “Proyecto”.
 - **Bloque Refugios:** carrusel con 3–4 refugios destacados.
-- **Bloque Patrocinadores:** grid de logos.
+- **Bloque Colaboradores:** grid de logos.
 - **CTA final:** “Apoya el proyecto” (lleva a contacto o futura zona de socios).
 
 ### 2. Página Proyecto
@@ -318,7 +318,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - Introducción a la organización.
 - Imágenes de obras y voluntarios.
 - Bloque con texto sobre valores, impacto y visión.
-- Enlace a sección de Patrocinadores.
+- Enlace a sección de Colaboradores.
 
 ### 3. Página Refugios
 
@@ -338,7 +338,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - Formulario de contacto simple con validación.
 - Mensaje de agradecimiento tras envío.
 
-### 6. Página Patrocinadores
+### 6. Página Colaboradores
 
 - Listado visual de logos.
 - Breve descripción de cada patrocinador.

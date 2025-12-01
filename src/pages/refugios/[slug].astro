@@ -1,0 +1,321 @@
+---
+// Page: Refugio Detail (/refugios/[slug])
+// Description: Display detailed information about a specific refugio
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const refugios = await getCollection('refugios');
+
+  return refugios.map((refugio) => ({
+    params: { slug: refugio.slug },
+    props: { refugio },
+  }));
+}
+
+type Props = {
+  refugio: CollectionEntry<'refugios'>;
+};
+
+const { refugio } = Astro.props;
+const { title, ubicacion, altitud, capacidad, descripcionCorta, descripcionLarga, brindadoA, imagenes, seoTitle, seoDescription } = refugio.data;
+
+// Convert markdown bold syntax to HTML
+const brindadoAHtml = brindadoA?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+---
+
+<BaseLayout
+  title={seoTitle || `${title} - RefugiosLibresDignos`}
+  description={seoDescription || descripcionCorta}
+>
+  <!-- Breadcrumb Navigation -->
+  <nav class="bg-background-light py-3" style="margin-top: 80px;">
+    <div class="container mx-auto px-4">
+      <ol class="flex items-center space-x-2 text-sm text-forest-green/70">
+        <li><a href="/" class="hover:text-sunrise-orange transition-colors">Inicio</a></li>
+        <li><span class="text-forest-green/40">/</span></li>
+        <li><a href="/refugios" class="hover:text-sunrise-orange transition-colors">Refugios</a></li>
+        <li><span class="text-forest-green/40">/</span></li>
+        <li class="text-forest-green font-semibold">{title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-background-dark py-12">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-forest-green mb-6" transition:name={`refugio-title-${refugio.slug}`}>{title}</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-forest-green/80">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">📍</span>
+            <div>
+              <div class="text-xs text-forest-green/60 uppercase tracking-wide">Ubicación</div>
+              <div class="font-semibold">{ubicacion}</div>
+            </div>
+          </div>
+          {altitud && altitud !== 'COMPLETAR' && (
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">⛰️</span>
+              <div>
+                <div class="text-xs text-forest-green/60 uppercase tracking-wide">Altitud</div>
+                <div class="font-semibold">{altitud}</div>
+              </div>
+            </div>
+          )}
+          {capacidad && capacidad !== 'COMPLETAR' && (
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">👥</span>
+              <div>
+                <div class="text-xs text-forest-green/60 uppercase tracking-wide">Capacidad</div>
+                <div class="font-semibold">{capacidad}</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Gallery Section -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {imagenes.map((imagen, index) => (
+            <button
+              type="button"
+              class="relative bg-tan/30 rounded-lg overflow-hidden aspect-video cursor-pointer hover:opacity-90 transition-opacity"
+              data-lightbox-index={index}
+              aria-label={`Ver imagen ${index + 1} en pantalla completa`}
+            >
+              <Image
+                src={imagen.src}
+                alt={imagen.alt}
+                class="w-full h-full object-cover"
+                widths={[600, 800]}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                transition:name={index === 0 ? `refugio-image-${refugio.slug}` : undefined}
+              />
+            </button>
+          ))}
+        </div>
+
+        {imagenes.length === 0 && (
+          <div class="bg-tan/30 rounded-lg p-16 text-center">
+            <p class="text-forest-green/70">Galería de imágenes próximamente</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center" role="dialog" aria-modal="true" aria-label="Galería de imágenes">
+    <button
+      id="lightbox-close"
+      class="absolute top-4 right-4 text-white hover:text-sunrise-orange transition-colors p-2 z-10"
+      aria-label="Cerrar galería"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <button
+      id="lightbox-prev"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-sunrise-orange transition-colors p-2 disabled:opacity-30 disabled:cursor-not-allowed"
+      aria-label="Imagen anterior"
+    >
+      <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <div class="max-w-7xl max-h-[90vh] w-full mx-4 flex items-center justify-center">
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-w-full max-h-[90vh] object-contain"
+      />
+    </div>
+
+    <button
+      id="lightbox-next"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-sunrise-orange transition-colors p-2 disabled:opacity-30 disabled:cursor-not-allowed"
+      aria-label="Imagen siguiente"
+    >
+      <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">
+      <span id="lightbox-counter"></span>
+    </div>
+  </div>
+
+  <!-- Description Section -->
+  <section class="py-12 bg-background-light">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-3xl font-bold text-forest-green mb-6">Sobre este refugio</h2>
+          <div class="text-forest-green/90 space-y-4 leading-relaxed whitespace-pre-line">
+            {descripcionLarga}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brindado A Section & Back Link -->
+  <section class="py-12 bg-background-light">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto space-y-8">
+        {brindadoA && (
+          <div class="bg-white rounded-lg p-8 shadow-md">
+            <h2 class="text-2xl font-bold text-forest-green mb-4 flex items-center gap-2">
+              <span class="text-3xl">❤️</span>
+              Brindado a
+            </h2>
+            <p class="text-forest-green/90 text-lg leading-relaxed" set:html={brindadoAHtml} />
+          </div>
+        )}
+
+        <div class="text-center">
+          <a href="/refugios" class="btn btn-secondary inline-block">
+            ← Volver a todos los refugios
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-tan/30">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
+          ¿Quieres Apoyar Este Proyecto?
+        </h2>
+        <p class="text-lg text-forest-green/90 mb-8">
+          Cada refugio es posible gracias a la colaboración de voluntarios, donantes y colaboradores.
+          Hay muchas formas de colaborar: patrocinio económico, donación de materiales,
+          o simplemente cuidando estos espacios cuando pases por ellos.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/colaboradores" class="btn btn-primary">
+            Conoce a Nuestros Colaboradores
+          </a>
+          <a href="/contacto" class="btn btn-primary">
+            Contáctanos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ imagenes }}>
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const imageButtons = document.querySelectorAll('[data-lightbox-index]');
+
+  let currentIndex = 0;
+  const totalImages = imagenes.length;
+
+  // Convert Astro image objects to usable URLs
+  const images = imagenes.map(img => ({
+    src: img.src.src || img.src,
+    alt: img.alt
+  }));
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    const current = images[currentIndex];
+    lightboxImage.src = current.src;
+    lightboxImage.alt = current.alt;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${totalImages}`;
+
+    // Update button states
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === totalImages - 1;
+  }
+
+  function showNext() {
+    if (currentIndex < totalImages - 1) {
+      currentIndex++;
+      updateLightbox();
+    }
+  }
+
+  function showPrev() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateLightbox();
+    }
+  }
+
+  // Event listeners
+  imageButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const index = parseInt(btn.getAttribute('data-lightbox-index'));
+      openLightbox(index);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  nextBtn?.addEventListener('click', showNext);
+  prevBtn?.addEventListener('click', showPrev);
+
+  // Close on background click
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    }
+  });
+</script>
+
+<style>
+  .prose {
+    color: inherit;
+  }
+
+  .prose h2 {
+    color: var(--color-forest-green);
+  }
+</style>

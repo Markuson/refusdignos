@@ -1,0 +1,11 @@
+LISTADO DE ASOCIACIONES A LAS CUALES SE HAN BRINDADO REFUGIOS:
+- Refugio Coll de Vent . - Juntos venceremos el Ela Aragón
+- Refugio Nobert Nieto - Asociacion Iñurri. Guipuzkoa
+- Refugio de La Estiva - Aemc Chiari Asociación Malformaciones Zaragoza Cráneocervicales
+- Refugio de Hortalan -Fundacion Down Zaragoza
+- Refugio de La faja - Funsacion San Blas Zaragoza
+- Refugio de La Larri - ADAFA. Familias de Acogida de Aragón
+- Refugio de La Peguera - Aspanoa. Asociación que ayuda a los niños con cáncer en Aragón
+-Refugio de Fuenfria - Som Prematurs Cataluña
+- Refugio de Cabimonteros - Asociación de Enfermedades Raras de la Rioja
+- Refugio de Santa Marina - Dona Médula Aragón

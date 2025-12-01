@@ -3,6 +3,9 @@
 // Description: Organization mission, values, and impact
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import nosotros1 from '../assets/images/nosotros1.webp';
+import nosotros2 from '../assets/images/nosotros2.webp';
 ---
 
 <BaseLayout
@@ -34,17 +37,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             en el Valle de Pineta, decidimos volver a juntarnos para hacer una travesía. Planeamos dormir
             en un refugio libre que conocíamos, y al llegar, decidimos adecentarlo un poco.
           </p>
+          <div class="my-8 rounded-lg overflow-hidden max-w-2xl mx-auto">
+            <Image
+              src={nosotros2}
+              alt="Trabajo en los refugios"
+              class="w-full h-auto"
+              widths={[400, 600]}
+              sizes="(max-width: 768px) 100vw, 600px"
+              loading="lazy"
+            />
+          </div>
           <p class="text-lg text-forest-green/90 mb-4">
             Subimos maderas para hacer un banco y una mesa, pintamos las paredes, y el espacio quedó
             tan acogedor que grabamos un vídeo y lo subimos a redes sociales. La repercusión fue tan
             buena que nos planteamos hacer lo mismo en otros refugios de la zona.
           </p>
-          <p class="text-lg text-forest-green/90">
+          <p class="text-lg text-forest-green/90 mb-4">
             Hoy, nuestro proyecto lleva 15 refugios rehabilitados y nos hemos fijado el reto de
             sumar seis nuevos cada año. Cada fin de semana que dedicamos a esto es una excusa perfecta
             para pasar tiempo juntos, hacer el bien en la montaña, y transmitir un mensaje claro:
             <strong>lo que es de todos, todos debemos cuidarlo</strong>.
           </p>
+          <div class="my-8 rounded-lg overflow-hidden max-w-md mx-auto">
+            <Image
+              src={nosotros1}
+              alt="Equipo de Refugios Libres Dignos"
+              class="w-full h-auto"
+              widths={[300, 400]}
+              sizes="(max-width: 768px) 100vw, 400px"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -148,8 +171,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Cada aporte cuenta.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/patrocinadores" class="btn btn-primary">
-            Conoce a Nuestros Patrocinadores
+          <a href="/colaboradores" class="btn btn-primary">
+            Conoce a Nuestros Colaboradores
           </a>
           <a href="/contacto" class="btn btn-primary">
             Contáctanos

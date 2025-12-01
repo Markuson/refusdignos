@@ -242,7 +242,7 @@ refusdignos/
 │   │   ├── refugios/
 │   │   │   ├── index.astro          # Refuges listing page
 │   │   │   └── [slug].astro         # Dynamic refuge detail pages
-│   │   ├── patrocinadores.astro     # Sponsors page
+│   │   ├── colaboradores.astro     # Sponsors page
 │   │   ├── contacto.astro           # Contact page
 │   │   └── legal/
 │   │       ├── privacidad.astro     # Privacy policy
@@ -904,7 +904,7 @@ src/pages/                          URL
 ├── refugios/
 │   ├── index.astro              →  /refugios
 │   └── [slug].astro             →  /refugios/:slug
-├── patrocinadores.astro         →  /patrocinadores
+├── colaboradores.astro         →  /colaboradores
 ├── contacto.astro               →  /contacto
 └── legal/
     ├── privacidad.astro         →  /legal/privacidad
@@ -1016,7 +1016,7 @@ const navLinks = [
   { href: '/', label: 'Inicio' },
   { href: '/proyecto', label: 'Proyecto' },
   { href: '/refugios', label: 'Refugios' },
-  { href: '/patrocinadores', label: 'Patrocinadores' },
+  { href: '/colaboradores', label: 'Colaboradores' },
   { href: '/contacto', label: 'Contacto' },
 ];
 

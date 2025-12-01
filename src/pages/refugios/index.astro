@@ -2,8 +2,12 @@
 // Page: Refugios Listing (/refugios)
 // Description: Display all refuge rehabilitation projects
 
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { refugios } from '../../data/refugios';
+
+// Get all refugios from Content Collections
+const refugios = await getCollection('refugios');
 ---
 
 <BaseLayout
@@ -28,26 +32,37 @@ import { refugios } from '../../data/refugios';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           refugios.map((refugio) => (
-            <a href={`/refugios/${refugio.id}`} class="block">
+            <a href={`/refugios/${refugio.slug}`} class="block">
               <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer h-full">
-                {/* Placeholder Image */}
-                <div class="bg-tan/30 h-48 flex items-center justify-center">
-                  <span class="text-forest-green/50 text-sm">Imagen próximamente</span>
+                {/* Refugio Image */}
+                <div class="h-48 overflow-hidden">
+                  <Image
+                    src={refugio.data.imagenes[0].src}
+                    alt={refugio.data.imagenes[0].alt}
+                    class="w-full h-full object-cover"
+                    widths={[400, 600]}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
+                    transition:name={`refugio-image-${refugio.slug}`}
+                  />
                 </div>
 
                 {/* Card Content */}
                 <div class="p-6">
-                  <h2 class="text-2xl font-semibold text-forest-green mb-3">{refugio.nombre}</h2>
+                  <h2 class="text-2xl font-semibold text-forest-green mb-3" transition:name={`refugio-title-${refugio.slug}`}>{refugio.data.title}</h2>
 
-                  <p class="text-sm text-lime-green mb-2">📍 {refugio.ubicacion}</p>
+                  <p class="text-sm text-lime-green mb-2">📍 {refugio.data.ubicacion}</p>
 
                   <div class="flex gap-4 text-xs text-forest-green/70 mb-3">
-                    <span>⛰️ {refugio.altitud}</span>
-                    <span>👥 {refugio.capacidad}</span>
-                    <span>📅 {refugio.fecha}</span>
+                    {refugio.data.altitud && refugio.data.altitud !== 'COMPLETAR' && (
+                      <span>⛰️ {refugio.data.altitud}</span>
+                    )}
+                    {refugio.data.capacidad && refugio.data.capacidad !== 'COMPLETAR' && (
+                      <span>👥 {refugio.data.capacidad}</span>
+                    )}
                   </div>
 
-                  <p class="text-forest-green/80 mb-4 line-clamp-3">{refugio.descripcion}</p>
+                  <p class="text-forest-green/80 mb-4 line-clamp-3">{refugio.data.descripcionCorta}</p>
                 </div>
               </article>
             </a>
@@ -86,3 +101,12 @@ import { refugios } from '../../data/refugios';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

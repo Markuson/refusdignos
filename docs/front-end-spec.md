@@ -103,7 +103,7 @@ This document defines the user experience goals, information architecture, user 
 graph TD
     A[Homepage /] --> B[Proyecto /proyecto]
     A --> C[Refugios Listing /refugios]
-    A --> D[Patrocinadores /patrocinadores]
+    A --> D[Colaboradores /colaboradores]
     A --> E[Contacto /contacto]
     A --> F[Legal /legal]
 
@@ -131,7 +131,7 @@ graph TD
   - Inicio (Home)
   - Proyecto (Project/Mission)
   - Refugios (Refuges)
-  - Patrocinadores (Sponsors)
+  - Colaboradores (Sponsors)
   - Contacto (Contact)
 - Active page highlighted with accent color (#E78A33)
 - Mobile: Hamburger menu (≤768px) with slide-in menu overlay
@@ -144,7 +144,7 @@ graph TD
 
 **Breadcrumb Strategy:**
 - Applied to deep pages (2+ levels): Refuge detail pages
-- Not used on top-level pages (Home, Proyecto, Refugios listing, Patrocinadores, Contacto)
+- Not used on top-level pages (Home, Proyecto, Refugios listing, Colaboradores, Contacto)
 - Always includes "Inicio" as first crumb
 - Current page is last crumb, non-clickable, visually distinct
 - Separator: `/` or `>` in accent color for visibility
@@ -229,7 +229,7 @@ graph TD
 **Entry Points:**
 - Homepage CTA ("Apoya el Proyecto")
 - Main navigation "Contacto" link
-- Patrocinadores page CTA ("Súmate como socio")
+- Colaboradores page CTA ("Súmate como socio")
 - Any page footer
 
 **Success Criteria:**
@@ -332,7 +332,7 @@ graph TD
     K -->|Wants Evidence| M[Clicks Link to Refugios]
     K -->|Wants to Help| N[Clicks CTA to Contact]
 
-    L --> O[Patrocinadores Page]
+    L --> O[Colaboradores Page]
     M --> P[Refugios Listing]
     N --> Q[Contacto Page]
 
@@ -357,7 +357,7 @@ graph TD
 
 **Entry Points:**
 - Homepage sponsor logos preview
-- Main navigation "Patrocinadores" link
+- Main navigation "Colaboradores" link
 - Proyecto page mention of sponsors
 
 **Success Criteria:**
@@ -372,11 +372,11 @@ graph TD
     Start([User Interested in Sponsorship]) --> A{Entry Point}
 
     A -->|Homepage| B[Sees Sponsor Logos Preview]
-    A -->|Nav Link| C[Clicks 'Patrocinadores']
+    A -->|Nav Link| C[Clicks 'Colaboradores']
     A -->|Proyecto Page| D[Clicks Sponsor Link]
 
     B --> E[Clicks 'Ver Todos']
-    C --> F[Patrocinadores Page Loads]
+    C --> F[Colaboradores Page Loads]
     D --> F
     E --> F
 
@@ -443,10 +443,10 @@ graph TD
 │  └──────┘  └──────┘  └──────┘            │
 │         [ Ver Todos CTA ]                  │
 ├────────────────────────────────────────────┤
-│  Nuestros Patrocinadores                   │ ← H2
+│  Nuestros Colaboradores                   │ ← H2
 │  [Logo] [Logo] [Logo] [Logo]              │ ← Logo Grid
 │  [Logo] [Logo] [Logo] [Logo]              │
-│         [ Ver Patrocinadores ]             │
+│         [ Ver Colaboradores ]             │
 ├────────────────────────────────────────────┤
 │  Apoya el Proyecto                         │ ← Final CTA Section
 │  [Brief text about getting involved]       │
@@ -653,7 +653,7 @@ graph TD
 
 ---
 
-#### Patrocinadores Page (/patrocinadores)
+#### Colaboradores Page (/colaboradores)
 
 **Purpose:** Showcase current sponsors and encourage new sponsorships
 
@@ -663,7 +663,7 @@ graph TD
 │  [Logo]    Inicio Proyecto Refugios ...   │ ← Navbar
 ├────────────────────────────────────────────┤
 │                                            │
-│         Nuestros Patrocinadores            │ ← H1
+│         Nuestros Colaboradores            │ ← H1
 │  Gracias a quienes hacen posible este...  │ ← Subtitle (2-3 lines)
 │                                            │
 ├────────────────────────────────────────────┤
@@ -704,7 +704,7 @@ graph TD
 - Empty state per category if no sponsors: "Pronto aquí"
 - Smooth grid reflow across breakpoints
 
-**Design File Reference:** [To be created in Figma - Patrocinadores.fig]
+**Design File Reference:** [To be created in Figma - Colaboradores.fig]
 
 ---
 
@@ -744,8 +744,8 @@ graph TD
 │  [Team photos with names/roles]            │
 │  (Optional: Defer to future iteration)     │
 ├────────────────────────────────────────────┤
-│  Conoce a Nuestros Patrocinadores          │ ← CTA Section
-│         [ Ver Patrocinadores ]             │
+│  Conoce a Nuestros Colaboradores          │ ← CTA Section
+│         [ Ver Colaboradores ]             │
 ├────────────────────────────────────────────┤
 │  [Footer]                                  │
 └────────────────────────────────────────────┘
@@ -757,7 +757,7 @@ graph TD
 - Values section with icon cards (3 columns)
 - Impact statistics (bullet list or visual stats)
 - Optional team section (can defer to future)
-- CTA to Patrocinadores page
+- CTA to Colaboradores page
 
 **Interaction Notes:**
 - Hero image priority loaded
@@ -888,7 +888,7 @@ graph TD
 
 **Usage Guidelines:**
 - Logo always links to homepage
-- Menu items in order: Inicio, Proyecto, Refugios, Patrocinadores, Contacto
+- Menu items in order: Inicio, Proyecto, Refugios, Colaboradores, Contacto
 - Active page clearly indicated
 - Skip-to-content link for keyboard users (hidden until focused)
 

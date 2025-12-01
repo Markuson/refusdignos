@@ -2,9 +2,15 @@
 // Page: Homepage (/)
 // Description: Main landing page for RefugiosLibresDignos
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/hero sample.webp';
+import heroImage from '../assets/images/hero.webp';
+import portadaImage from '../assets/images/portada.webp';
+
+// Get all refugios with at least one image
+const allRefugios = await getCollection('refugios');
+const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes && refugio.data.imagenes.length > 0);
 ---
 
 <BaseLayout
@@ -57,6 +63,16 @@ import heroImage from '../assets/images/hero sample.webp';
             transformándolos de espacios olvidados en sitios acogedores donde cualquier
             montañero pueda refugiarse, descansar y sentirse como en un hotel.
           </p>
+          <div class="my-8 rounded-lg overflow-hidden">
+            <Image
+              src={portadaImage}
+              alt="Refugios Libres Dignos"
+              class="w-full h-auto"
+              widths={[600, 800, 1000]}
+              sizes="(max-width: 768px) 100vw, 800px"
+              loading="lazy"
+            />
+          </div>
           <p class="text-lg text-forest-green/90 mb-8">
             Creemos que lo que es libre y de todos debe ser cuidado por todos. Cada refugio que
             rehabilitamos es un acto de amor por la montaña y un mensaje: los espacios compartidos
@@ -72,14 +88,81 @@ import heroImage from '../assets/images/hero sample.webp';
     </div>
   </section>
 
-  <!-- Featured Refuges Section (Placeholder) -->
+  <!-- Featured Refuges Section -->
   <section class="py-16 bg-background-dark">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
         Refugios Destacados
       </h2>
-      <div class="text-center text-forest-green/70">
-        <p class="mb-6">Próximamente: Galería de refugios rehabilitados</p>
+
+      {refugiosWithImages.length > 0 ? (
+        <div class="relative max-w-5xl mx-auto">
+          <!-- Carousel Container -->
+          <div id="carousel" class="overflow-hidden rounded-lg">
+            <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+              {refugiosWithImages.map((refugio, index) => (
+                <div class="carousel-slide w-full flex-shrink-0" data-index={index}>
+                  <a href={`/refugios/${refugio.slug}`} class="block relative group">
+                    <div class="aspect-video relative overflow-hidden bg-tan/30">
+                      <Image
+                        src={refugio.data.imagenes[0].src}
+                        alt={refugio.data.imagenes[0].alt}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        widths={[800, 1200]}
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        loading="lazy"
+                        transition:name={`refugio-image-${refugio.slug}`}
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                      <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">{refugio.data.title}</h3>
+                        <p class="text-sm opacity-90">📍 {refugio.data.ubicacion}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button
+            id="carousel-prev"
+            class="absolute left-2 top-1/2 -translate-y-1/2 bg-forest-green/80 hover:bg-forest-green text-white p-3 rounded-full transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            aria-label="Refugio anterior"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            id="carousel-next"
+            class="absolute right-2 top-1/2 -translate-y-1/2 bg-forest-green/80 hover:bg-forest-green text-white p-3 rounded-full transition-all shadow-lg disabled:opacity-30 disabled:cursor-not-allowed z-10"
+            aria-label="Refugio siguiente"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <!-- Dots Indicator -->
+          <div class="flex justify-center gap-2 mt-6">
+            {refugiosWithImages.map((_, index) => (
+              <button
+                class="carousel-dot w-3 h-3 rounded-full bg-forest-green/30 hover:bg-forest-green/50 transition-colors"
+                data-index={index}
+                aria-label={`Ir al refugio ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div class="text-center text-forest-green/70">
+          <p class="mb-6">Próximamente: Galería de refugios rehabilitados</p>
+        </div>
+      )}
+
+      <div class="text-center mt-8">
         <a href="/refugios" class="btn btn-primary">
           Ver Todos los Refugios
         </a>
@@ -91,12 +174,12 @@ import heroImage from '../assets/images/hero sample.webp';
   <section class="py-16 bg-background-light">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
-        Nuestros Patrocinadores
+        Nuestros Colaboradores
       </h2>
       <div class="text-center text-forest-green/70">
         <p class="mb-6">Gracias a quienes hacen posible este proyecto</p>
-        <a href="/patrocinadores" class="btn btn-secondary">
-          Ver Patrocinadores
+        <a href="/colaboradores" class="btn btn-secondary">
+          Ver Colaboradores
         </a>
       </div>
     </div>
@@ -120,3 +203,145 @@ import heroImage from '../assets/images/hero sample.webp';
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // Carousel functionality
+  const carousel = document.getElementById('carousel');
+  const carouselTrack = document.getElementById('carousel-track');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const slides = document.querySelectorAll('.carousel-slide');
+
+  if (carousel && carouselTrack && slides.length > 0) {
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    let autoScrollInterval;
+
+    function updateCarousel() {
+      // Move the track
+      carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('bg-forest-green');
+          dot.classList.remove('bg-forest-green/30');
+        } else {
+          dot.classList.remove('bg-forest-green');
+          dot.classList.add('bg-forest-green/30');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+      restartAutoScroll();
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Loop back to start
+      }
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = totalSlides - 1; // Loop back to end
+      }
+      updateCarousel();
+      restartAutoScroll();
+    }
+
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoScroll() {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+      }
+    }
+
+    function restartAutoScroll() {
+      stopAutoScroll();
+      startAutoScroll();
+    }
+
+    // Event listeners
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateCarousel();
+      restartAutoScroll();
+    });
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', stopAutoScroll);
+    carousel.addEventListener('mouseleave', startAutoScroll);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') {
+        if (currentIndex < totalSlides - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateCarousel();
+        restartAutoScroll();
+      }
+    });
+
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoScroll();
+    });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startAutoScroll();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      if (touchStartX - touchEndX > swipeThreshold) {
+        // Swipe left - next
+        if (currentIndex < totalSlides - 1) {
+          currentIndex++;
+        } else {
+          currentIndex = 0;
+        }
+        updateCarousel();
+      } else if (touchEndX - touchStartX > swipeThreshold) {
+        // Swipe right - prev
+        prevSlide();
+      }
+    }
+
+    // Initialize
+    updateCarousel();
+    startAutoScroll();
+  }
+</script>

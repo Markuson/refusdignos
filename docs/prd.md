@@ -57,7 +57,7 @@ Currently, the organization lacks any digital presence, limiting its ability to 
 
 **FR3:** Provide individual refuge detail pages (`/refugios/[slug]`) with image carousel, short/long descriptions, "brindado a" (dedicated to) information, and project status
 
-**FR4:** Display sponsor/patron logos with links and descriptions on dedicated "Patrocinadores" page
+**FR4:** Display sponsor/patron logos with links and descriptions on dedicated "Colaboradores" page
 
 **FR5:** Provide contact form with validation that sends messages via external service (Formspree or Netlify Forms)
 
@@ -136,7 +136,7 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 2. **Project Page (/proyecto)** - Organization introduction, mission/vision/values, impact stories, volunteer/work images, link to sponsors
 3. **Refuges Listing (/refugios)** - Responsive grid/carousel of refuge cards (image, name, location, status), filtering by region (future: Iteration III)
 4. **Refuge Detail (/refugios/[slug])** - Hero image gallery carousel, short and long descriptions, key data (altitude, location, status), "Brindado a" (dedicated to) section
-5. **Sponsors Page (/patrocinadores)** - Logo wall grid, brief descriptions, CTA "Become a member"
+5. **Sponsors Page (/colaboradores)** - Logo wall grid, brief descriptions, CTA "Become a member"
 6. **Contact Page (/contacto)** - Social media links, contact form (name, email, message), thank you message after submission
 7. **Legal Pages (/legal)** - Privacy policy, terms, cookies compliance (GDPR)
 
@@ -388,7 +388,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 
 1. Navbar component created in `/src/components/Navbar.astro` with semantic `<nav>` element
 2. Logo placeholder or actual logo image displayed on the left side
-3. Desktop navigation displays horizontal menu links: Inicio, Proyecto, Refugios, Patrocinadores, Contacto
+3. Desktop navigation displays horizontal menu links: Inicio, Proyecto, Refugios, Colaboradores, Contacto
 4. Mobile navigation (≤768px) shows hamburger menu icon with accessible label
 5. Hamburger menu toggles mobile menu visibility with smooth animation
 6. Mobile menu displays vertical stacked links with adequate touch targets (44x44px minimum)
@@ -539,7 +539,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 
 **Acceptance Criteria:**
 
-1. Sponsors page created at `/src/pages/patrocinadores.astro` using BaseLayout
+1. Sponsors page created at `/src/pages/colaboradores.astro` using BaseLayout
 2. Introductory section explaining sponsorship importance (2-3 sentences)
 3. Sponsor data structure defined (can be hardcoded array or separate data file)
 4. Each sponsor has: name, logo image, optional URL, type (empresa/institución/particular)
@@ -550,7 +550,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 9. Call-to-action section "Become a Sponsor" with link to Contact page
 10. All images optimized with Astro's `<Image>` component and proper alt text
 11. Section headings differentiate sponsor types if applicable
-12. Page accessible via navbar "Patrocinadores" link
+12. Page accessible via navbar "Colaboradores" link
 13. Lighthouse performance score ≥90 on mobile
 
 ### Story 2.4: Contact Page with Form Integration
@@ -705,7 +705,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 5. Featured refuges section displays 3-4 highlighted refuges in carousel or grid
 6. Featured refuges selected based on status or manual curation
 7. Each featured refuge card matches styling from Refugios listing page
-8. Sponsors preview section with 6-8 sponsor logos and link to full Patrocinadores page
+8. Sponsors preview section with 6-8 sponsor logos and link to full Colaboradores page
 9. Final CTA section "Support the Project" linking to Contact or future membership page
 10. All sections responsive with appropriate mobile layouts
 11. Hero image optimized with priority loading (not lazy loaded)

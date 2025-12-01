@@ -36,7 +36,7 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **In Scope:**
 - 3 Epics, 17 User Stories from PRD
-- Homepage, Proyecto, Refugios (listing + detail), Patrocinadores, Contacto, Legal pages
+- Homepage, Proyecto, Refugios (listing + detail), Colaboradores, Contacto, Legal pages
 - Responsive design (mobile, tablet, desktop)
 - Contact form with external service integration
 - SEO optimization and sitemap generation
@@ -159,10 +159,10 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
    - [x] Create `/src/components/Navbar.astro`
    - [x] Add semantic `<nav>` element
    - [x] Add logo placeholder/image
-   - [x] Add desktop horizontal menu (Inicio, Proyecto, Refugios, Patrocinadores, Contacto)
+   - [x] Add desktop horizontal menu (Inicio, Proyecto, Refugios, Colaboradores, Contacto)
    - [x] Implement mobile hamburger menu toggle
    - [x] Add mobile menu overlay with vertical links
-   - [ ] Highlight active page (current path detection)
+   - [x] Highlight active page (current path detection)
    - [x] Style: forest-green background, white text
    - [x] Add ARIA attributes (menu toggle, mobile menu)
    - [x] Make navbar sticky with proper z-index
@@ -216,15 +216,15 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Vercel Deployment** (Story 1.7)
-   - [ ] Create GitHub repository and push code
-   - [ ] Connect repository to Vercel project
-   - [ ] Configure build settings:
+   - [x] Create GitHub repository and push code
+   - [x] Connect repository to Vercel project
+   - [x] Configure build settings:
      - Build command: `pnpm build`
      - Output directory: `dist`
      - Node.js version: 20.x LTS
-   - [ ] Enable automatic deployments for `main` branch
-   - [ ] Enable preview deployments for PRs
-   - [ ] Configure environment variables (if needed)
+   - [x] Enable automatic deployments for `main` branch
+   - [x] Enable preview deployments for PRs
+   - [x] Configure environment variables (if needed)
    - [ ] Enable HTTPS enforcement
    - [ ] Configure custom domain (if available)
    - [ ] Verify successful production deployment
@@ -315,7 +315,7 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 **Tasks:**
 1. **Sponsors Page** (Story 2.3)
-   - [x] Create `/src/pages/patrocinadores.astro` using BaseLayout
+   - [x] Create `/src/pages/colaboradores.astro` using BaseLayout
    - [x] Add introductory section (2-3 sentences)
    - [x] Define sponsor data structure (hardcoded array for MVP)
      ```typescript
@@ -603,7 +603,7 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
      - [ ] Reuse RefugioCard component
    - [ ] Add sponsors preview section:
      - [ ] Display 6-8 sponsor logos
-     - [ ] Link to full Patrocinadores page
+     - [ ] Link to full Colaboradores page
    - [ ] Add final CTA section ("Support the Project" → Contact)
    - [ ] Optimize hero image (priority loading, not lazy)
    - [ ] Implement alternating section backgrounds (white, tan, off-white)
@@ -730,7 +730,7 @@ This roadmap details the implementation plan for RefugiosLibresDignos Iteration 
 
 3. **User Flow Testing**
    - [ ] Flow 1: Homepage → Refugios → Detail → Contact
-   - [ ] Flow 2: Homepage → Proyecto → Patrocinadores → Contact
+   - [ ] Flow 2: Homepage → Proyecto → Colaboradores → Contact
    - [ ] Flow 3: Direct to Refuge detail → Volver → Listing
    - [ ] Flow 4: Contact form submission → Success
    - [ ] Flow 5: Navigation via navbar on all pages

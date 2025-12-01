@@ -1,22 +1,26 @@
 ---
-// Page: Patrocinadores (/patrocinadores)
+// Page: Colaboradores (/colaboradores)
 // Description: Showcase sponsors and encourage new sponsorships
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { colaboradores } from '../data/colaboradores';
+
+// Get all colaboradores from Content Collections and sort by orden
+const colaboradoresRaw = await getCollection('colaboradores');
+const colaboradores = colaboradoresRaw.sort((a, b) => (a.data.orden || 999) - (b.data.orden || 999));
 ---
 
 <BaseLayout
-  title="Nuestros Patrocinadores - Refugios Libres Dignos"
+  title="Nuestros Colaboradores - Refugios Libres Dignos"
   description="Conoce a quienes hacen posible que sigamos devolviendo dignidad a los refugios libres. Empresas, instituciones y particulares comprometidos con la montaña."
 >
   <!-- Hero Section -->
   <section class="bg-background-dark text-forest-green" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Nuestros Patrocinadores</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Nuestros Colaboradores</h1>
         <p class="text-xl md:text-2xl fade-in-up">
-          Gracias a quienes hacen posible este proyecto
+          Gracias a quienes ayudan a hacer posible este proyecto
         </p>
       </div>
     </div>
@@ -39,24 +43,24 @@ import { colaboradores } from '../data/colaboradores';
   <!-- Empresas Section -->
   <section class="py-16 bg-background-dark">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Nuestros Colaboradores</h2>
+      <!-- <h2 class="text-3xl font-bold text-forest-green mb-12 text-center">Nuestros Colaboradores</h2> -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {
           colaboradores.map((colaborador) => (
             <a
-              href={colaborador.url}
+              href={colaborador.data.url}
               target="_blank"
               rel="noopener noreferrer"
               class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 block"
             >
               <div class="text-center mb-4">
-                {colaborador.logo ? (
+                {colaborador.data.logo ? (
                   <div class="w-full h-24 mx-auto mb-3 flex items-center justify-center">
                     <img
-                      src={colaborador.logo}
-                      alt={`Logo de ${colaborador.nombre}`}
+                      src={colaborador.data.logo}
+                      alt={`Logo de ${colaborador.data.nombre}`}
                       class="max-w-full max-h-full object-contain"
-                      style={colaborador.nombre === 'Julián Mairal' ? 'filter: brightness(0) saturate(100%);' : ''}
+                      style={colaborador.data.nombre === 'Julián Mairal' ? 'filter: brightness(0) saturate(100%);' : ''}
                     />
                   </div>
                 ) : (
@@ -64,9 +68,9 @@ import { colaboradores } from '../data/colaboradores';
                     <span class="text-forest-green/50 text-xs">Logo</span>
                   </div>
                 )}
-                <h3 class="text-base text-forest-green font-semibold mb-3">{colaborador.nombre}</h3>
+                <h3 class="text-base text-forest-green font-semibold mb-3">{colaborador.data.nombre}</h3>
               </div>
-              <p class="text-xs text-forest-green/70 text-center">{colaborador.descripcion}</p>
+              <p class="text-xs text-forest-green/70 text-center">{colaborador.data.descripcion}</p>
             </a>
           ))
         }
