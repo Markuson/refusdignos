@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramIcon from '../assets/icons/Instagram.svg';
 import FacebookIcon from '../assets/icons/Facebook.svg';
 import TikTokIcon from '../assets/icons/TikTok.svg';
-import { CONTACT_EMAIL } from '../config/constants';
+import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
 ---
 
 <BaseLayout
@@ -108,7 +108,14 @@ import { CONTACT_EMAIL } from '../config/constants';
             </div>
           </div>
 
-          <form id="contact-form" class="space-y-4" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+          <form id="contact-form" class="space-y-4" method="POST" action="https://api.web3forms.com/submit">
+            <!-- Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+
+            <!-- Additional Web3Forms Configuration -->
+            <input type="hidden" name="subject" value="Nuevo mensaje de contacto - RefugiosLibresDignos" />
+            <input type="hidden" name="from_name" value="RefugiosLibresDignos Website" />
+
             <!-- Name Field -->
             <div>
               <label for="nombre" class="block text-sm font-semibold text-forest-green mb-2">
@@ -154,8 +161,8 @@ import { CONTACT_EMAIL } from '../config/constants';
               ></textarea>
             </div>
 
-            <!-- Honeypot Field (hidden) -->
-            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+            <!-- Honeypot Field (hidden for spam protection) -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
 
             <!-- Submit Button -->
             <button type="submit" id="submit-btn" class="btn btn-primary w-full">

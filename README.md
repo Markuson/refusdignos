@@ -87,15 +87,23 @@ All commands are run from the root of the project:
    pnpm install
    ```
 
-3. **Download Inter fonts** (optional, uses system fonts as fallback)
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and add your Web3Forms API key:
+   - Get a free API key at [https://web3forms.com/](https://web3forms.com/)
+   - Add your key: `PUBLIC_WEB3FORMS_KEY=your_api_key_here`
+
+4. **Download Inter fonts** (optional, uses system fonts as fallback)
    - See `public/fonts/README.md` for instructions
 
-4. **Start development server**
+5. **Start development server**
    ```bash
    pnpm dev
    ```
 
-5. **Open browser**
+6. **Open browser**
    - Navigate to `http://localhost:4321`
 
 ## 📦 Building for Production
