@@ -17,6 +17,8 @@ const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes &
   title="Refugios Libres Dignos - Devolviendo dignidad a los refugios libres"
   description="Rehabilitamos refugios libres para que todos puedan disfrutarlos. Espacios dignos que inspiran respeto y cuidado por la montaña."
 >
+  <!-- Preload hero image for faster LCP -->
+  <link slot="head" rel="preload" as="image" href="/src/assets/images/hero.webp" fetchpriority="high" />
   <!-- Hero Section -->
   <section class="relative text-white overflow-hidden" style="margin-top: -64px; min-height: 85vh;">
     <!-- Background Image -->

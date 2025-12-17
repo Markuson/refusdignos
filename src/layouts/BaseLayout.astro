@@ -52,6 +52,9 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : defaultOgImage;
     <link rel="preload" href="/fonts/inter-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-800.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Additional Head Content (per-page) -->
+    <slot name="head" />
+
     <!-- View Transitions -->
     <ViewTransitions />
   </head>
