@@ -151,46 +151,65 @@ function isActive(href: string) {
 </style>
 
 <script>
-  // Mobile menu toggle
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  function initNavbar() {
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-      mobileMenu.classList.toggle('hidden');
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Toggle glass effect on scroll
+    let ticking = false;
+    const navbar = document.getElementById('main-navbar');
+    const scrollThreshold = 10;
+
+    function updateNavbar() {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > scrollThreshold) {
+        navbar?.classList.remove('navbar-solid');
+        navbar?.classList.add('navbar-glass');
+      } else {
+        navbar?.classList.remove('navbar-glass');
+        navbar?.classList.add('navbar-solid');
+      }
+
+      ticking = false;
+    }
+
+    // Initial check on page load
+    updateNavbar();
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavbar);
+        ticking = true;
+      }
     });
   }
 
-  // Toggle glass effect on scroll
-  let ticking = false;
-  const navbar = document.getElementById('main-navbar');
-  const scrollThreshold = 10; // Changed from 50 to 10 for earlier animation
-
-  function updateNavbar() {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY > scrollThreshold) {
-      // Scrolled down - apply glass effect
-      navbar?.classList.remove('navbar-solid');
-      navbar?.classList.add('navbar-glass');
-    } else {
-      // At top - solid white background
-      navbar?.classList.remove('navbar-glass');
-      navbar?.classList.add('navbar-solid');
-    }
-
-    ticking = false;
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbar);
+  } else {
+    initNavbar();
   }
 
-  // Initial check on page load
-  updateNavbar();
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateNavbar);
-      ticking = true;
-    }
-  });
+  // Re-initialize on Astro page transitions
+  document.addEventListener('astro:page-load', initNavbar);
 </script>
