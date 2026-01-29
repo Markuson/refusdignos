@@ -16,7 +16,7 @@ I've fixed several critical SEO issues that were preventing your site from ranki
 
 ### 3. Vercel.app Domain Showing in Search
 - **Problem**: The vercel.app domain was competing with your custom domain
-- **Fixed**: Added permanent redirects (301) from all vercel.app URLs to refugioslibresdignos.com
+- **Solution**: Needs to be configured in Vercel dashboard (see Step 2 below)
 - **Impact**: Google will consolidate all indexing signals to your custom domain
 
 ### 4. Missing Structured Data
@@ -38,9 +38,19 @@ git push
 
 Vercel will automatically deploy your changes. Wait for the deployment to complete.
 
-### Step 2: Verify Domain Redirect
+### Step 2: Configure Domain Redirect in Vercel Dashboard
 
-After deployment, test that the redirect works:
+To redirect the vercel.app domain to your custom domain:
+
+1. Go to your [Vercel Dashboard](https://vercel.com/dashboard)
+2. Select your project (refusdignos)
+3. Go to "Settings" → "Domains"
+4. Find your custom domain `refugioslibresdignos.com`
+5. Make sure it's set as the **Primary Domain** (there should be a badge or setting)
+6. Under the vercel.app domain entry, there should be an option to redirect to the primary domain
+7. Save changes
+
+**Verify the redirect works:**
 
 ```bash
 curl -I https://refusdignos.vercel.app
@@ -51,6 +61,8 @@ You should see:
 HTTP/2 308
 location: https://refugioslibresdignos.com/
 ```
+
+If you don't see this option in the dashboard, the custom domain being set as primary is usually enough - Vercel typically handles this automatically once a custom domain is properly configured.
 
 ### Step 3: Set Up Google Search Console
 
@@ -183,8 +195,7 @@ Use these free tools:
 
 1. `astro.config.mjs` - Updated site URL to correct domain
 2. `public/robots.txt` - Created to allow search engine crawling
-3. `vercel.json` - Added redirects from vercel.app to custom domain
-4. `src/layouts/BaseLayout.astro` - Added structured data (Schema.org)
+3. `src/layouts/BaseLayout.astro` - Added structured data (Schema.org)
 
 ## Need Help?
 

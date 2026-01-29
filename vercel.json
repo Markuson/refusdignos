@@ -10,30 +10,6 @@
   "framework": "astro",
   "installCommand": "pnpm install",
   "devCommand": "pnpm dev",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "refusdignos.vercel.app"
-        }
-      ],
-      "destination": "https://refugioslibresdignos.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": ".*\\.vercel\\.app"
-        }
-      ],
-      "destination": "https://refugioslibresdignos.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
