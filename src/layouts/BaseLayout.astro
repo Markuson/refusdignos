@@ -18,6 +18,19 @@ const { title, description, ogImage } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const defaultOgImage = new URL('/logo.webp', Astro.site);
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : defaultOgImage;
+
+// Structured data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Refugios Libres Dignos",
+  "url": Astro.site?.toString(),
+  "logo": defaultOgImage.toString(),
+  "description": "Rehabilitamos refugios libres para que todos puedan disfrutarlos. Espacios dignos que inspiran respeto y cuidado por la montaña.",
+  "sameAs": [
+    // Add social media URLs here when available
+  ]
+};
 ---
 
 <!doctype html>
@@ -46,6 +59,9 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : defaultOgImage;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <!-- Font Preloading -->
     <link rel="preload" href="/fonts/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin />

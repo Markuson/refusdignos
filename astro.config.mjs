@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://refusdignos.vercel.app', // Update with your actual domain
+  site: 'https://refugioslibresdignos.com',
   adapter: vercel(),
   integrations: [sitemap()],
   vite: {
