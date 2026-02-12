@@ -3,7 +3,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { CONTACT_EMAIL } from '../../config/constants';
 
-const lastUpdated = '18 de octubre de 2025';
+const lastUpdated = '12 de febrero de 2026';
 ---
 
 <BaseLayout
@@ -19,13 +19,20 @@ const lastUpdated = '18 de octubre de 2025';
         <h2>1. Información que recopilamos</h2>
         <p>
           En RefugiosLibresDignos, recopilamos únicamente la información necesaria para
-          gestionar las consultas y solicitudes recibidas a través de nuestro formulario de
-          contacto:
+          gestionar las consultas y solicitudes recibidas a través de nuestros formularios:
         </p>
+        <p><strong>Formulario de contacto:</strong></p>
         <ul>
           <li>Nombre</li>
           <li>Dirección de correo electrónico</li>
           <li>Mensaje o consulta</li>
+        </ul>
+        <p><strong>Formulario de alta de socio:</strong></p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Dirección de correo electrónico</li>
+          <li>Localidad</li>
+          <li>Número de teléfono</li>
         </ul>
 
         <h2>2. Uso de la información</h2>
@@ -33,6 +40,9 @@ const lastUpdated = '18 de octubre de 2025';
         <ul>
           <li>Responder a consultas y solicitudes de información</li>
           <li>Gestionar posibles colaboraciones o patrocinios</li>
+          <li>Gestionar las altas y bajas de socios</li>
+          <li>Verificar los pagos de cuotas de socio</li>
+          <li>Añadir a los socios al grupo de WhatsApp de la asociación</li>
           <li>Comunicaciones relacionadas con nuestros proyectos (solo si das tu consentimiento)</li>
         </ul>
 
@@ -49,33 +59,58 @@ const lastUpdated = '18 de octubre de 2025';
           cuando sea legalmente requerido o necesario para prestar el servicio solicitado.
         </p>
 
-        <h2>5. Tus derechos</h2>
+        <h2>5. Encargados del tratamiento</h2>
+        <p>
+          Para la gestión de los formularios web utilizamos el servicio de terceros
+          <strong>Web3Forms</strong> (web3forms.com), que actúa como encargado del
+          tratamiento de los datos enviados a través de nuestros formularios. Web3Forms procesa
+          los datos exclusivamente para hacer llegar las solicitudes a nuestra asociación y no
+          los utiliza para ningún otro fin.
+        </p>
+
+        <h2>6. Conservación de datos</h2>
+        <p>
+          Los datos personales se conservarán durante el tiempo necesario para cumplir con la
+          finalidad para la que fueron recogidos:
+        </p>
+        <ul>
+          <li><strong>Datos de contacto:</strong> se conservan durante un máximo de 12 meses desde la última comunicación, salvo que se establezca una relación continuada.</li>
+          <li><strong>Datos de socios:</strong> se conservan mientras se mantenga la condición de socio y durante los plazos legales aplicables tras la baja.</li>
+        </ul>
+
+        <h2>7. Tus derechos</h2>
         <p>Tienes derecho a:</p>
         <ul>
           <li>Acceder a tus datos personales</li>
           <li>Rectificar datos incorrectos</li>
           <li>Solicitar la eliminación de tus datos</li>
           <li>Oponerte al tratamiento de tus datos</li>
+          <li>Solicitar la limitación del tratamiento</li>
           <li>Solicitar la portabilidad de tus datos</li>
         </ul>
         <p>
           Para ejercer estos derechos, contacta con nosotros en{' '}
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
+        <p>
+          Si consideras que tus derechos no han sido debidamente atendidos, puedes presentar una
+          reclamación ante la Agencia Española de Protección de Datos (AEPD) en{' '}
+          <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
+        </p>
 
-        <h2>6. Cookies</h2>
+        <h2>8. Cookies</h2>
         <p>
           Este sitio web utiliza cookies mínimas necesarias para su funcionamiento básico.
           Consulta nuestra <a href="/legal/cookies">Política de Cookies</a> para más información.
         </p>
 
-        <h2>7. Cambios en esta política</h2>
+        <h2>9. Cambios en esta política</h2>
         <p>
           Nos reservamos el derecho de actualizar esta política de privacidad. Cualquier cambio
           será publicado en esta página con la fecha de actualización correspondiente.
         </p>
 
-        <h2>8. Contacto</h2>
+        <h2>10. Contacto</h2>
         <p>
           Si tienes dudas sobre esta política de privacidad, puedes contactarnos en{' '}
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
