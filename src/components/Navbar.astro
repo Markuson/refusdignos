@@ -9,6 +9,7 @@ const navLinks = [
   { href: '/proyecto', label: 'Proyecto' },
   { href: '/refugios', label: 'Refugios' },
   { href: '/colaboradores', label: 'Colaboradores' },
+  { href: '/unete', label: 'Únete' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
@@ -16,7 +17,7 @@ function isActive(href: string) {
   if (href === '/') {
     return currentPath === '/';
   }
-  return currentPath.startsWith(href);
+  return currentPath === href || currentPath.startsWith(href + '/');
 }
 ---
 

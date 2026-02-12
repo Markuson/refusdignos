@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lighthouse Audit Summary - RefugiosLibresDignos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 {
+            color: #284c3e;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        .meta {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .summary-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid #284c3e;
+        }
+        .summary-card h3 {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .summary-card .big-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #284c3e;
+        }
+        .page-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .page-title {
+            font-size: 1.5rem;
+            color: #284c3e;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .device-section {
+            margin-bottom: 30px;
+        }
+        .device-section:last-child {
+            margin-bottom: 0;
+        }
+        .device-header {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .metric {
+            background: #f9f9f9;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #284c3e;
+        }
+        .metric-label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .score-excellent { color: #0cce6b; }
+        .score-good { color: #ffa400; }
+        .score-poor { color: #ff4e42; }
+        .web-vitals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .vital {
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .vital-label {
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 4px;
+        }
+        .vital-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #284c3e;
+        }
+        .report-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #E78A33;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .report-link:hover {
+            background: #d97626;
+        }
+        .targets {
+            background: #fff3e0;
+            border-left: 4px solid #ffa400;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+        .targets h3 {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .targets ul {
+            margin-left: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Lighthouse Audit Summary</h1>
+        <div class="meta">
+            RefugiosLibresDignos Performance Report<br>
+            <strong>Date:</strong> 12/17/2025, 8:16:52 PM<br>
+            <strong>URL:</strong> https://refugioslibresdignos.com
+        </div>
+
+        <div class="targets">
+            <h3>🎯 Performance Targets</h3>
+            <ul>
+                <li><strong>Performance:</strong> ≥95 (desktop), ≥90 (mobile)</li>
+                <li><strong>Accessibility:</strong> 100</li>
+                <li><strong>Best Practices:</strong> ≥95</li>
+                <li><strong>SEO:</strong> ≥95</li>
+            </ul>
+        </div>
+
+        <div class="summary-grid">
+            
+    <div class="summary-card">
+        <h3>Pages Audited</h3>
+        <div class="big-number">0</div>
+    </div>
+    <div class="summary-card">
+        <h3>Avg Performance (Mobile)</h3>
+        <div class="big-number score-poor">NaN</div>
+    </div>
+    <div class="summary-card">
+        <h3>Avg Performance (Desktop)</h3>
+        <div class="big-number score-poor">NaN</div>
+    </div>
+    <div class="summary-card">
+        <h3>Avg Accessibility</h3>
+        <div class="big-number score-poor">NaN</div>
+    </div>
+  
+        </div>
+
+        <div id="page-reports">
+            
+        </div>
+    </div>
+</body>
+</html>
