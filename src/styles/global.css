@@ -114,6 +114,19 @@ body {
   filter: brightness(1.15);
 }
 
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-forest-green);
+  border: 2px solid var(--color-forest-green);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-forest-green);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
 /* Fade in and slide up animation */
 @keyframes fadeInUp {
   from {
