@@ -114,7 +114,7 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
             <form id="membership-form" class="bg-white rounded-lg shadow-md p-6 space-y-4" method="POST" action="https://api.web3forms.com/submit">
               <!-- Web3Forms Configuration -->
               <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-              <input type="hidden" name="subject" value="Nueva solicitud de socio - RefugiosLibresDignos" />
+              <input type="hidden" name="subject" value="Alta de socio" />
               <input type="hidden" name="from_name" value="RefugiosLibresDignos Website" />
 
               <!-- Nombre completo -->
@@ -449,13 +449,6 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
     }
   }
 
-  // Initialize on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMembershipForm);
-  } else {
-    initMembershipForm();
-  }
-
-  // Re-initialize on Astro page transitions
+  // Initialize on page load and after Astro view transitions
   document.addEventListener('astro:page-load', initMembershipForm);
 </script>

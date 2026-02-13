@@ -93,13 +93,6 @@ const { concepto } = Astro.props;
     }
   }
 
-  // Initialize on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCopyButton);
-  } else {
-    initCopyButton();
-  }
-
-  // Re-initialize on Astro page transitions
+  // Initialize on page load and after Astro view transitions
   document.addEventListener('astro:page-load', initCopyButton);
 </script>
