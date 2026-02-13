@@ -113,7 +113,7 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
             <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
 
             <!-- Additional Web3Forms Configuration -->
-            <input type="hidden" name="subject" value="Nuevo mensaje de contacto - RefugiosLibresDignos" />
+            <input type="hidden" name="subject" value="Nueva consulta web" />
             <input type="hidden" name="from_name" value="RefugiosLibresDignos Website" />
 
             <!-- Name Field -->
@@ -204,83 +204,81 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
 </BaseLayout>
 
 <script>
-  // Contact form submission with Formspree
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const btnText = document.getElementById('btn-text') as HTMLSpanElement;
-  const btnLoading = document.getElementById('btn-loading') as HTMLSpanElement;
-  const successMessage = document.getElementById('success-message');
-  const errorMessage = document.getElementById('error-message');
-  const errorText = document.getElementById('error-text');
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text') as HTMLSpanElement;
+    const btnLoading = document.getElementById('btn-loading') as HTMLSpanElement;
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const errorText = document.getElementById('error-text');
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-      // Get form data
-      const formData = new FormData(form);
-      const nombre = formData.get('nombre');
-      const email = formData.get('email');
-      const mensaje = formData.get('mensaje');
+        // Get form data
+        const formData = new FormData(form);
+        const nombre = formData.get('nombre');
+        const email = formData.get('email');
+        const mensaje = formData.get('mensaje');
 
-      // Hide previous messages
-      successMessage?.classList.add('hidden');
-      errorMessage?.classList.add('hidden');
+        // Hide previous messages
+        successMessage?.classList.add('hidden');
+        errorMessage?.classList.add('hidden');
 
-      // Basic validation
-      if (!nombre || !email || !mensaje) {
-        showError('Por favor, completa todos los campos requeridos.');
-        return;
-      }
-
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email as string)) {
-        showError('Por favor, introduce un email válido.');
-        return;
-      }
-
-      // Show loading state
-      submitBtn.disabled = true;
-      btnText.classList.add('hidden');
-      btnLoading?.classList.remove('hidden');
-
-      try {
-        // Submit to Formspree
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          // Success
-          successMessage?.classList.remove('hidden');
-          form.reset();
-          // Scroll to success message
-          successMessage?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-          // Error from Formspree
-          const data = await response.json();
-          showError(data.error || 'Hubo un problema al enviar el mensaje.');
+        // Basic validation
+        if (!nombre || !email || !mensaje) {
+          showError('Por favor, completa todos los campos requeridos.');
+          return;
         }
-      } catch (error) {
-        // Network error
-        showError('Error de conexión. Por favor, verifica tu conexión a internet.');
-      } finally {
-        // Reset button state
-        submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnLoading?.classList.add('hidden');
-      }
-    });
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email as string)) {
+          showError('Por favor, introduce un email válido.');
+          return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoading?.classList.remove('hidden');
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            successMessage?.classList.remove('hidden');
+            form.reset();
+            successMessage?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            const data = await response.json();
+            showError(data.error || 'Hubo un problema al enviar el mensaje.');
+          }
+        } catch (error) {
+          showError('Error de conexión. Por favor, verifica tu conexión a internet.');
+        } finally {
+          submitBtn.disabled = false;
+          btnText.classList.remove('hidden');
+          btnLoading?.classList.add('hidden');
+        }
+      });
+    }
+
+    function showError(message: string) {
+      if (errorText) errorText.textContent = message;
+      errorMessage?.classList.remove('hidden');
+      errorMessage?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }
 
-  function showError(message: string) {
-    if (errorText) errorText.textContent = message;
-    errorMessage?.classList.remove('hidden');
-    errorMessage?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
+  // Initialize on page load and after Astro view transitions
+  document.addEventListener('astro:page-load', initContactForm);
 </script>
