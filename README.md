@@ -150,7 +150,7 @@ This project is configured for automatic deployment to Vercel:
 - ⏳ Production Deployment
 
 ### Future Iterations
-- **Iteration II:** CMS Integration (Strapi)
+- **Iteration II:** CMS Integration (Keystatic + Cloudinary) — Phase 1: refugios collection, Phase 2: remaining content
 - **Iteration III:** Interactive Map (Leaflet/Mapbox)
 - **Iteration IV:** Membership System (Payments)
 - **Iteration V:** E-commerce

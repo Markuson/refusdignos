@@ -28,7 +28,7 @@
 - Showcase rehabilitated refuges with visual documentation and impact stories
 - Enable community engagement through contact forms and social media integration
 - Build foundation for future membership and sponsorship program (Iteration IV)
-- Create scalable architecture that evolves from static site to full CMS-driven platform
+- Create scalable architecture that lets non-technical staff manage content directly (Keystatic CMS)
 - Achieve exceptional performance (Lighthouse ≥95 desktop, ≥90 mobile) and SEO visibility
 - Ensure accessibility (WCAG AA) for all users
 - Support future e-commerce capabilities for merchandise sales (Iteration V)
@@ -37,7 +37,7 @@
 
 RefugiosLibresDignos is a non-profit organization dedicated to rehabilitating abandoned mountain refuges in the Pyrenees and providing **safe, free, and dignified spaces** for people in need. The organization requires a web presence to communicate its mission, document rehabilitation projects, attract sponsors and members, and eventually enable online donations and merchandise sales.
 
-Currently, the organization lacks any digital presence, limiting its ability to reach potential supporters and showcase its impact. This PRD covers **Iteration I (MVP)** - a static, high-performance website built with Astro that establishes the foundation for future dynamic features. The iterative approach allows for rapid deployment while designing for future integration with a headless CMS (Strapi), interactive mapping, membership systems, and e-commerce.
+Currently, the organization lacks any digital presence, limiting its ability to reach potential supporters and showcase its impact. This PRD covers **Iteration I (MVP)** - a static, high-performance website built with Astro that establishes the foundation for future dynamic features. The iterative approach allows for rapid deployment while designing for future integration with a git-backed CMS (Keystatic), interactive mapping, membership systems, and e-commerce.
 
 ### Change Log
 
@@ -103,7 +103,7 @@ Currently, the organization lacks any digital presence, limiting its ability to 
 
 **NFR13:** Use local font loading (Inter) with font-display: swap for improved LCP
 
-**NFR14:** Structure content and components to facilitate future CMS integration (Strapi) without major refactoring
+**NFR14:** Structure content and components to facilitate future CMS integration (Keystatic, editing the existing Content Collections in place) without major refactoring
 
 **NFR15:** Use TypeScript for type safety throughout the codebase
 
@@ -192,7 +192,7 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 
 ### Repository Structure: Monorepo
 
-**Single repository structure** containing all frontend code, configuration, and content for the static site. Future iterations may expand to include separate deployment for Strapi CMS, but the frontend remains in a single repository.
+**Single repository structure** containing all frontend code, configuration, and content for the static site. Keystatic runs as an admin route inside this same Astro app (no separate CMS deployment), so the monorepo structure holds for all iterations.
 
 **Rationale:** For Iteration I, a monorepo provides simplicity and rapid development. All Astro components, pages, styles, and markdown content live together. This matches Astro's conventional project structure and facilitates easy local development and deployment.
 
@@ -218,10 +218,10 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 - **Validation:** HTML5 native validation with JavaScript enhancement
 
 **Future evolution path (not in Iteration I):**
-- **Iteration II:** Astro fetches content from Strapi headless CMS via REST/GraphQL API at build time (ISR/SSG with revalidation)
+- **Iteration II:** Keystatic CMS added as an admin route (`/keystatic`) editing the existing Content Collections (refugios, colaboradores) directly via GitHub-mode writes - no API layer, no data migration
 - **Iteration III:** Client-side React/Astro island for interactive map (Leaflet or Mapbox GL JS)
 - **Iteration IV:** Integration with Patreon API (primary) or Stripe for membership management
-- **Iteration V:** Strapi as product catalog with integrated checkout
+- **Iteration V:** Evaluate whether Keystatic's collections suffice for a product catalog, or whether a dedicated commerce backend is needed for checkout/payments
 
 ### Testing Requirements
 
@@ -236,7 +236,7 @@ Create a clean, fast, and human-centered web experience that communicates the mi
 **Automated testing secondary:**
 - No unit/integration tests required for Iteration I (content-focused static site)
 - Potential for E2E smoke tests using Playwright for critical paths (home → refuge detail → contact) if time permits
-- Future iterations with CMS integration will require comprehensive testing (unit + integration + E2E)
+- Keystatic integration requires verifying the Astro build still passes against CMS-authored content, plus admin-route access control testing
 
 **Quality gates:**
 - Lighthouse score ≥95 desktop / ≥90 mobile (blocking)
@@ -805,7 +805,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 - Build and deployment pipeline defined
 - Image optimization strategy clear
 - SEO and accessibility requirements explicit
-- Future evolution path (Strapi integration) documented
+- Future evolution path (Keystatic integration) documented
 
 **Identified Technical Risks:**
 - **Low Risk:** Carousel accessibility - complex component requiring careful ARIA implementation
@@ -815,7 +815,7 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 
 **Areas for Architect Investigation:**
 - Image optimization workflow (build-time vs runtime, CDN strategy)
-- Content Collections schema extensibility for future Strapi migration
+- Content Collections schema already Keystatic-compatible (Keystatic reads the same Zod schema in src/content/config.ts)
 - CSS purging configuration to ensure design system tokens aren't removed
 - Optimal lazy loading strategy for refuge images
 
@@ -831,13 +831,13 @@ For RefugiosLibresDignos Iteration I (MVP), the work is structured into **3 majo
 #### For Architecture Phase:
 1. **Carousel Component:** Architect should evaluate accessibility-first carousel libraries vs custom implementation
 2. **Image Pipeline:** Define exact build-time image optimization workflow with Astro Assets
-3. **Content Collections:** Design schema with Strapi migration in mind (matching field names/types)
+3. **Content Collections:** No redesign needed - Keystatic maps directly onto the existing schema
 4. **CSS Strategy:** Ensure Tailwind purging preserves design system tokens
 
 #### For Future Iterations:
 1. Develop detailed user personas before Iteration IV (membership system)
 2. Establish baseline analytics before iterating (track from Iteration I if possible)
-3. Plan content governance workflow for CMS (Iteration II)
+3. Plan content governance workflow for CMS (Iteration II, Keystatic)
 
 ---
 
@@ -883,7 +883,7 @@ Please review the PRD at docs/prd.md and create an architecture document coverin
 - Performance optimization strategy to meet NFR targets (Lighthouse ≥95 desktop, ≥90 mobile)
 - Testing strategy and quality gates
 
-Reference Section 4 (Technical Assumptions) for our complete tech stack decisions. The architecture should enable smooth migration to Strapi CMS in Iteration II while delivering a high-performance static site for Iteration I.
+Reference Section 4 (Technical Assumptions) for our complete tech stack decisions. The architecture should enable a smooth Keystatic CMS integration in Iteration II (admin UI in-app, no external service) while delivering a high-performance static site for Iteration I.
 
 Focus on Epic 1 (Foundation) for immediate implementation guidance.
 ```

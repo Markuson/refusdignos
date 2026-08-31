@@ -31,7 +31,7 @@ Categoría: Brief
 
 **Estrategia por iteraciones:**
 - **Iteración I (MVP):** Sitio **estático** con Astro, con contenido codificado directamente en el código. Secciones: **Proyecto**, **Refugios** (carrusel de tarjetas), **Contacto** (redes sociales + formulario de contacto), **Colaboradores**. Cada **Refugio** tendrá una página individual con carrusel de imágenes, descripción y a qué asociación está brindado.
-- **Iteración II:** Conexión con **Strapi CMS** para gestión completa del contenido (refugios, imágenes, colaboradores, páginas estáticas, navegación).
+- **Iteración II:** Integración de **Keystatic CMS** (editor de contenido conectado a GitHub, sin backend ni base de datos separados) — Fase 1: colección de refugios; Fase 2: colaboradores y resto del contenido del sitio. Imágenes alojadas en **Cloudinary**, subidas directamente desde el propio panel de Keystatic.
 - **Iteración III:** Añadir **mapa interactivo** de los Pirineos con los refugios geolocalizados y enlaces a sus fichas.
 - **Iteración IV:** Añadir **alta de socios** con registro y **métodos de pago** adecuados para patrocinios y cuotas (proveedor y flujo por definir y estudiar).
 - **Iteración V:** Incorporar una **tienda online** con merchandising (plataforma y logística por definir).
@@ -41,7 +41,7 @@ Categoría: Brief
 **Resultados esperados (Iteración I):**
 - Desplegar un sitio en producción de forma rápida y fiable.
 - Obtener puntuaciones de Lighthouse ≥95 en escritorio y ≥90 en móvil.
-- Diseñar componentes y estructura de contenido que luego puedan mapearse fácilmente a modelos en Strapi.
+- Diseñar componentes y estructura de contenido (Content Collections de Astro) que luego puedan editarse directamente desde Keystatic sin necesidad de rediseño.
 
 **Fuera de alcance (Iteración I):** CMS, mapa interactivo, **alta de socios/autenticación y pagos**, y tienda.
 
@@ -62,7 +62,7 @@ Categoría: Brief
 
 ### No-Objetivos (Iteración I)
 
-1. No se incluirá **gestión dinámica de contenido** (esto se introduce en la Iteración II con Strapi).
+1. No se incluirá **gestión dinámica de contenido** (esto se introduce en la Iteración II con Keystatic).
 2. No habrá **alta de socios/autenticación ni pagos** en la primera versión, aunque **sí es un objetivo estratégico** a abordar desde la Iteración IV.
 3. No se prioriza **optimización para SEO internacional** (solo enfoque local inicial en España o Pirineos).
 4. No se desarrollará **mapa interactivo** ni **e-commerce** todavía.
@@ -100,12 +100,13 @@ Categoría: Brief
 - Diseño responsive con optimización de imágenes y lazy loading.
 - Despliegue en **Vercel**.
 
-### Iteración II — Integración con CMS (Strapi)
+### Iteración II — Integración con CMS (Keystatic)
 
-- Conexión con API de Strapi para obtener contenido dinámico.
-- Panel administrativo para gestionar refugios, colaboradores y secciones informativas.
-- Adaptación del front-end para consumir contenido desde Strapi.
-- Autenticación básica del panel (solo para administradores).
+- Panel de administración Keystatic embebido en la propia app Astro, en la ruta `/keystatic` — sin API externa ni backend separado.
+- **Fase 1:** gestión de la colección de refugios (alta, edición e imágenes vía Cloudinary).
+- **Fase 2:** extensión a colaboradores/patrocinadores y al resto de textos del sitio (proyecto, únete, contacto, legal).
+- El front-end sigue leyendo las mismas Content Collections de Astro; Keystatic solo cambia cómo se editan esos ficheros.
+- Autenticación mediante GitHub App con lista de cuentas permitidas (`allowedUsers`) — solo el cliente puede acceder al panel.
 
 ### Iteración III — Mapa Interactivo
 
@@ -140,7 +141,7 @@ Categoría: Brief
 - **/contacto**: redes sociales + formulario (envío por email/service).
 - **/legal** (footer): aviso legal, privacidad, cookies.
 
-### 5.2 Tipos de Contenido y Campos (modelado pensando en Strapi)
+### 5.2 Tipos de Contenido y Campos (modelado pensando en Keystatic)
 
 **Refugio**
 - `titulo` (string)
@@ -150,7 +151,7 @@ Categoría: Brief
 - `brindadoA` (string)
 - `estado` (enum: planificado, en-obra, finalizado)
 - `localizacion` (lat, lng) — se poblará en Iteración III
-- `imagenes` (galería: {url, alt, pie})
+- `imagenes` (galería: {public_id de Cloudinary, alt, pie} — subida directa a Cloudinary desde Keystatic)
 - `fechaPublicacion` (date)
 - `seo` ({title, description, ogImage})
 
@@ -215,7 +216,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - Formatos preferentes: AVIF/WEBP con fallback JPEG.
 - Variantes responsive: `srcset` y `sizes`.
 - Compresión en build y lazy loading.
-- Carpeta `/public/media/` en Iteración I; mover a CDN/Strapi Media Library en Iteración II.
+- Carpeta `/public/media/` en Iteración I; en Iteración II las imágenes gestionadas desde Keystatic se suben directamente a **Cloudinary** (no se versionan binarios en el repositorio).
 
 ### 5.8 Taxonomías futuras (opcional)
 
@@ -225,16 +226,16 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 ### 5.9 Gobernanza de Contenido
 
 - Estilo editorial: tono cercano y factual, máximo 300–500 palabras por ficha.
-- Revisión: 4 ojos antes de publicar (en CMS, roles Editor/Publisher en Iteración II).
+- Revisión: 4 ojos antes de publicar (en Keystatic, mediante revisión de commits/PR o edición directa según el flujo que se defina en Iteración II).
 - Calendario: actualización trimestral mínima o por hito de obra.
 
 ### 5.10 Evolución por Iteración
 
 - **I:** Contenido hardcoded en ficheros `.md` locales.
-- **II:** Migración a modelos de Strapi equivalentes. Scripts de importación.
+- **II:** Sin migración de datos — Keystatic edita directamente los mismos ficheros markdown ya existentes.
 - **III:** Completar `localizacion` y capas del mapa.
 - **IV:** Páginas y copy de “Hazte socio” y flujo de pagos.
-- **V:** Catálogo de productos y categorías en CMS.
+- **V:** Catálogo de productos y categorías — evaluar si Keystatic es suficiente o si se necesita un backend de comercio dedicado para checkout/pagos.
 
 ---
 
@@ -401,11 +402,12 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 - **Animaciones:** Uso preferente de **Astro Transitions** para animaciones simples, evitando dependencias externas. Solo se considerará **Framer Motion** en casos complejos y justificados.
 - **Gestión de formularios:** formulario HTML estándar + integración con servicio de backend (Formspree o Netlify Forms en MVP).
 
-### Backend (Iteración II+)
+### CMS (Iteración II+)
 
-- **CMS:** Strapi (headless, Node.js, API REST/GraphQL).
-- **Base de datos:** PostgreSQL tanto en desarrollo como en producción (sin SQLite).
-- **Hosting:** Strapi Cloud, Railway o Vercel Functions + base PostgreSQL externa (Neon, Supabase o Render).
+- **CMS:** Keystatic (`@keystatic/astro`), integrado directamente en la app Astro — sin backend ni base de datos independientes.
+- **Almacenamiento de contenido:** los mismos ficheros markdown del repositorio (`src/content/`), leídos/escritos vía GitHub App en producción.
+- **Imágenes:** Cloudinary (subida directa desde el panel de Keystatic mediante un campo personalizado; solo se guarda el `public_id`).
+- **Hosting:** sin coste adicional — el panel se sirve en la misma app Vercel, en la ruta `/keystatic`.
 
 ### Infraestructura
 
@@ -421,11 +423,11 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
     - Contenido renderizado en build time.
     - Sin dependencias de servidor o base de datos.
     - Despliegue automático en Vercel.
-2. **Iteración II (CMS Dinámico)**
-    - Astro obtiene contenido de Strapi mediante API.
-    - Sincronización mediante fetch en build o revalidación incremental.
-    - API protegida con token de acceso.
-    - CMS hospedado aparte (Strapi Cloud o VPS).
+2. **Iteración II (CMS Keystatic)**
+    - Astro sigue leyendo el contenido de las Content Collections locales (`src/content/`) — sin llamadas API en build time.
+    - Keystatic edita esos mismos ficheros: en local mediante escritura directa en disco, en producción mediante una GitHub App que hace commit al repositorio.
+    - Acceso al panel `/keystatic` restringido por lista de cuentas GitHub permitidas (`allowedUsers`).
+    - Sin CMS hospedado aparte: el panel vive dentro de la misma app Astro/Vercel.
 3. **Iteración III (Mapa Interactivo)**
     - Componente React o nativo de Astro.
     - Librería: Leaflet o Mapbox GL JS.
@@ -436,8 +438,8 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
     - Sistema de verificación mediante OAuth o token de acceso de Patreon.
     - Integración opcional con página personalizada “Hazte socio” que redirija a la plataforma de patrocinio elegida.
 5. **Iteración V (Tienda Online)**
-    - Uso de Strapi como catálogo.
-    - Pasarela de pago compartida con módulo de socios o integrada en CMS.
+    - Evaluar si las colecciones de Keystatic bastan como catálogo, o si conviene un backend de comercio dedicado.
+    - Pasarela de pago compartida con módulo de socios.
     - Flujo: producto → carrito → checkout → confirmación.
 
 ### 7.3 Principios de Desarrollo
@@ -458,22 +460,22 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 
 ### 7.5 Estrategia de Datos y CMS
 
-- Modelos: Refugio, Patrocinador, Página Estática, Ajustes del Sitio.
-- Control de versiones de contenido en Strapi mediante entornos.
-- Migración desde `.md` a CMS mediante script ETL.
-- Sincronización incremental con fallback local.
+- Modelos: Refugio, Patrocinador, Página Estática, Ajustes del Sitio — definidos como colecciones/singletons de Keystatic sobre el mismo `src/content/config.ts`.
+- Control de versiones de contenido: nativo, vía Git (cada edición en Keystatic es un commit).
+- Sin migración de datos: Keystatic lee y escribe directamente los ficheros `.md` ya existentes.
+- Sin sincronización ni fallback: el contenido siempre vive en el repositorio, no hay una fuente remota separada que pueda desincronizarse.
 
 ### 7.6 Seguridad y Cumplimiento
 
 - HTTPS obligatorio en todos los entornos.
 - Sanitización de entradas y validación de formularios.
-- Tokens de API en Strapi rotados cada 90 días.
+- Acceso al panel Keystatic revisado periódicamente (lista `allowedUsers` de la GitHub App).
 - Política de privacidad y cookies conforme a RGPD.
 
 ### 7.7 Monitoreo y Mantenimiento
 
 - Monitoreo de rendimiento (Vercel Analytics, Lighthouse CI).
-- Backup diario de CMS.
+- El contenido vive en Git, por lo que el propio historial de commits actúa como backup; sin backup adicional de CMS necesario.
 - Auditorías de accesibilidad cada 6 meses.
 - Renovación de dependencias trimestral.
 
@@ -488,10 +490,10 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 | Iteración | Hito Técnico | Herramientas | Resultado |
 | --- | --- | --- | --- |
 | I | Sitio estático con Astro | Markdown, Vercel | MVP desplegado |
-| II | Integración con CMS | Strapi, PostgreSQL | Contenido dinámico |
+| II | Integración con CMS | Keystatic, Cloudinary | Edición de contenido sin desarrollador |
 | III | Mapa interactivo | Leaflet / Mapbox | Interactividad geográfica |
 | IV | Alta de socios y pagos | Patreon API / Stripe | Gestión de membresías |
-| V | Tienda online | Strapi + Stripe | E-commerce básico |
+| V | Tienda online | Keystatic (o backend dedicado) + Stripe | E-commerce básico |
 
 ---
 
@@ -595,7 +597,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 ### 8.7 Evolución por Iteración
 
 - **I:** Estático, optimización total en build.
-- **II:** Carga dinámica desde Strapi con caching incremental.
+- **II:** Sin cambios de rendimiento — el contenido sigue generándose estáticamente en build, Keystatic solo cambia cómo se edita.
 - **III:** Carga diferida del mapa (lazy y condicional).
 - **IV:** Optimización de flujos de socios (formularios y autenticación externa).
 - **V:** Monitoreo de tienda y SEO de productos.
@@ -608,13 +610,13 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 
 | Categoría | Riesgo | Descripción | Probabilidad | Impacto | Mitigación |
 | --- | --- | --- | --- | --- | --- |
-| **Técnico** | Dependencia del CMS | Posibles incompatibilidades o fallos en actualizaciones de Strapi. | Media | Alta | Fijar versiones y probar antes de actualizar. |
-| **Técnico** | Latencia API Strapi | Respuesta lenta del CMS remoto en producción. | Media | Media | Implementar cacheo en Astro y CDN. |
+| **Técnico** | Dependencia del CMS | Posibles incompatibilidades o fallos en actualizaciones de Keystatic. | Baja | Media | Fijar versiones y probar antes de actualizar. |
+| **Técnico** | Dependencia de Cloudinary | Límites del plan gratuito o caída del servicio de imágenes. | Baja | Media | Monitorear cuota y definir plan de contingencia (subida manual temporal). |
 | **Técnico** | Integración Patreon | Cambios en la API o limitaciones de autenticación. | Media | Alta | Abstraer capa de integración; plan B con Stripe o Ko-fi. |
 | **Rendimiento** | Exceso de dependencias | Degradación de tiempos de carga. | Baja | Alta | Usar solo Astro Transitions y librerías mínimas. |
 | **Infraestructura** | Fallo en despliegue Vercel o CMS | Inaccesibilidad temporal del sitio. | Baja | Media | Monitoreo activo y backups automáticos. |
 | **Legal** | Cumplimiento RGPD | Posible incumplimiento en tratamiento de datos de formularios o socios. | Media | Alta | Redactar política de privacidad y revisar flujos de datos. |
-| **Financiero** | Coste de servicios externos | Patreon, hosting CMS o mapas pueden generar gastos imprevistos. | Media | Media | Evaluar planes gratuitos o de bajo coste. |
+| **Financiero** | Coste de servicios externos | Patreon, Cloudinary o mapas pueden generar gastos imprevistos. | Media | Media | Evaluar planes gratuitos o de bajo coste. |
 | **Operativo** | Contenido desactualizado | Falta de mantenimiento del contenido o retrasos de cliente. | Media | Media | Establecer responsables internos y recordatorios trimestrales. |
 | **UX/UI** | Saturación visual o accesibilidad baja | Diseño sobrecargado o difícil de usar. | Baja | Media | Validar con test de usuarios antes del lanzamiento. |
 
@@ -622,7 +624,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 
 1. **Alcance excesivo:** expansión prematura a funcionalidades no previstas (donaciones, tienda) antes de consolidar MVP.
 2. **Dependencia de decisiones del cliente:** retrasos por falta de materiales o validaciones.
-3. **Integración progresiva del CMS:** posibles ajustes estructurales al pasar de contenido `.md` a dinámico.
+3. **Integración progresiva del CMS:** posibles ajustes de esquema al añadir el campo de imagen Cloudinary a las colecciones existentes.
 4. **Limitaciones del equipo:** disponibilidad limitada o cambios en roles técnicos.
 
 **Mitigación general:** fases cortas, entregas funcionales por iteración, documentación clara y priorización estricta.
@@ -630,21 +632,21 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 ### 9.3 Supuestos del Proyecto
 
 1. El contenido inicial (textos, imágenes, logotipos) será proporcionado por la organización antes del desarrollo de la Iteración I.
-2. La conexión a Strapi y PostgreSQL estará disponible al inicio de la Iteración II.
+2. La cuenta de GitHub del cliente y la cuenta de Cloudinary estarán disponibles al inicio de la Iteración II.
 3. Las APIs externas (Patreon, Leaflet/Mapbox) estarán accesibles y con claves de desarrollo válidas.
 4. La infraestructura de Vercel se mantendrá estable y disponible durante el ciclo de vida del proyecto.
-5. El desarrollador dispone de experiencia previa en Astro, Tailwind y Strapi.
+5. El desarrollador dispone de experiencia previa en Astro, Tailwind y Keystatic (patrón ya probado en el proyecto ivocorr).
 6. El cliente acepta que la web sea monolingüe y sin PWA (por decisión estratégica).
 
 ### 9.4 Riesgos Residuales (Aceptados)
 
-- Pérdida temporal de contenido no crítico en caso de fallo de CMS (respaldo manual disponible).
-- Dependencia continua de servicios externos (Vercel, Patreon, Strapi Cloud).
-- Riesgo menor de obsolescencia tecnológica a largo plazo (Astro y Strapi son frameworks activos y mantenidos).
+- Pérdida temporal de contenido no crítico en caso de fallo de Cloudinary (imágenes; el resto del contenido vive en Git).
+- Dependencia continua de servicios externos (Vercel, Patreon, Cloudinary, GitHub).
+- Riesgo menor de obsolescencia tecnológica a largo plazo (Astro y Keystatic son proyectos activos y mantenidos).
 
 ### 9.5 Plan de Contingencia
 
-1. **Fallo de CMS:** restauración desde backup y carga temporal de contenido estático.
+1. **Fallo de CMS:** el contenido sigue viviendo en Git — en caso de fallo de Keystatic o Cloudinary, se puede editar el markdown manualmente sin perder nada.
 2. **Caída de Patreon o Stripe:** reemplazo inmediato por enlaces de donación directa o formulario provisional.
 3. **Problemas de rendimiento:** rollback a última versión estable + auditoría Lighthouse.
 4. **Cambios legales (RGPD):** revisión con consultoría externa y actualización de textos legales.
@@ -704,13 +706,13 @@ Medir el impacto técnico, funcional y comunicativo del sitio web **Refugios Lib
 | **Frecuencia de despliegue** | Cada nueva versión funcional publicada | ≥1 por iteración | GitHub Actions |
 | **Tiempo medio de corrección de errores** | Tiempo entre detección y resolución | <48 h | GitHub Issues |
 | **Tasa de éxito en builds** | Builds sin error | 100% | CI logs |
-| **Backup CMS completado** | Frecuencia de respaldo exitoso | Diario | Strapi Cloud / scripts personalizados |
+| **Backup de contenido** | El historial de Git actúa como backup continuo | Automático (cada commit) | GitHub |
 
 ### 10.6 Métricas de Comunidad y Participación (Iteraciones IV–V)
 
 | Indicador | Descripción | Meta | Herramienta |
 | --- | --- | --- | --- |
-| **Nuevos socios registrados** | Altas a través de Patreon u otro sistema | +10/mes tras lanzamiento | Patreon API / Strapi |
+| **Nuevos socios registrados** | Altas a través de Patreon u otro sistema | +10/mes tras lanzamiento | Patreon API |
 | **Aportaciones totales** | Ingresos o donaciones mensuales | Crecimiento sostenido ≥10%/mes | Patreon / Stripe dashboard |
 | **Interacciones sociales** | Clics en enlaces de redes sociales | +20% trimestral | Analytics / UTM |
 
@@ -745,7 +747,7 @@ El cronograma puede ajustarse según disponibilidad del desarrollador y la entre
 | Iteración | Fase | Duración estimada | Objetivos principales | Entregables |
 | --- | --- | --- | --- | --- |
 | **I** | MVP Estático | 4 semanas | Crear sitio Astro con contenido `.md` y secciones básicas | Sitio funcional desplegado en Vercel |
-| **II** | Integración CMS | 6 semanas | Conectar con Strapi + PostgreSQL | CMS operativo + contenido dinámico |
+| **II** | Integración CMS | 2-3 semanas | Fase 1: Keystatic + Cloudinary para refugios. Fase 2: resto de contenido | Cliente gestiona refugios sin desarrollador |
 | **III** | Mapa Interactivo | 5 semanas | Implementar mapa Leaflet con ubicaciones de refugios | Mapa funcional y optimizado |
 | **IV** | Socios y Pagos | 6 semanas | Integrar Patreon API o alternativa | Flujo de alta de socios operativo |
 | **V** | Tienda Online | 6 semanas | Añadir módulo de tienda y checkout | Tienda mínima funcional + gestión desde CMS |
@@ -756,7 +758,7 @@ El cronograma puede ajustarse según disponibilidad del desarrollador y la entre
 | --- | --- | --- | --- |
 | **H1** | Finalización de diseño y estructura base Astro | Semana 4 | Inicio del proyecto |
 | **H2** | Sitio estático desplegado (MVP) | Semana 5 | H1 |
-| **H3** | Integración Strapi + migración contenido | Semana 10 | H2 |
+| **H3** | Keystatic + Cloudinary operativos para refugios (Fase 1) | Semana 7 | H2 |
 | **H4** | Validación de mapa interactivo | Semana 15 | H3 |
 | **H5** | Integración Patreon/Stripe para socios | Semana 21 | H4 |
 | **H6** | Tienda funcional y flujo de pago completado | Semana 27 | H5 |
@@ -765,7 +767,7 @@ El cronograma puede ajustarse según disponibilidad del desarrollador y la entre
 ### 11.4 Dependencias y Condiciones
 
 1. El cliente debe entregar textos, imágenes y logotipos antes del inicio de la Iteración I.
-2. Las credenciales de acceso a Strapi, PostgreSQL y APIs externas deben estar disponibles antes de la Iteración II.
+2. La cuenta de GitHub del cliente (para la GitHub App de Keystatic) y la cuenta de Cloudinary deben estar disponibles antes de la Iteración II.
 3. Patreon API o alternativa seleccionada debe estar configurada antes de la Iteración IV.
 4. La comunicación y aprobación de cada iteración debe realizarse antes de avanzar a la siguiente.
 
@@ -777,7 +779,7 @@ El cronograma puede ajustarse según disponibilidad del desarrollador y la entre
 | **Accesibilidad** | Cumplimiento WCAG AA | Axe DevTools |
 | **SEO** | 100% indexación y metadatos correctos | Google Search Console |
 | **Seguridad** | HTTPS + headers correctos | Mozilla Observatory |
-| **CMS** | CRUD completo desde panel Strapi | Manual / Postman |
+| **CMS** | CRUD completo desde panel Keystatic (`/keystatic`) | Manual |
 
 ### 11.6 Mantenimiento y Actualización
 

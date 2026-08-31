@@ -1351,11 +1351,11 @@ The Iteration I MVP is considered **successful** when:
 
 ## Next Steps After Iteration I
 
-**Iteration II: CMS Integration (Week 5-10)**
-- Strapi CMS setup and configuration
-- Content migration from markdown to Strapi
-- API integration with Astro
-- Admin authentication for content management
+**Iteration II: CMS Integration (Week 5-7)**
+- Phase 1: `@keystatic/astro` set up at `/keystatic`, wired to the `refugios` collection
+- Cloudinary custom field for image uploads (public_id stored, no binaries in git)
+- GitHub App auth with `allowedUsers` restricting admin access to the client's account(s)
+- Phase 2 (follow-up): extend to `colaboradores` and remaining site copy — no content migration needed either phase, Keystatic edits the existing markdown files directly
 
 **Iteration III: Interactive Map (Week 11-15)**
 - Leaflet or Mapbox integration
@@ -1370,7 +1370,7 @@ The Iteration I MVP is considered **successful** when:
 - Member dashboard
 
 **Iteration V: E-commerce (Week 22-27)**
-- Product catalog in Strapi
+- Product catalog (evaluate Keystatic collections vs. a dedicated commerce backend)
 - Shopping cart functionality
 - Checkout flow
 - Order management

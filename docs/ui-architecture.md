@@ -57,7 +57,7 @@ pnpm create astro@latest refusdignos -- --template basics --typescript strict
 - **Simple mental model** - No complex state management for static content
 
 **Future-Proof:**
-- **Strapi integration path** - Iteration II can fetch content via API at build time
+- **Keystatic-ready** - Content Collections schema maps directly onto Keystatic fields, no API layer needed
 - **React islands ready** - Iteration III interactive map can use React island
 - **Progressive enhancement** - Can add interactivity incrementally
 
@@ -131,7 +131,7 @@ refusdignos/
 
 ### Future Considerations
 
-- **Iteration II:** Add `@astrojs/strapi` or custom API integration for CMS content
+- **Iteration II:** Add `@keystatic/astro` + `@astrojs/react`, mounted at `/keystatic` — Phase 1 covers the `refugios` collection, Phase 2 extends to `colaboradores` and remaining site copy
 - **Iteration III:** Add React island for interactive map (`@astrojs/react` + Leaflet/Mapbox)
 - **Iteration IV:** Authentication handled externally (Patreon API)
 - **No PWA or native app** support needed
@@ -183,7 +183,7 @@ refusdignos/
 **Why TypeScript Strict Mode:**
 - **Content Collections:** Schema validation catches errors at build time
 - **Refactoring safety:** Type checking prevents breaking changes
-- **Future-proofing:** Easier Strapi integration with typed API responses
+- **Future-proofing:** Content Collections' Zod schema is read directly by Keystatic - no separate API types to maintain
 
 **Why pnpm:**
 - **Performance:** Faster than npm/yarn
@@ -627,174 +627,34 @@ const { images } = Astro.props;
 
 ---
 
-## API Integration
+## Content Management (Keystatic)
 
-### API Integration Strategy
-
-**Iteration I (MVP):** No API integration required - fully static site.
+**Iteration I (MVP):** No CMS - content is hand-authored markdown in `src/content/`.
 
 **Future Iterations:**
-- **Iteration II:** Strapi CMS API integration (build-time fetching)
+- **Iteration II:** Keystatic CMS - Phase 1 (`refugios` collection), Phase 2 (`colaboradores` + remaining site copy)
 - **Iteration IV:** Patreon API for membership management
 - **Iteration V:** Stripe API for e-commerce
 
-### Service Template (Future Use)
+### Integration Approach
 
-When API integration is needed in Iteration II, use this pattern:
+- `@keystatic/astro` + `@astrojs/react` added to `astro.config.mjs`, mounted at the `/keystatic` admin route. `output: 'static'` and the Vercel adapter stay as-is; the admin route is served via per-route SSR, same pattern already proven in the `ivocorr` project.
+- **Storage:** `local` mode in dev (`import.meta.env.DEV`), `github` mode in production. Keystatic's GitHub App reads and writes content files directly via the GitHub API - no separate backend, no database. Astro's Content Collections keep reading `src/content/*` at build time exactly as they do today; Keystatic is just a different way of writing to those same files.
+- **Access control:** the GitHub App restricts `/keystatic` to an `allowedUsers` list - only the client's own GitHub account(s) can log in and edit content, same as the `ivocorr` project's setup.
+- **Publish flow:** an edit made in `/keystatic` commits to the repo, which triggers the normal Vercel build - the change goes live with no manual deploy step for the client.
 
-```typescript
-// src/services/strapi.ts
-/**
- * Strapi CMS API Client
- * Used to fetch content at build time for static generation
- */
+### Images: Cloudinary, Not Git-Committed Binaries
 
-const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337';
-const STRAPI_TOKEN = import.meta.env.STRAPI_TOKEN;
+Keystatic's built-in image field commits files into the git repo, which isn't a good fit here (repo bloat, no CDN transforms). Instead, a **custom Keystatic field** (`cloudinaryField`, the same pattern already working in the `ivocorr` project) uploads directly from the browser to Cloudinary's unsigned upload REST API and stores only the returned `public_id` string in the content file - never a full URL, never a binary in git.
 
-interface StrapiResponse<T> {
-  data: T;
-  meta: {
-    pagination?: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-}
+- Env vars: `PUBLIC_CLOUDINARY_CLOUD_NAME`, `PUBLIC_CLOUDINARY_UPLOAD_PRESET`.
+- The frontend builds the display URL from the stored `public_id` at render time: `https://res.cloudinary.com/{cloud}/image/upload/{transforms}/{public_id}`.
+- **Schema impact:** for content edited through Keystatic, `imagenes` moves from Astro's local `image()` helper (file import) to a Cloudinary `public_id` string field in `src/content/config.ts` - a real schema change, not just new tooling.
 
-interface RefugioFromStrapi {
-  id: number;
-  attributes: {
-    title: string;
-    slug: string;
-    descripcionCorta: string;
-    descripcionLarga: string;
-    brindadoA: string;
-    estado: 'planificado' | 'en-obra' | 'finalizado';
-    fechaPublicacion: string;
-    imagenes: {
-      data: Array<{
-        id: number;
-        attributes: {
-          url: string;
-          alternativeText: string;
-          caption?: string;
-        };
-      }>;
-    };
-  };
-}
+### Phasing
 
-/**
- * Generic fetch wrapper with error handling
- */
-async function fetchFromStrapi<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
-  const url = `${STRAPI_URL}/api/${endpoint}`;
-
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${STRAPI_TOKEN}`,
-      ...options.headers,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `Strapi API error: ${response.status} ${response.statusText}`
-    );
-  }
-
-  return response.json();
-}
-
-/**
- * Fetch all refugios from Strapi
- */
-export async function getRefugios(): Promise<RefugioFromStrapi[]> {
-  const response = await fetchFromStrapi<StrapiResponse<RefugioFromStrapi[]>>(
-    'refugios?populate=*&sort=fechaPublicacion:desc'
-  );
-
-  return response.data;
-}
-
-/**
- * Fetch single refugio by slug
- */
-export async function getRefugioBySlug(
-  slug: string
-): Promise<RefugioFromStrapi | null> {
-  const response = await fetchFromStrapi<StrapiResponse<RefugioFromStrapi[]>>(
-    `refugios?filters[slug][$eq]=${slug}&populate=*`
-  );
-
-  return response.data[0] || null;
-}
-
-/**
- * Transform Strapi refugio to internal format
- */
-export function transformRefugio(strapi: RefugioFromStrapi) {
-  return {
-    id: strapi.id,
-    slug: strapi.attributes.slug,
-    title: strapi.attributes.title,
-    descripcionCorta: strapi.attributes.descripcionCorta,
-    descripcionLarga: strapi.attributes.descripcionLarga,
-    brindadoA: strapi.attributes.brindadoA,
-    estado: strapi.attributes.estado,
-    fechaPublicacion: new Date(strapi.attributes.fechaPublicacion),
-    imagenes: strapi.attributes.imagenes.data.map((img) => ({
-      url: `${STRAPI_URL}${img.attributes.url}`,
-      alt: img.attributes.alternativeText,
-      caption: img.attributes.caption,
-    })),
-  };
-}
-```
-
-### API Client Configuration (Future Use)
-
-```typescript
-// src/config/api.ts
-/**
- * API Configuration
- * Environment-based configuration for external services
- */
-
-export const apiConfig = {
-  strapi: {
-    url: import.meta.env.STRAPI_URL || 'http://localhost:1337',
-    token: import.meta.env.STRAPI_TOKEN,
-    timeout: 10000, // 10 seconds
-  },
-  formspree: {
-    endpoint: import.meta.env.FORMSPREE_ENDPOINT,
-  },
-  // Future: Patreon, Stripe, etc.
-};
-
-/**
- * Validate required environment variables
- */
-export function validateApiConfig() {
-  const required = ['STRAPI_URL', 'STRAPI_TOKEN'];
-  const missing = required.filter((key) => !import.meta.env[key]);
-
-  if (missing.length > 0) {
-    throw new Error(
-      `Missing required environment variables: ${missing.join(', ')}`
-    );
-  }
-}
-```
+- **Phase 1 (this iteration):** Keystatic wired to the `refugios` collection only - the highest-value, highest-churn content - using the Cloudinary field for refugio images.
+- **Phase 2 (follow-up iteration):** extend Keystatic to `colaboradores`/sponsors and the remaining site copy (proyecto, únete, contacto, legal pages), likely as Keystatic *singletons* for one-off page text, mirroring the `globalSettings` singleton pattern from `ivocorr` rather than a collection.
 
 ### Current API Integration: Contact Form
 
@@ -1629,13 +1489,14 @@ PUBLIC_SITE_URL=https://refusdignos.com
 # Formspree endpoint for contact form
 PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
 
+# Future: Keystatic CMS + Cloudinary (Iteration II)
+# PUBLIC_KEYSTATIC_GITHUB_REPO=org/refusdignos
+# PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
+# PUBLIC_CLOUDINARY_UPLOAD_PRESET=your-unsigned-preset
+
 # ============================================
 # PRIVATE VARIABLES (Server-side only)
 # ============================================
-
-# Future: Strapi CMS (Iteration II)
-# STRAPI_URL=http://localhost:1337
-# STRAPI_TOKEN=your-strapi-token
 
 # Future: Analytics (Iteration II)
 # PLAUSIBLE_DOMAIN=refusdignos.com
@@ -1659,8 +1520,10 @@ PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID
 const siteUrl = import.meta.env.PUBLIC_SITE_URL;
 const formspreeEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT;
 
-// Private variables only accessible server-side (build time)
-const strapiToken = import.meta.env.STRAPI_TOKEN; // Not available in browser
+// Keystatic/Cloudinary vars are PUBLIC_ by design - the admin UI and the
+// browser-to-Cloudinary upload both run client-side; auth is handled by
+// the GitHub App, not a secret token in env vars.
+const cloudinaryCloudName = import.meta.env.PUBLIC_CLOUDINARY_CLOUD_NAME;
 ---
 
 <form action={formspreeEndpoint} method="POST">
@@ -1676,8 +1539,8 @@ const strapiToken = import.meta.env.STRAPI_TOKEN; // Not available in browser
   const siteUrl = import.meta.env.PUBLIC_SITE_URL;
   console.log('Site URL:', siteUrl);
 
-  // This will be undefined (private variable)
-  const strapiToken = import.meta.env.STRAPI_TOKEN; // undefined
+  // This will be undefined (private variable, not prefixed PUBLIC_)
+  const plausibleDomain = import.meta.env.PLAUSIBLE_DOMAIN; // undefined
 </script>
 ```
 
@@ -1691,10 +1554,11 @@ interface ImportMetaEnv {
   // Public variables
   readonly PUBLIC_SITE_URL: string;
   readonly PUBLIC_FORMSPREE_ENDPOINT: string;
+  readonly PUBLIC_KEYSTATIC_GITHUB_REPO?: string;
+  readonly PUBLIC_CLOUDINARY_CLOUD_NAME?: string;
+  readonly PUBLIC_CLOUDINARY_UPLOAD_PRESET?: string;
 
   // Private variables (future)
-  readonly STRAPI_URL?: string;
-  readonly STRAPI_TOKEN?: string;
   readonly PLAUSIBLE_DOMAIN?: string;
 }
 
