@@ -39,7 +39,7 @@ NFR5: Images served via CDN with responsive transforms (Cloudinary), not raw git
 - GitHub App with `allowedUsers` restricting admin access to specific accounts
 - Custom `cloudinaryField` Keystatic field (ported from the `ivocorr` project's `src/components/admin/cloudinary-field.tsx`) - direct browser-to-Cloudinary upload via unsigned upload API, stores only `public_id`
 - Env vars: `PUBLIC_KEYSTATIC_GITHUB_REPO`, `PUBLIC_CLOUDINARY_CLOUD_NAME`, `PUBLIC_CLOUDINARY_UPLOAD_PRESET`
-- Decision (resolved): `src/content/config.ts` `imagenes` schema for the `refugios` collection fully replaces Astro's `image()` helper with a Cloudinary `public_id` field - the 8 existing refugios' images are migrated to Cloudinary as part of Story 1.3, no dual-format code path
+- Decision (resolved): `src/content/config.ts` `imagenes` schema for the `refugios` collection fully replaces Astro's `image()` helper with a Cloudinary `public_id` field - all existing refugios' images (count grows over time; 18 as of this writing, up from 8 when this epic was drafted) are migrated to Cloudinary as part of Story 1.3, no dual-format code path
 - Update `src/pages/refugios/[slug].astro` (and any other image-rendering code) to build Cloudinary URLs from `public_id` at render time
 - Verify Astro build passes with CMS-authored content; verify slug generation still works
 - Phase 2 (deferred): singletons pattern for colaboradores/site copy, mirroring `ivocorr`'s `globalSettings` singleton
@@ -109,7 +109,7 @@ So that I can keep refugio information up to date without asking a developer.
 
 **Given** I am authenticated in the Keystatic admin panel
 **When** I open the "Refugios" collection
-**Then** I see a list of all existing refugio entries (the 8 current refugios)
+**Then** I see a list of all existing refugio entries (18 as of this writing - re-check the count in `src/content/refugios/` at implementation time, since it may grow further before Story 1.3 lands)
 
 **Given** I create a new refugio entry with all required fields filled in
 **When** I save/publish it in Keystatic
@@ -138,9 +138,9 @@ So that I can add photos for new or existing refugios without committing files t
 **When** the custom `cloudinaryField` (ported from the `ivocorr` project) is wired into the Keystatic refugios collection schema
 **Then** editors can select an image file in the panel and it uploads directly from the browser to Cloudinary, with only the returned `public_id` stored in the refugio's content file
 
-**Given** the 8 existing refugios currently reference local images via Astro's `image()` helper
+**Given** all refugios in `src/content/refugios/` currently reference local images via Astro's `image()` helper (18 as of this writing - the count has already grown once since this epic was drafted, so re-verify at implementation time rather than trusting this number)
 **When** the migration is performed
-**Then** each existing image is uploaded to Cloudinary once, and each refugio's markdown frontmatter is updated to store the corresponding Cloudinary `public_id`(s) instead of a local file path
+**Then** every refugio's images are uploaded to Cloudinary once, and each refugio's markdown frontmatter is updated to store the corresponding Cloudinary `public_id`(s) instead of a local file path - none are missed, including any added after this story was written
 
 **Given** the `imagenes` schema in `src/content/config.ts` is updated
 **When** the migration is complete
