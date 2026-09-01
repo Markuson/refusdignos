@@ -148,6 +148,10 @@ export default config({
               'Al crear un refugio nuevo, avisa a un desarrollador para que añada las fotos antes de publicar -- sin ellas la web no podrá compilarse.',
             validation: { isRequired: true },
           },
+          slug: {
+            description:
+              'No cambies esto en un refugio que ya existe: cambiará su dirección web pública y los enlaces antiguos dejarán de funcionar.',
+          },
         }),
         ubicacion: fields.text({
           label: 'Ubicación',
