@@ -53,8 +53,12 @@ explicitly rejected in favor of relying on GitHub's native permission model.
 3. Create the app, then generate a **client secret** on the app's settings page.
    Note down: the **Client ID**, the **Client secret**, and the app's **slug**
    (the part of the app's URL after `github.com/apps/`).
-4. **Install** the app on the `Markuson/refusdignos` repository (App settings →
-   Install App).
+4. **Install** the app on the `Markuson/refusdignos` repository. This is done from
+   the **GitHub App's own settings page** (`github.com/settings/apps/<your-app-slug>`),
+   **not** the repository's settings:
+   - In the left sidebar of the app's settings page, click **"Install App"**.
+   - Click the green **Install** button next to your account.
+   - Choose **"Only select repositories"** and pick `refusdignos`, then confirm.
 
 ## 2. Environment variables
 
