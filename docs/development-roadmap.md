@@ -1354,7 +1354,7 @@ The Iteration I MVP is considered **successful** when:
 **Iteration II: CMS Integration (Week 5-7)**
 - Phase 1: `@keystatic/astro` set up at `/keystatic`, wired to the `refugios` collection
 - Cloudinary custom field for image uploads (public_id stored, no binaries in git)
-- GitHub App auth with `allowedUsers` restricting admin access to the client's account(s)
+- GitHub App auth; real access boundary is GitHub's own repo-collaborator permission, not a Keystatic-side allowlist (self-hosted Keystatic has no such field)
 - Phase 2 (follow-up): extend to `colaboradores` and remaining site copy — no content migration needed either phase, Keystatic edits the existing markdown files directly
 
 **Iteration III: Interactive Map (Week 11-15)**
