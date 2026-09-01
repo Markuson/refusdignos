@@ -15,15 +15,15 @@ descripcionLarga: |
   La rehabilitación ha respetado el carácter sobrio de la construcción original, incorporando las mejoras básicas habituales en nuestros refugios: mobiliario, iluminación solar y un espacio interior digno para pasar la noche en uno de los rincones más singulares del Pirineo aragonés.
 
 imagenes:
-  - src: ../../assets/refugios/mallatagabardito/mallatagabardito-1.webp
+  - publicId: "refugios/mallata-de-gabardito/ysrqpugwyabkrepy7hdh"
     alt: "Equipo de Refugios Libres Dignos frente a la Mallata de Gabardito, con el rótulo del Distrito Forestal de Huesca"
-  - src: ../../assets/refugios/mallatagabardito/mallatagabardito-2.webp
+  - publicId: "refugios/mallata-de-gabardito/fqu4vxf3cq6cs8wyuldk"
     alt: "Fachada de la Mallata de Gabardito"
-  - src: ../../assets/refugios/mallatagabardito/mallatagabardito-3.webp
+  - publicId: "refugios/mallata-de-gabardito/sfroqndflf46c42qf8ky"
     alt: "Entorno de montaña de la Mallata de Gabardito"
-  - src: ../../assets/refugios/mallatagabardito/mallatagabardito-4.webp
+  - publicId: "refugios/mallata-de-gabardito/raeecwsaw0hyski5tmo8"
     alt: "Interior de la Mallata de Gabardito"
-  - src: ../../assets/refugios/mallatagabardito/mallatagabardito-5.webp
+  - publicId: "refugios/mallata-de-gabardito/qkop7yfdkisywvqeurmd"
     alt: "Detalle de la rehabilitación de la Mallata de Gabardito"
 
 seoTitle: "Refugio Mallata de Gabardito - Villanúa, Huesca | RefugiosLibresDignos"

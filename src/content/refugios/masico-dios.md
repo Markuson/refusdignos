@@ -15,15 +15,15 @@ descripcionLarga: |
   A más de 1.670 metros de altitud, el Masico Dios ofrece hoy un punto de descanso digno para quienes recorren esta zona de la sierra de Gúdar-Javalambre, uno de los rincones con más masicos y masías tradicionales de todo el Maestrazgo turolense.
 
 imagenes:
-  - src: ../../assets/refugios/masicodios/masicodios-1.webp
+  - publicId: "refugios/masico-dios/acjirpjg93jrisccnyjs"
     alt: "Jornada de voluntariado en el Refugio Masico Dios"
-  - src: ../../assets/refugios/masicodios/masicodios-2.webp
+  - publicId: "refugios/masico-dios/ywuspe6ph6diye50we8j"
     alt: "Fachada del Refugio Masico Dios"
-  - src: ../../assets/refugios/masicodios/masicodios-3.webp
+  - publicId: "refugios/masico-dios/pv60pgcmxxgtvawtttrq"
     alt: "Entorno del Refugio Masico Dios en la sierra de Mosqueruela"
-  - src: ../../assets/refugios/masicodios/masicodios-4.webp
+  - publicId: "refugios/masico-dios/r1maiqwhbuu2xnxnmvbu"
     alt: "Interior del Refugio Masico Dios"
-  - src: ../../assets/refugios/masicodios/masicodios-5.webp
+  - publicId: "refugios/masico-dios/jshy6ibyospgh8kwtwht"
     alt: "Detalle de la rehabilitación del Refugio Masico Dios"
 
 seoTitle: "Refugio Masico Dios - Mosqueruela, Teruel | RefugiosLibresDignos"

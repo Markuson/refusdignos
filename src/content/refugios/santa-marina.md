@@ -15,11 +15,11 @@ descripcionLarga: |
   Entre el valor paisajístico de sus vistas sobre la Hoya de Huesca y el valor cultural de la romería de San Isidro, el Refugio de Santa Marina es una de las paradas más singulares de la sierra de Loarre.
 
 imagenes:
-  - src: ../../assets/refugios/santamarina/santamarina-1.jpeg
+  - publicId: "refugios/santa-marina/vmfucaj11vnylkrh8l5d"
     alt: "Fachada del Refugio de Santa Marina con su gran chimenea de piedra"
-  - src: ../../assets/refugios/santamarina/santamarina-2.jpeg
+  - publicId: "refugios/santa-marina/czh8av8kddzb0empxtrp"
     alt: "Entorno del Refugio de Santa Marina en la sierra de Loarre"
-  - src: ../../assets/refugios/santamarina/santamarina-3.jpeg
+  - publicId: "refugios/santa-marina/gklnlv4wxs5tvjbht3wr"
     alt: "Interior del Refugio de Santa Marina"
 
 seoTitle: "Refugio de Santa Marina - Loarre, Huesca | RefugiosLibresDignos"

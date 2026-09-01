@@ -14,6 +14,13 @@ interface ImportMetaEnv {
   readonly KEYSTATIC_GITHUB_CLIENT_ID?: string;
   readonly KEYSTATIC_GITHUB_CLIENT_SECRET?: string;
   readonly KEYSTATIC_SECRET?: string;
+  /**
+   * Cloudinary cloud name / unsigned upload preset (Story 1.3). Public:
+   * read by the browser during unsigned upload in `cloudinaryField` and by
+   * `src/lib/cloudinary.ts` to build display URLs at render time.
+   */
+  readonly PUBLIC_CLOUDINARY_CLOUD_NAME?: string;
+  readonly PUBLIC_CLOUDINARY_UPLOAD_PRESET?: string;
 }
 
 interface ImportMeta {

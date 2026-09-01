@@ -18,9 +18,9 @@ descripcionLarga: |
   Una característica especial del Refugio Santa Isabel es que cada primer sábado de julio se celebra una romería tradicional en honor a Santa Isabel. Esta celebración reúne a gente del valle y de fuera, combinando devoción religiosa, tradición cultural y amor por la montaña, convirtiendo el refugio en un punto de encuentro festivo y comunitario una vez al año.
 
 imagenes:
-  - src: ../../assets/refugios/santaisabel/santaisabel-1.webp
+  - publicId: "refugios/santa-isabel/toqkjapsygknemo2bzq7"
     alt: "Refugio Santa Isabel en el Macizo de Cotiella"
-  - src: ../../assets/refugios/santaisabel/santaisabel-2.webp
+  - publicId: "refugios/santa-isabel/be6gbvn0yuific78yhf8"
     alt: "Interior del Refugio Santa Isabel"
 
 seoTitle: "Refugio Santa Isabel - Macizo de Cotiella | RefugiosLibresDignos"

@@ -15,13 +15,13 @@ descripcionLarga: |
   Su entorno, entre bosque y pastos con vistas al propio castillo, lo convierte en una parada perfecta tanto para quienes suben a visitar la fortaleza como para quienes buscan una noche tranquila en la sierra de Loarre.
 
 imagenes:
-  - src: ../../assets/refugios/fuenfria/fuenfria-1.webp
+  - publicId: "refugios/fuenfria/ri33nui1obv9oylxxtwv"
     alt: "Fachada del Refugio de la Fuenfría entre la niebla"
-  - src: ../../assets/refugios/fuenfria/fuenfria-2.webp
+  - publicId: "refugios/fuenfria/oxkpm9s8xcuhxxrjuzmy"
     alt: "Vista exterior del Refugio de la Fuenfría"
-  - src: ../../assets/refugios/fuenfria/fuenfria-3.webp
+  - publicId: "refugios/fuenfria/dxgsny5c78hyqait6vsn"
     alt: "Entorno natural del Refugio de la Fuenfría"
-  - src: ../../assets/refugios/fuenfria/fuenfria-4.webp
+  - publicId: "refugios/fuenfria/gcwg2yamnyazydy7olqw"
     alt: "Detalle del Refugio de la Fuenfría"
 
 seoTitle: "Refugio de la Fuenfría - Loarre, Huesca | RefugiosLibresDignos"

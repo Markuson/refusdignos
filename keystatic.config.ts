@@ -2,6 +2,7 @@
 /// <reference path="./src/env.d.ts" />
 
 import { collection, config, fields } from '@keystatic/core';
+import { cloudinaryField } from './src/components/admin/cloudinary-field';
 
 /**
  * Access control note (Story 1.1):
@@ -108,22 +109,30 @@ const storage = import.meta.env.DEV
 
 /**
  * Story 1.2: refugios collection, scoped to the 9 editable text fields from
- * `src/content/config.ts`'s Zod schema. `imagenes`, `localizacion`, and `ogImage`
- * are deliberately declared as `fields.ignored()` -- NOT omitted -- because
- * `@keystatic/core@0.5.51`'s `parseEntry`/`serializeEntryToFiles` drop any
- * frontmatter key absent from the schema on save. Omitting them would silently
- * destroy every refugio's photos (and any future ogImage/localizacion value) on
- * first edit. `fields.ignored()` round-trips the on-disk value untouched and
- * renders no input, so these stay invisible to the editor.
+ * `src/content/config.ts`'s Zod schema, plus (Story 1.3) `imagenes` via the
+ * hand-built `cloudinaryField`. `localizacion` and `ogImage` stay declared as
+ * `fields.ignored()` -- NOT omitted -- because `@keystatic/core@0.5.51`'s
+ * `parseEntry`/`serializeEntryToFiles` drop any frontmatter key absent from
+ * the schema on save. Omitting them would silently destroy any future
+ * ogImage/localizacion value on first edit. `fields.ignored()` round-trips
+ * the on-disk value untouched and renders no input, so these stay invisible
+ * to the editor. Both are confirmed unused across all 17 refugio files and
+ * have no rendering-surface wiring, so leaving them ignored is safe.
  *
  * `fechaPublicacion` gets the same `fields.ignored()` treatment for the same
  * reason: it's not in the Zod schema (Zod silently strips unknown keys, so its
  * absence there is harmless), but it IS present in `es-plans.md`'s frontmatter
- * -- the only one of the 18 files with this extra key (confirmed by grepping
+ * -- the only one of the 17 files with this extra key (confirmed by grepping
  * all top-level frontmatter keys across every refugio file). Without declaring
  * it, saving that one entry through the admin panel would silently delete it.
  *
- * Image uploads (Cloudinary) and localizacion editing are Story 1.3's job.
+ * Image uploads (Cloudinary): `imagenes` is `fields.array` of
+ * `{ publicId, alt }` objects. `publicId` is the custom `cloudinaryField`
+ * (unsigned browser→Cloudinary upload, stores a bare `public_id` string --
+ * `fields.custom()` does not exist at this `@keystatic/core` version, so this
+ * is a hand-built `BasicFormField`, see `src/components/admin/cloudinary-field.tsx`).
+ * The array's `validation.length.min: 1` blocks saving an entry with zero
+ * images, matching `src/content/config.ts`'s `.min(1)` Zod constraint.
  */
 export default config({
   storage,
@@ -172,8 +181,24 @@ export default config({
         brindadoA: fields.text({ label: 'Brindado a', multiline: true }),
         seoTitle: fields.text({ label: 'Título SEO' }),
         seoDescription: fields.text({ label: 'Descripción SEO', multiline: true }),
+        imagenes: fields.array(
+          fields.object({
+            publicId: cloudinaryField({
+              label: 'Imagen',
+              folder: 'refugios',
+              required: true,
+            }),
+            alt: fields.text({
+              label: 'Texto alternativo',
+              validation: { isRequired: true },
+            }),
+          }),
+          {
+            label: 'Imágenes',
+            validation: { length: { min: 1 } },
+          },
+        ),
         // Preserved but out of scope for this story -- see block comment above.
-        imagenes: fields.ignored(),
         localizacion: fields.ignored(),
         ogImage: fields.ignored(),
         fechaPublicacion: fields.ignored(),

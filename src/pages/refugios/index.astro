@@ -3,11 +3,23 @@
 // Description: Display all refuge rehabilitation projects
 
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildCloudinaryUrl, buildCloudinarySrcSet } from '../../lib/cloudinary';
 
-// Get all refugios from Content Collections
-const refugios = await getCollection('refugios');
+// Same widths/sizes the old `astro:assets <Image widths={[400, 600]}
+// sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw">` call
+// used for this card thumbnail, before Story 1.3 swapped to Cloudinary URLs.
+const CARD_WIDTHS = [400, 600];
+const CARD_SIZES = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
+
+// Get all refugios from Content Collections. `imagenes` is `.min(1)` in the
+// Zod schema, so this should never happen in practice -- but the schema only
+// enforces content committed through the normal flow, and indexing
+// `imagenes[0]` unguarded would crash the build on any refugio that somehow
+// has an empty array. Mirrors the `refugiosWithImages` filter already used
+// on the homepage (src/pages/index.astro).
+const allRefugios = await getCollection('refugios');
+const refugios = allRefugios.filter((refugio) => refugio.data.imagenes.length > 0);
 ---
 
 <BaseLayout
@@ -36,12 +48,14 @@ const refugios = await getCollection('refugios');
               <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer h-full">
                 {/* Refugio Image */}
                 <div class="h-48 overflow-hidden">
-                  <Image
-                    src={refugio.data.imagenes[0].src}
+                  <img
+                    src={buildCloudinaryUrl(refugio.data.imagenes[0].publicId, 'w_600,f_auto,q_auto')}
+                    srcset={buildCloudinarySrcSet(refugio.data.imagenes[0].publicId, CARD_WIDTHS)}
+                    sizes={CARD_SIZES}
+                    width="600"
+                    height="338"
                     alt={refugio.data.imagenes[0].alt}
                     class="w-full h-full object-cover"
-                    widths={[400, 600]}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"
                     transition:name={`refugio-image-${refugio.slug}`}
                   />

@@ -16,7 +16,7 @@ descripcionLarga: |
 brindadoA: "Este refugio está brindado a **ARER** (Asociación Riojana de Enfermedades Raras), una asociación sin ánimo de lucro creada en 2016 para dar voz a las personas que sufren enfermedades raras en La Rioja. ARER informa y asesora sobre enfermedades raras, trabajando para concienciar a la sociedad sobre los obstáculos que enfrentan los afectados y sus familias en la vida diaria. En La Rioja hay más de 15.000 personas con diagnóstico de enfermedades raras."
 
 imagenes:
-  - src: ../../assets/refugios/cabimonteros/cabimonteros-1.webp
+  - publicId: "refugios/cabimonteros/oioqyhee5ezyallacv4k"
     alt: "Refugio Cabimonteros en los Pirineos"
 
 seoTitle: "Refugio Cabimonteros - Pirineos | RefugiosLibresDignos"

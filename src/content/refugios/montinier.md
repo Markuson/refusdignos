@@ -15,15 +15,15 @@ descripcionLarga: |
   Su ubicación, en pleno Valle de Pineta y de camino a Tella, la convierte en una base perfecta para travesías de varios días por esta zona del Sobrarbe, uno de los entornos más espectaculares del Pirineo aragonés.
 
 imagenes:
-  - src: ../../assets/refugios/montinier/montinier-1.webp
+  - publicId: "refugios/montinier/olmv4xn4pfrutysuwekf"
     alt: "Fachada del Refugio de Montinier con su tejado rojo"
-  - src: ../../assets/refugios/montinier/montinier-2.webp
+  - publicId: "refugios/montinier/wblrtsoz9g3jra7ozqil"
     alt: "Entorno de montaña del Refugio de Montinier"
-  - src: ../../assets/refugios/montinier/montinier-3.webp
+  - publicId: "refugios/montinier/lnnwfthutd3ynsnghmlz"
     alt: "Interior del Refugio de Montinier"
-  - src: ../../assets/refugios/montinier/montinier-4.webp
+  - publicId: "refugios/montinier/aeu2hcrhauhlwyuzzihp"
     alt: "Detalle de la rehabilitación del Refugio de Montinier"
-  - src: ../../assets/refugios/montinier/montinier-5.webp
+  - publicId: "refugios/montinier/tkmhhqir5p9uolmbjmjg"
     alt: "Vista del Valle de Pineta desde el Refugio de Montinier"
 
 seoTitle: "Refugio de Montinier - Valle de Pineta, Huesca | RefugiosLibresDignos"

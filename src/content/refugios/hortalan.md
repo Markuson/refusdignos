@@ -17,21 +17,21 @@ descripcionLarga: |
 brindadoA: "Este refugio está dedicado a la **Fundación Down Zaragoza**, cuyos jóvenes voluntarios participaron activamente en la jornada de rehabilitación de junio de 2025."
 
 imagenes:
-  - src: ../../assets/refugios/hortalan/hortalan-1.webp
+  - publicId: "refugios/hortalan/gl5sdyeo6vi7zk2h6hhd"
     alt: "Grupo de voluntarios de la Fundación Down Zaragoza frente al Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-2.webp
+  - publicId: "refugios/hortalan/yvcqdu90oaurcdttg6zb"
     alt: "Fachada del Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-3.webp
+  - publicId: "refugios/hortalan/cq3tcxgsop5hdscv90qr"
     alt: "Interior del Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-4.webp
+  - publicId: "refugios/hortalan/obp1cxtrq15i39myor68"
     alt: "Detalle de la rehabilitación del Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-5.webp
+  - publicId: "refugios/hortalan/sgnwujp8xqsbqbyscpsv"
     alt: "Mobiliario del Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-6.webp
+  - publicId: "refugios/hortalan/yhloeomzbvlwc5dv0t7v"
     alt: "Jornada de voluntariado en el Refugio del Hortalán"
-  - src: ../../assets/refugios/hortalan/hortalan-7.webp
+  - publicId: "refugios/hortalan/mai0scgwlw8zphu9ddmf"
     alt: "Entorno del Refugio del Hortalán en la Sierra de Gúdar"
-  - src: ../../assets/refugios/hortalan/hortalan-8.webp
+  - publicId: "refugios/hortalan/ziuqwpuwddkablnqylae"
     alt: "Vista del Refugio del Hortalán"
 
 seoTitle: "Refugio del Hortalán - Mora de Rubielos, Teruel | RefugiosLibresDignos"
