@@ -640,7 +640,7 @@ const { images } = Astro.props;
 
 - `@keystatic/astro` + `@astrojs/react` added to `astro.config.mjs`, mounted at the `/keystatic` admin route. `output: 'static'` and the Vercel adapter stay as-is; the admin route is served via per-route SSR, same pattern already proven in the `ivocorr` project.
 - **Storage:** `local` mode in dev (`import.meta.env.DEV`), `github` mode in production. Keystatic's GitHub App reads and writes content files directly via the GitHub API - no separate backend, no database. Astro's Content Collections keep reading `src/content/*` at build time exactly as they do today; Keystatic is just a different way of writing to those same files.
-- **Access control:** the GitHub App restricts `/keystatic` to an `allowedUsers` list - only the client's own GitHub account(s) can log in and edit content, same as the `ivocorr` project's setup.
+- **Access control:** self-hosted Keystatic has no allowlist config field (verified against `@keystatic/core` through its latest release - the `ivocorr` project's `allowedUsers` setting is a no-op there too). The real boundary is GitHub's own repo-collaborator permission: Keystatic writes using the authenticated user's own OAuth token, so GitHub itself rejects save attempts from non-collaborators. The `/keystatic` login shell may be reachable by any GitHub user, but only collaborators on the repo can save changes - the client is added as a collaborator only when ready to edit.
 - **Publish flow:** an edit made in `/keystatic` commits to the repo, which triggers the normal Vercel build - the change goes live with no manual deploy step for the client.
 
 ### Images: Cloudinary, Not Git-Committed Binaries

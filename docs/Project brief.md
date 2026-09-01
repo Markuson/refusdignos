@@ -106,7 +106,7 @@ Categoría: Brief
 - **Fase 1:** gestión de la colección de refugios (alta, edición e imágenes vía Cloudinary).
 - **Fase 2:** extensión a colaboradores/patrocinadores y al resto de textos del sitio (proyecto, únete, contacto, legal).
 - El front-end sigue leyendo las mismas Content Collections de Astro; Keystatic solo cambia cómo se editan esos ficheros.
-- Autenticación mediante GitHub App con lista de cuentas permitidas (`allowedUsers`) — solo el cliente puede acceder al panel.
+- Autenticación mediante GitHub App: el control de acceso real lo da el permiso de colaborador del propio GitHub (Keystatic escribe con el token del usuario autenticado, así que GitHub rechaza el guardado de quien no sea colaborador del repositorio) — el cliente se añade como colaborador solo cuando esté listo para editar.
 
 ### Iteración III — Mapa Interactivo
 
@@ -426,7 +426,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 2. **Iteración II (CMS Keystatic)**
     - Astro sigue leyendo el contenido de las Content Collections locales (`src/content/`) — sin llamadas API en build time.
     - Keystatic edita esos mismos ficheros: en local mediante escritura directa en disco, en producción mediante una GitHub App que hace commit al repositorio.
-    - Acceso al panel `/keystatic` restringido por lista de cuentas GitHub permitidas (`allowedUsers`).
+    - Acceso al panel `/keystatic` sin lista de permitidos propia de Keystatic (no existe en la versión autoalojada); el guardado real queda restringido por el permiso de colaborador en GitHub.
     - Sin CMS hospedado aparte: el panel vive dentro de la misma app Astro/Vercel.
 3. **Iteración III (Mapa Interactivo)**
     - Componente React o nativo de Astro.
@@ -469,7 +469,7 @@ Reglas: slugs kebab-case, únicos; redirecciones 301 si cambian en el futuro.
 
 - HTTPS obligatorio en todos los entornos.
 - Sanitización de entradas y validación de formularios.
-- Acceso al panel Keystatic revisado periódicamente (lista `allowedUsers` de la GitHub App).
+- Lista de colaboradores del repositorio de GitHub revisada periódicamente, ya que es lo que determina quién puede guardar cambios desde Keystatic.
 - Política de privacidad y cookies conforme a RGPD.
 
 ### 7.7 Monitoreo y Mantenimiento

@@ -36,7 +36,7 @@ NFR5: Images served via CDN with responsive transforms (Cloudinary), not raw git
 
 - `@keystatic/astro` + `@astrojs/react`, mounted at `/keystatic` in `astro.config.mjs`
 - Storage: `github` mode in production, `local` mode in dev
-- GitHub App with `allowedUsers` restricting admin access to specific accounts
+- GitHub App for auth; access to save changes is bounded by GitHub's own repo-collaborator permission (self-hosted Keystatic has no allowlist config field - confirmed during Story 1.1 implementation)
 - Custom `cloudinaryField` Keystatic field (ported from the `ivocorr` project's `src/components/admin/cloudinary-field.tsx`) - direct browser-to-Cloudinary upload via unsigned upload API, stores only `public_id`
 - Env vars: `PUBLIC_KEYSTATIC_GITHUB_REPO`, `PUBLIC_CLOUDINARY_CLOUD_NAME`, `PUBLIC_CLOUDINARY_UPLOAD_PRESET`
 - Decision (resolved): `src/content/config.ts` `imagenes` schema for the `refugios` collection fully replaces Astro's `image()` helper with a Cloudinary `public_id` field - all existing refugios' images (count grows over time; 18 as of this writing, up from 8 when this epic was drafted) are migrated to Cloudinary as part of Story 1.3, no dual-format code path
@@ -52,7 +52,7 @@ N/A - Keystatic provides its own admin UI; no custom UX spec applies to `/keysta
 
 FR1: Epic 1 - create/edit/delete refugios via admin panel
 FR2: Epic 1 - Cloudinary image upload (never git-committed)
-FR3: Epic 1 - restricted admin access (GitHub App allowedUsers)
+FR3: Epic 1 - restricted admin access (GitHub App + repo-collaborator permission)
 FR4: Epic 1 - auto-publish via existing Vercel pipeline
 NFR1-5: Epic 1 - all CMS technical constraints
 FR5: Epic 2 - colaboradores management
@@ -88,13 +88,13 @@ So that only authorized people can access content management tools.
 **When** an unauthenticated visitor navigates to `/keystatic`
 **Then** they are prompted to authenticate via the GitHub App before seeing any admin UI
 
-**Given** a GitHub account is included in the `allowedUsers` list of the Keystatic config
-**When** that user authenticates via the GitHub App
-**Then** they gain access to the Keystatic admin panel
+**Given** a GitHub account with write/collaborator access to the repository authenticates via the GitHub App
+**When** that user completes OAuth
+**Then** they gain access to the Keystatic admin panel and can save changes
 
-**Given** a GitHub account is NOT in the `allowedUsers` list
-**When** that user attempts to authenticate
-**Then** they are denied access to the admin panel
+**Given** a GitHub account WITHOUT write/collaborator access to the repository authenticates via the GitHub App
+**When** that user attempts to save a change
+**Then** GitHub's own API rejects the write (self-hosted Keystatic has no `allowedUsers`-style allowlist field at any published version - confirmed during Story 1.1 implementation review; the real access boundary is GitHub's native repo-collaborator permission, since Keystatic writes using the authenticated user's own OAuth token). The admin UI shell itself may still be reachable by any authenticated GitHub user - only the save/write action is blocked.
 **And** the public site's existing routes continue to build and deploy exactly as before - the admin route is additive, not a modification of existing pages
 **And** required env vars (`PUBLIC_KEYSTATIC_GITHUB_REPO`, plus whatever the GitHub App setup needs) are documented in `.env.example`
 **And** (NFR4) a post-integration Lighthouse run on the public routes (home, refugios listing, refugio detail) matches or exceeds the existing MVP scores - the admin route's dependencies (React, Keystatic) must not leak into the public site's JS bundle
