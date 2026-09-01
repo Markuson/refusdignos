@@ -1,7 +1,7 @@
 /// <reference types="astro/client" />
 /// <reference path="./src/env.d.ts" />
 
-import { config } from '@keystatic/core';
+import { collection, config, fields } from '@keystatic/core';
 
 /**
  * Access control note (Story 1.1):
@@ -106,8 +106,87 @@ const storage = import.meta.env.DEV
       };
     })();
 
+/**
+ * Story 1.2: refugios collection, scoped to the 9 editable text fields from
+ * `src/content/config.ts`'s Zod schema. `imagenes`, `localizacion`, and `ogImage`
+ * are deliberately declared as `fields.ignored()` -- NOT omitted -- because
+ * `@keystatic/core@0.5.51`'s `parseEntry`/`serializeEntryToFiles` drop any
+ * frontmatter key absent from the schema on save. Omitting them would silently
+ * destroy every refugio's photos (and any future ogImage/localizacion value) on
+ * first edit. `fields.ignored()` round-trips the on-disk value untouched and
+ * renders no input, so these stay invisible to the editor.
+ *
+ * `fechaPublicacion` gets the same `fields.ignored()` treatment for the same
+ * reason: it's not in the Zod schema (Zod silently strips unknown keys, so its
+ * absence there is harmless), but it IS present in `es-plans.md`'s frontmatter
+ * -- the only one of the 18 files with this extra key (confirmed by grepping
+ * all top-level frontmatter keys across every refugio file). Without declaring
+ * it, saving that one entry through the admin panel would silently delete it.
+ *
+ * Image uploads (Cloudinary) and localizacion editing are Story 1.3's job.
+ */
 export default config({
   storage,
-  // No collections/singletons yet -- this story only mounts the admin shell.
-  // Story 1.2 adds the `refugios` collection.
+  collections: {
+    refugios: collection({
+      label: 'Refugios',
+      path: 'src/content/refugios/*',
+      // `title` is the slug field so the filename stays independent of the
+      // display title, matching existing files (e.g. `bonicaparra.md` vs.
+      // `title: "Refugio Bonicaparra"`). Must be `fields.slug()`, not
+      // `fields.text()` -- a plain text field throws `"slugField is not a slug
+      // field"` at runtime. `serializeWithSlug` writes only `name` back to
+      // frontmatter, never the slug, so `title` stays a flat string on disk.
+      slugField: 'title',
+      format: { contentField: 'content' },
+      entryLayout: 'form',
+      schema: {
+        title: fields.slug({
+          name: {
+            label: 'Título',
+            description:
+              'Al crear un refugio nuevo, avisa a un desarrollador para que añada las fotos antes de publicar -- sin ellas la web no podrá compilarse.',
+            validation: { isRequired: true },
+          },
+          slug: {
+            description:
+              'No cambies esto en un refugio que ya existe: cambiará su dirección web pública y los enlaces antiguos dejarán de funcionar.',
+          },
+        }),
+        ubicacion: fields.text({
+          label: 'Ubicación',
+          validation: { isRequired: true },
+        }),
+        altitud: fields.text({ label: 'Altitud' }),
+        capacidad: fields.text({ label: 'Capacidad' }),
+        descripcionCorta: fields.text({
+          label: 'Descripción corta',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        descripcionLarga: fields.text({
+          label: 'Descripción larga',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        brindadoA: fields.text({ label: 'Brindado a', multiline: true }),
+        seoTitle: fields.text({ label: 'Título SEO' }),
+        seoDescription: fields.text({ label: 'Descripción SEO', multiline: true }),
+        // Preserved but out of scope for this story -- see block comment above.
+        imagenes: fields.ignored(),
+        localizacion: fields.ignored(),
+        ogImage: fields.ignored(),
+        fechaPublicacion: fields.ignored(),
+        // Unused in practice -- every existing entry has an empty body. This
+        // field exists only so Keystatic derives `.md` output (via
+        // `getDataFileExtension`); without a contentField it defaults to `.yaml`.
+        // Declared last so it renders at the bottom of the form, not right
+        // under the title where it reads as a mysterious empty rich-text box.
+        content: fields.markdoc({
+          label: 'Contenido (no utilizado)',
+          extension: 'md',
+        }),
+      },
+    }),
+  },
 });
