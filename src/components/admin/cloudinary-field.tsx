@@ -207,12 +207,6 @@ function UploadFieldInput({
     [cloudName, uploadPreset, folder, maxFileSize, onChange],
   );
 
-  const handleRemove = useCallback(() => {
-    onChange(null);
-    setPreviewUrl(null);
-    setError(null);
-  }, [onChange]);
-
   const triggerPicker = useCallback(() => {
     fileInputRef.current?.click();
   }, []);
@@ -320,26 +314,6 @@ function UploadFieldInput({
         >
           {isUploading ? `Subiendo… ${progress}%` : value ? '↑ Reemplazar archivo' : '↑ Subir a Cloudinary'}
         </button>
-
-        {value && (
-          <button
-            type="button"
-            onClick={handleRemove}
-            disabled={isUploading}
-            style={{
-              padding: '8px 16px',
-              background: 'transparent',
-              color: '#dc2626',
-              border: '1px solid #dc2626',
-              borderRadius: '4px',
-              cursor: isUploading ? 'not-allowed' : 'pointer',
-              fontSize: '13px',
-              opacity: isUploading ? 0.6 : 1,
-            }}
-          >
-            ✕ Quitar
-          </button>
-        )}
       </div>
 
       {error && <p style={{ color: '#dc2626', fontSize: '12px', margin: 0 }}>{error}</p>}
