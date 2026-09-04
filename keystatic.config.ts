@@ -507,6 +507,7 @@ export default config({
           }),
           {
             label: 'Qué dejamos en cada refugio',
+            itemLabel: (props) => props.value,
             validation: { length: { min: 1 } },
           },
         ),
