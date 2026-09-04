@@ -1,0 +1,54 @@
+{
+  "heroTitle": "Nuestro Proyecto",
+  "heroSubtitle": "De una cuadra a un hotel: devolviendo dignidad a los refugios libres",
+  "historiaTitle": "Nuestra Historia",
+  "historiaParagraph1": "Todo empezó en 2022 cuando siete amigos zaragozanos, antiguos monitores de montañismo en el Valle de Pineta, decidimos volver a juntarnos para hacer una travesía. Planeamos dormir en un refugio libre que conocíamos, y al llegar, decidimos adecentarlo un poco.",
+  "historiaParagraph2": "Subimos maderas para hacer un banco y una mesa, pintamos las paredes, y el espacio quedó tan acogedor que grabamos un vídeo y lo subimos a redes sociales. La repercusión fue tan buena que nos planteamos hacer lo mismo en otros refugios de la zona.",
+  "historiaParagraph3": "Hoy, nuestro proyecto lleva 15 refugios rehabilitados y nos hemos fijado el reto de sumar seis nuevos cada año. Cada fin de semana que dedicamos a esto es una excusa perfecta para pasar tiempo juntos, hacer el bien en la montaña, y transmitir un mensaje claro: lo que es de todos, todos debemos cuidarlo.",
+  "valores": [
+    {
+      "icono": "🏔️",
+      "titulo": "Dignidad",
+      "descripcion": "Convertimos cuadras en hoteles. Cada refugio que rehabilitamos merece ser un espacio acogedor donde cualquier montañero se sienta cómodo y respetado."
+    },
+    {
+      "icono": "🤝",
+      "titulo": "Responsabilidad Compartida",
+      "descripcion": "Lo que es libre y de todos debe ser cuidado por todos. Creamos conciencia de que estos espacios son responsabilidad de toda la comunidad montañera."
+    },
+    {
+      "icono": "♻️",
+      "titulo": "Materiales Reciclados",
+      "descripcion": "Utilizamos materiales reciclados y donados. Cada refugio tiene su propia atmósfera creada con piezas que tienen una segunda vida."
+    }
+  ],
+  "impactoTitle": "Qué Dejamos en Cada Refugio",
+  "impactoChecklist": [
+    "Mesa con bancos y pequeña encimera con menaje",
+    "Botiquín de primeros auxilios",
+    "Pequeña biblioteca con libros donados",
+    "Foco solar con entrada USB para emergencias",
+    "Chimenea limpia con leña preparada",
+    "Extintor de seguridad",
+    "Panel de experiencias para que escribas tu historia",
+    "Una guitarra",
+    "Obras pictóricas o grabados relacionados con la montaña",
+    "Atmósfera única y personalizada a cada refugio"
+  ],
+  "impactoStats": [
+    {
+      "numero": "15",
+      "etiqueta": "Refugios rehabilitados"
+    },
+    {
+      "numero": "6",
+      "etiqueta": "Nuevos refugios por año"
+    },
+    {
+      "numero": "~1000€",
+      "etiqueta": "Inversión por refugio"
+    }
+  ],
+  "ctaTitle": "Únete al Proyecto",
+  "ctaText": "Hay muchas formas de colaborar: patrocinio económico, donación de materiales, apadrinando un refugio, o simplemente cuidando estos espacios cuando pases por ellos. Cada aporte cuenta."
+}
