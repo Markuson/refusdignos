@@ -16,7 +16,7 @@ descripcionLarga: |
   El refugio sirve como excelente punto de partida para diversas rutas de senderismo en la zona, incluida una ruta circular hasta el pueblo de Turza. Su chimenea funcional y el ambiente acogedor lo hacen especialmente atractivo durante los meses más fríos.
 
 imagenes:
-  - src: ../../assets/refugios/bonicaparra/bonicaparra-1.webp
+  - publicId: "refugios/bonicaparra/ys9mqvugf0lumtdhf1d8"
     alt: "Imagen del Refugio Bonicaparra"
 
 seoTitle: "Refugio Bonicaparra - La Rioja | RefugiosLibresDignos"

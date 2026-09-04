@@ -3,8 +3,16 @@
 // Description: Display detailed information about a specific refugio
 
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { buildCloudinaryUrl, buildCloudinarySrcSet } from '../../lib/cloudinary';
+
+// Same widths/sizes the old `astro:assets <Image widths={[600, 800]}
+// sizes="(max-width: 768px) 100vw, 50vw">` call used for this gallery, before
+// Story 1.3 swapped to Cloudinary URLs. 800/450 (16:9, matching the
+// `aspect-video` class on the gallery button below) are explicit width/height
+// so the browser can reserve layout space before the image loads.
+const GALLERY_WIDTHS = [600, 800];
+const GALLERY_SIZES = '(max-width: 768px) 100vw, 50vw';
 
 export async function getStaticPaths() {
   const refugios = await getCollection('refugios');
@@ -24,6 +32,14 @@ const { title, ubicacion, altitud, capacidad, descripcionCorta, descripcionLarga
 
 // Convert markdown bold syntax to HTML
 const brindadoAHtml = brindadoA?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+// Full-size Cloudinary URLs for the lightbox script (define:vars only
+// serializes plain data, so these are built here rather than passed as
+// `imagenes` + a client-side URL builder).
+const lightboxImages = imagenes.map((imagen) => ({
+  src: buildCloudinaryUrl(imagen.publicId, 'w_1600,f_auto,q_auto'),
+  alt: imagen.alt,
+}));
 ---
 
 <BaseLayout
@@ -92,12 +108,14 @@ const brindadoAHtml = brindadoA?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'
               data-lightbox-index={index}
               aria-label={`Ver imagen ${index + 1} en pantalla completa`}
             >
-              <Image
-                src={imagen.src}
+              <img
+                src={buildCloudinaryUrl(imagen.publicId, 'w_800,f_auto,q_auto')}
+                srcset={buildCloudinarySrcSet(imagen.publicId, GALLERY_WIDTHS)}
+                sizes={GALLERY_SIZES}
+                width="800"
+                height="450"
                 alt={imagen.alt}
                 class="w-full h-full object-cover"
-                widths={[600, 800]}
-                sizes="(max-width: 768px) 100vw, 50vw"
                 loading={index === 0 ? 'eager' : 'lazy'}
                 transition:name={index === 0 ? `refugio-image-${refugio.slug}` : undefined}
               />
@@ -222,7 +240,7 @@ const brindadoAHtml = brindadoA?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'
   </section>
 </BaseLayout>
 
-<script define:vars={{ imagenes }}>
+<script define:vars={{ images: lightboxImages }}>
   // Lightbox functionality
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightbox-image');
@@ -234,13 +252,7 @@ const brindadoAHtml = brindadoA?.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'
   const imageButtons = document.querySelectorAll('[data-lightbox-index]');
 
   let currentIndex = 0;
-  const totalImages = imagenes.length;
-
-  // Convert Astro image objects to usable URLs
-  const images = imagenes.map(img => ({
-    src: img.src.src || img.src,
-    alt: img.alt
-  }));
+  const totalImages = images.length;
 
   function openLightbox(index) {
     currentIndex = index;

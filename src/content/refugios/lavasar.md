@@ -18,13 +18,13 @@ descripcionLarga: |
   El Refugio Lavasar mantiene viva la tradición de los refugios libres del Pirineo, donde el respeto mutuo y el cuidado del espacio por parte de todos los usuarios son esenciales para su preservación y buen funcionamiento.
 
 imagenes:
-  - src: ../../assets/refugios/lavasar/lavasar-1.webp
+  - publicId: "refugios/lavasar/mfbj4doc4daimelhevbp"
     alt: "Exterior del Refugio Lavasar"
-  - src: ../../assets/refugios/lavasar/lavasar-2.webp
+  - publicId: "refugios/lavasar/r4wqvhnnyuntaknryjbe"
     alt: "Interior del refugio con chimenea"
-  - src: ../../assets/refugios/lavasar/lavasar-3.webp
+  - publicId: "refugios/lavasar/gb63xixzqiga5t7upczs"
     alt: "Mesa del Refugio Lavasar"
-  - src: ../../assets/refugios/lavasar/lavasar-4.webp
+  - publicId: "refugios/lavasar/jckdtwpka7b6iq3ziprp"
     alt: "Altillo para dormir del Refugio Lavasar"
 
 seoTitle: "Refugio Lavasar - Valle de Plan | RefugiosLibresDignos"

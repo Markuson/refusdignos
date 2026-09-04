@@ -21,17 +21,17 @@ brindadoA: "Montañeros y grupos que buscan conquistar las cimas del Valle de Ch
 fechaPublicacion: 2024-03-01
 
 imagenes:
-  - src: ../../assets/refugios/esplans/esplans-1.webp
+  - publicId: "refugios/es-plans/hkic3mmqiclyusfdjh4s"
     alt: "Vista exterior del Refugio Es Plans"
-  - src: ../../assets/refugios/esplans/esplans-2.webp
+  - publicId: "refugios/es-plans/lw7munrvihuhydrhnltl"
     alt: "Vista exterior del Refugio Es Plans"
-  - src: ../../assets/refugios/esplans/esplans-3.webp
+  - publicId: "refugios/es-plans/czv5emdvsbnuq5fvvgsq"
     alt: "Vista exterior del Refugio Es Plans"
-  - src: ../../assets/refugios/esplans/esplans-4.webp
+  - publicId: "refugios/es-plans/yqmomg9rhama1srwajsk"
     alt: "Mesa del interior del Refugio Es Plans"
-  - src: ../../assets/refugios/esplans/esplans-5.webp
+  - publicId: "refugios/es-plans/ywgozh402l9uh37pcmk1"
     alt: "Zona de cocina del Refugio Es Plans"
-  - src: ../../assets/refugios/esplans/esplans-6.webp
+  - publicId: "refugios/es-plans/h1w77ns9xa7gnhvbzpba"
     alt: "Zona de para pernoctar del Refugio Es Plans"
 
 seoTitle: "Refugio Es Plans - Valle de Chistau | RefugiosLibresDignos"

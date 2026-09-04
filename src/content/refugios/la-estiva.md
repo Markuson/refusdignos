@@ -20,11 +20,11 @@ descripcionLarga: |
 brindadoA: "Este refugio está brindado a **AEMC Chiari**, la Asociación Española de Afectados por Malformaciones Cráneocervicales con sede en Zaragoza. AEMC trabaja para ofrecer apoyo, información fiable y una red de confianza a personas afectadas por Malformación de Chiari, Siringomielia y patologías relacionadas, así como a sus familias. La asociación está integrada en FEDER (Federación Española de Enfermedades Raras)."
 
 imagenes:
-  - src: ../../assets/refugios/laestiva/laestiva-1.webp
+  - publicId: "refugios/la-estiva/z3rdmke66dr51ahsqyhb"
     alt: "Vista del Refugio de La Estiva"
-  - src: ../../assets/refugios/laestiva/laestiva-2.webp
+  - publicId: "refugios/la-estiva/pvvgx4uh9bhdql89yzg1"
     alt: "interior del refugio La Estiva antes de la reforma"
-  - src: ../../assets/refugios/laestiva/laestiva-3.webp
+  - publicId: "refugios/la-estiva/nckekommiv9aeozvv1dn"
     alt: "Interior del refugio despues de la reforma"
 
 seoTitle: "Refugio de La Estiva - Valle de Pineta | RefugiosLibresDignos"

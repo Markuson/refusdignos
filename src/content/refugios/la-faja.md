@@ -15,13 +15,13 @@ descripcionLarga: |
   Hoy el Refugio de la Faja ofrece un espacio interior cálido y cuidado, buena muestra de cómo un refugio prácticamente en ruinas puede recuperar su función original gracias al trabajo voluntario.
 
 imagenes:
-  - src: ../../assets/refugios/lafaja/lafaja-1.webp
+  - publicId: "refugios/la-faja/swenagfny1zxkkw11rhu"
     alt: "Fachada del Refugio de la Faja con el letrero original"
-  - src: ../../assets/refugios/lafaja/lafaja-2.webp
+  - publicId: "refugios/la-faja/jtmazxq2xewkzswmqubs"
     alt: "Entorno de montaña del Refugio de la Faja"
-  - src: ../../assets/refugios/lafaja/lafaja-3.webp
+  - publicId: "refugios/la-faja/nxdesmpn7yvtaf04qwv9"
     alt: "Interior renovado del Refugio de la Faja"
-  - src: ../../assets/refugios/lafaja/lafaja-4.webp
+  - publicId: "refugios/la-faja/glapfbgrdogtqyiswkht"
     alt: "Detalle de la reconstrucción del Refugio de la Faja"
 
 seoTitle: "Refugio de la Faja - Linás de Broto, Huesca | RefugiosLibresDignos"

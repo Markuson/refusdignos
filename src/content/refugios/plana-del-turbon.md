@@ -15,13 +15,13 @@ descripcionLarga: |
   La rehabilitación ha mantenido el carácter sobrio del refugio original, incorporando mobiliario básico y las mejoras habituales de nuestros proyectos, para que siga sirviendo como refugio libre a montañeros y trepadores que se acercan hasta este remoto rincón de la Ribagorza.
 
 imagenes:
-  - src: ../../assets/refugios/planaturbon/planaturbon-1.jpeg
+  - publicId: "refugios/plana-del-turbon/hnqypwjiqihozr5vi46j"
     alt: "Refugio de la Plana del Turbón sobre el paisaje kárstico del macizo"
-  - src: ../../assets/refugios/planaturbon/planaturbon-2.jpeg
+  - publicId: "refugios/plana-del-turbon/jps61gpifx22lmm29d0k"
     alt: "Fachada del Refugio de la Plana del Turbón"
-  - src: ../../assets/refugios/planaturbon/planaturbon-3.jpeg
+  - publicId: "refugios/plana-del-turbon/ggcx9dksy4bktuiwmqly"
     alt: "Interior del Refugio de la Plana del Turbón"
-  - src: ../../assets/refugios/planaturbon/planaturbon-4.jpeg
+  - publicId: "refugios/plana-del-turbon/jpsqgrfuqutdbps9jez7"
     alt: "Entorno de alta montaña del Refugio de la Plana del Turbón"
 
 seoTitle: "Refugio Plana del Turbón - Ribagorza, Huesca | RefugiosLibresDignos"

@@ -20,11 +20,11 @@ descripcionLarga: |
 brindadoA: "Este refugio está brindado a **ADAFA** (Asociación de Familias de Acogida de Aragón), una organización sin ánimo de lucro fundada en 1998 que trabaja para que ningún niño se quede sin el derecho a vivir en familia. ADAFA acompaña, apoya y asesora a las familias acogedoras en Aragón, contando con un equipo técnico de profesionales especializados. Actualmente hay alrededor de 100 familias de acogida en Aragón."
 
 imagenes:
-  - src: ../../assets/refugios/lalarri/lalarri-1.webp
+  - publicId: "refugios/la-larri/sl6acmbxrtsxfz9tbb0t"
     alt: "Refugio La Larri en los Llanos"
-  - src: ../../assets/refugios/lalarri/lalarri-2.webp
+  - publicId: "refugios/la-larri/n4yivt3bj5l104dai6wq"
     alt: "Interior del refugio de La Larri"
-  - src: ../../assets/refugios/lalarri/lalarri-3.webp
+  - publicId: "refugios/la-larri/gkv8ib0tgobqfiluic9e"
     alt: "Chimenea del refugio de La Larri"
 
 seoTitle: "Refugio La Larri - Valle de Pineta | RefugiosLibresDignos"

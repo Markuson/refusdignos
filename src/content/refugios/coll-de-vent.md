@@ -18,13 +18,13 @@ descripcionLarga: |
 brindadoA: "Este refugio está brindado a la asociación **Juntos Venceremos ELA Aragón**, una asociación fundada por Jorge Murillo para dar máxima visibilidad y apoyo a las personas con ELA (Esclerosis Lateral Amiotrófica). La asociación trabaja activamente en la recaudación de fondos para investigación, apoyo a pacientes y mejora de su calidad de vida."
 
 imagenes:
-  - src: ../../assets/refugios/colldevent/colldevent-1.webp
+  - publicId: "refugios/coll-de-vent/eqxlpcnlkj08svgglmy4"
     alt: "Vista exterior del Refugio Coll de Vent"
-  - src: ../../assets/refugios/colldevent/colldevent-2.webp
+  - publicId: "refugios/coll-de-vent/yc3eririnklkaoltvv0d"
     alt: "Vista exterior del Refugio Coll de Vent"
-  - src: ../../assets/refugios/colldevent/colldevent-3.webp
+  - publicId: "refugios/coll-de-vent/gkwytkrz5hdjmmuoc3bn"
     alt: "Vista exterior del Refugio Coll de Vent"
-  - src: ../../assets/refugios/colldevent/colldevent-4.webp
+  - publicId: "refugios/coll-de-vent/zli3e2ghfiynzcziasah"
     alt: "interior del Refugio Coll de Vent"
 
 seoTitle: "Refugio Coll de Vent - Sierra de Sis | RefugiosLibresDignos"

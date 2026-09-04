@@ -15,19 +15,19 @@ descripcionLarga: |
   Su entorno, entre el valle de Chistau y las estribaciones del Parque Nacional, ofrece algunas de las vistas más espectaculares del Sobrarbe, lo que hace de la Peguera una parada muy recomendable para quienes hacen la travesía Saravillo-Lafortunada.
 
 imagenes:
-  - src: ../../assets/refugios/lapeguera/lapeguera-1.webp
+  - publicId: "refugios/la-peguera/zz3qsyxuczstv8rpjxyn"
     alt: "Equipo de Refugios Libres Dignos frente al Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-2.webp
+  - publicId: "refugios/la-peguera/gnsn90mrxjov8cbz2uaj"
     alt: "Fachada del Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-3.webp
+  - publicId: "refugios/la-peguera/fz0uy9rxl6ddbpjtqcgc"
     alt: "Entorno de montaña del Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-4.webp
+  - publicId: "refugios/la-peguera/qqeqylucdedjshiv6bxy"
     alt: "Vista del Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-5.webp
+  - publicId: "refugios/la-peguera/zgnbw5qafifczhi1mjo0"
     alt: "Interior del Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-6.webp
+  - publicId: "refugios/la-peguera/pkhtp3dguja1ubybew2s"
     alt: "Detalle de la rehabilitación del Refugio de la Peguera"
-  - src: ../../assets/refugios/lapeguera/lapeguera-7.webp
+  - publicId: "refugios/la-peguera/um84aktosn2frp8tadtt"
     alt: "Panorámica desde el Refugio de la Peguera"
 
 seoTitle: "Refugio de la Peguera - Saravillo, Huesca | RefugiosLibresDignos"
