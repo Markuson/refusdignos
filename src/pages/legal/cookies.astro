@@ -1,7 +1,7 @@
 ---
 // Page: Cookie Policy (/legal/cookies)
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL } from '../../config/constants';
+import globalSettings from '../../content/global-settings/index.json';
 
 const lastUpdated = '18 de octubre de 2025';
 ---
@@ -108,7 +108,7 @@ const lastUpdated = '18 de octubre de 2025';
         <h2>Más información</h2>
         <p>
           Si tienes dudas sobre nuestra política de cookies, puedes contactarnos en{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <a href={`mailto:${globalSettings.contactEmail}`}>{globalSettings.contactEmail}</a>
         </p>
       </div>
     </div>

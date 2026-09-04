@@ -6,7 +6,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import InstagramIcon from '../assets/icons/Instagram.svg';
 import FacebookIcon from '../assets/icons/Facebook.svg';
 import TikTokIcon from '../assets/icons/TikTok.svg';
-import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
+import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
+import globalSettings from '../content/global-settings/index.json';
+import contactoPage from '../content/contacto-page/index.json';
 ---
 
 <BaseLayout
@@ -17,9 +19,9 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
   <section class="bg-background-dark text-forest-green" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Contacta con Nosotros</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">{contactoPage.heroTitle}</h1>
         <p class="text-xl md:text-2xl fade-in-up">
-          Estamos aquí para escucharte
+          {contactoPage.heroSubtitle}
         </p>
       </div>
     </div>
@@ -34,7 +36,7 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
           <h2 class="text-2xl font-bold text-forest-green mb-6">Síguenos</h2>
           <div class="space-y-4 mb-8">
             <a
-              href="https://www.instagram.com/refugioslibresdignos"
+              href={globalSettings.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
@@ -45,7 +47,7 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
               <span class="font-semibold">Instagram</span>
             </a>
             <a
-              href="https://www.facebook.com/people/Refugios-Libres-Dignos/100087582142068/"
+              href={globalSettings.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
@@ -56,7 +58,7 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
               <span class="font-semibold">Facebook</span>
             </a>
             <a
-              href="https://www.tiktok.com/@refugioslibresdignos"
+              href={globalSettings.tiktokUrl}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center space-x-3 text-forest-green hover:text-sunrise-orange transition-colors group"
@@ -71,10 +73,10 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
           <div class="bg-tan/30 p-6 rounded-lg">
             <h3 class="text-lg font-semibold text-forest-green mb-3">Email</h3>
             <a
-              href={`mailto:${CONTACT_EMAIL}`}
+              href={`mailto:${globalSettings.contactEmail}`}
               class="text-sunrise-orange hover:underline"
             >
-              {CONTACT_EMAIL}
+              {globalSettings.contactEmail}
             </a>
           </div>
         </div>
@@ -184,11 +186,10 @@ import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from '../config/constants';
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-2xl font-bold text-forest-green mb-6">
-          ¿Tienes preguntas sobre los refugios?
+          {contactoPage.infoSectionTitle}
         </h2>
         <p class="text-lg text-forest-green/90 mb-6">
-          Visita nuestra página de refugios para conocer cada proyecto en detalle, o consulta
-          nuestra sección sobre el proyecto para entender mejor nuestra misión.
+          {contactoPage.infoSectionText}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/refugios" class="btn btn-primary">

@@ -2,6 +2,8 @@
 // Component: BankDetails.astro
 // Description: Reusable bank details card with copy-to-clipboard functionality
 
+import globalSettings from '../content/global-settings/index.json';
+
 interface Props {
   concepto?: string;
 }
@@ -20,18 +22,18 @@ const { concepto } = Astro.props;
   <div class="space-y-3 text-forest-green/90">
     <div class="flex flex-col sm:flex-row sm:justify-between">
       <span class="font-medium text-forest-green">Titular:</span>
-      <span>Asociación Refugios Libres Dignos</span>
+      <span>{globalSettings.bankAccountHolder}</span>
     </div>
 
     <div class="flex flex-col sm:flex-row sm:justify-between">
       <span class="font-medium text-forest-green">Banco:</span>
-      <span>Ibercaja</span>
+      <span>{globalSettings.bankName}</span>
     </div>
 
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
       <span class="font-medium text-forest-green">IBAN:</span>
       <div class="flex items-center gap-2">
-        <code id="iban-code" class="bg-tan/30 px-2 py-1 rounded text-sm font-mono">ES18 2085 0143 8803 3061 9362</code>
+        <code id="iban-code" class="bg-tan/30 px-2 py-1 rounded text-sm font-mono">{globalSettings.bankIban}</code>
         <button
           id="copy-iban-btn"
           class="p-2 rounded hover:bg-forest-green/10 transition-colors focus:outline-none focus:ring-2 focus:ring-forest-green"
@@ -50,7 +52,7 @@ const { concepto } = Astro.props;
 
     <div class="flex flex-col sm:flex-row sm:justify-between">
       <span class="font-medium text-forest-green">BIC/SWIFT:</span>
-      <span class="font-mono">CAZRES2Z</span>
+      <span class="font-mono">{globalSettings.bankBic}</span>
     </div>
 
     {concepto && (
