@@ -154,7 +154,7 @@ export default config({
           name: {
             label: 'Título',
             description:
-              'Al crear un refugio nuevo, avisa a un desarrollador para que añada las fotos antes de publicar -- sin ellas la web no podrá compilarse.',
+              'Al crear un refugio nuevo, añade al menos una foto (con su texto alternativo) en la sección "Imágenes" antes de guardar: sin ninguna foto, la web no podrá compilarse.',
             validation: { isRequired: true },
           },
           slug: {
