@@ -41,3 +41,7 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
   summary: Review whether Cloudinary-uploaded SVG logos (allowed by `logoField`'s default `formats`) need server-side sanitization.
   evidence: Rendering is always via `<img src>` (not inline `<svg>`), which mitigates script execution in modern browsers, but this is the first story to let an SVG reach Cloudinary via an unsigned upload with no sanitization step -- worth a deliberate security review rather than silent inclusion.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-2-manage-global-settings-homepage-and-contact-page-copy-via-keystatic.md`
+  summary: Wire `BaseLayout.astro`'s JSON-LD SEO `description` to the `homePage` singleton's `heroSubtitle`, or otherwise decouple them.
+  evidence: `BaseLayout.astro:29`'s JSON-LD description is currently a byte-for-byte copy of the original hardcoded hero subtitle string, but per this story's explicit "Never" boundary (SEO props stay hardcoded, out of scope), it was left untouched. Once an editor changes `heroTitle`/`heroSubtitle` via Keystatic, the visible hero text and the SEO/JSON-LD description will silently drift apart. Confirmed via the story 2.2 review's edge-case-hunter pass.

@@ -5,24 +5,24 @@
 import InstagramIcon from '../assets/icons/Instagram.svg';
 import FacebookIcon from '../assets/icons/Facebook.svg';
 import TikTokIcon from '../assets/icons/TikTok.svg';
-import { CONTACT_EMAIL } from '../config/constants';
+import globalSettings from '../content/global-settings/index.json';
 
 const currentYear = new Date().getFullYear();
 
 const socialLinks = [
   {
     platform: 'Instagram',
-    url: 'https://www.instagram.com/refugioslibresdignos',
+    url: globalSettings.instagramUrl,
     Icon: InstagramIcon,
   },
   {
     platform: 'Facebook',
-    url: 'https://www.facebook.com/people/Refugios-Libres-Dignos/100087582142068/',
+    url: globalSettings.facebookUrl,
     Icon: FacebookIcon,
   },
   {
     platform: 'TikTok',
-    url: 'https://www.tiktok.com/@refugioslibresdignos',
+    url: globalSettings.tiktokUrl,
     Icon: TikTokIcon,
   },
 ];
@@ -84,10 +84,10 @@ const legalLinks = [
         </div>
         <p class="text-sm">
           Email: <a
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={`mailto:${globalSettings.contactEmail}`}
             class="hover:text-sunrise-orange transition-colors focus:outline-none focus:ring-2 focus:ring-sunrise-orange rounded"
           >
-            {CONTACT_EMAIL}
+            {globalSettings.contactEmail}
           </a>
         </p>
       </div>

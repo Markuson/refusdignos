@@ -1,7 +1,7 @@
 ---
 // Page: Privacy Policy (/legal/privacidad)
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL } from '../../config/constants';
+import globalSettings from '../../content/global-settings/index.json';
 
 const lastUpdated = '12 de febrero de 2026';
 ---
@@ -90,7 +90,7 @@ const lastUpdated = '12 de febrero de 2026';
         </ul>
         <p>
           Para ejercer estos derechos, contacta con nosotros en{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <a href={`mailto:${globalSettings.contactEmail}`}>{globalSettings.contactEmail}</a>
         </p>
         <p>
           Si consideras que tus derechos no han sido debidamente atendidos, puedes presentar una
@@ -113,7 +113,7 @@ const lastUpdated = '12 de febrero de 2026';
         <h2>10. Contacto</h2>
         <p>
           Si tienes dudas sobre esta política de privacidad, puedes contactarnos en{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <a href={`mailto:${globalSettings.contactEmail}`}>{globalSettings.contactEmail}</a>
         </p>
       </div>
     </div>

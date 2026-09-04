@@ -1,7 +1,7 @@
 ---
 // Page: Terms of Use (/legal/terminos)
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { CONTACT_EMAIL } from '../../config/constants';
+import globalSettings from '../../content/global-settings/index.json';
 
 const lastUpdated = '18 de octubre de 2025';
 ---
@@ -71,7 +71,7 @@ const lastUpdated = '18 de octubre de 2025';
         <h2>8. Contacto</h2>
         <p>
           Para cualquier consulta sobre estos términos, contacta con nosotros en{' '}
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <a href={`mailto:${globalSettings.contactEmail}`}>{globalSettings.contactEmail}</a>
         </p>
       </div>
     </div>

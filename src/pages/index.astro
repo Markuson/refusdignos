@@ -8,6 +8,7 @@ import { Image } from 'astro:assets';
 import heroImage from '../assets/images/hero.webp';
 import portadaImage from '../assets/images/portada.webp';
 import { buildCloudinaryUrl, buildCloudinarySrcSet } from '../lib/cloudinary';
+import homePage from '../content/home-page/index.json';
 
 // Same widths/sizes the old `astro:assets <Image widths={[800, 1200]}
 // sizes="(max-width: 1280px) 100vw, 1200px">` call used for this carousel,
@@ -44,16 +45,16 @@ const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes &
     <!-- Content -->
     <div class="container mx-auto px-4 text-center relative z-10 flex flex-col justify-center items-center" style="min-height: 85vh; padding-top: 120px; padding-bottom: 80px;">
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg fade-in-up">
-        Refugios libres dignos
+        {homePage.heroTitle}
       </h1>
       <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto drop-shadow-lg fade-in-up">
-        Rehabilitamos refugios libres para que todos puedan disfrutarlos. Espacios dignos que inspiran respeto y cuidado por la montaña.
+        {homePage.heroSubtitle}
       </p>
       <a
         href="/refugios"
         class="btn btn-primary fade-in-up"
       >
-        Explora Refugios
+        {homePage.heroCtaLabel}
       </a>
     </div>
   </section>
@@ -63,13 +64,11 @@ const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes &
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6 text-center">
-          Nuestro Proyecto
+          {homePage.missionTitle}
         </h2>
         <div class="prose prose-lg mx-auto text-center">
           <p class="text-lg text-forest-green/90 mb-4">
-            Refugios Libres Dignos es un proyecto dedicado a la rehabilitación de refugios libres,
-            transformándolos de espacios olvidados en sitios acogedores donde cualquier
-            montañero pueda refugiarse, descansar y sentirse como en un hotel.
+            {homePage.missionParagraph1}
           </p>
           <div class="my-8 rounded-lg overflow-hidden">
             <Image
@@ -82,14 +81,12 @@ const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes &
             />
           </div>
           <p class="text-lg text-forest-green/90 mb-8">
-            Creemos que lo que es libre y de todos debe ser cuidado por todos. Cada refugio que
-            rehabilitamos es un acto de amor por la montaña y un mensaje: los espacios compartidos
-            merecen dignidad y respeto.
+            {homePage.missionParagraph2}
           </p>
         </div>
         <div class="text-center">
           <a href="/proyecto" class="btn btn-secondary">
-            Conoce Más
+            {homePage.missionCtaLabel}
           </a>
         </div>
       </div>
@@ -100,7 +97,7 @@ const refugiosWithImages = allRefugios.filter(refugio => refugio.data.imagenes &
   <section class="py-16 bg-background-dark">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8 text-center">
-        Refugios Destacados
+        {homePage.featuredRefugiosTitle}
       </h2>
 
       {refugiosWithImages.length > 0 ? (

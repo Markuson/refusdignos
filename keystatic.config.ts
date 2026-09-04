@@ -1,7 +1,7 @@
 /// <reference types="astro/client" />
 /// <reference path="./src/env.d.ts" />
 
-import { collection, config, fields } from '@keystatic/core';
+import { collection, config, fields, singleton } from '@keystatic/core';
 import { cloudinaryField } from './src/components/admin/cloudinary-field';
 import { logoField } from './src/components/admin/logo-field';
 
@@ -294,6 +294,128 @@ export default config({
         content: fields.markdoc({
           label: 'Contenido (no utilizado)',
           extension: 'md',
+        }),
+      },
+    }),
+  },
+  /**
+   * Story 2.2: three singletons -- `globalSettings`, `homePage`, `contactoPage`
+   * -- mirroring the proven pattern from the sibling `ivocorr` project. Each is
+   * `singleton({ path, format: { data: 'json' }, schema })`, stored as a plain
+   * `src/content/<kebab-name>/index.json` file, and consumed by its 4 page/
+   * component files via a direct static `import` (not Astro Content
+   * Collections -- `ivocorr`'s equivalent Content Layer schema for this exists
+   * only in a stale comment; every real consumer there bypasses it with a
+   * plain JSON import, which is what this project follows). Deliberately NOT
+   * added to `src/content/config.ts`.
+   *
+   * `globalSettings` consolidates contact email, social links, and bank
+   * details that were previously duplicated across `constants.ts`,
+   * `Footer.astro`, `BankDetails.astro`, and `contacto.astro`.
+   */
+  singletons: {
+    globalSettings: singleton({
+      label: 'Configuración Global',
+      path: 'src/content/global-settings/',
+      format: { data: 'json' },
+      schema: {
+        contactEmail: fields.text({
+          label: 'Email de contacto',
+          validation: { isRequired: true },
+        }),
+        instagramUrl: fields.text({
+          label: 'URL de Instagram',
+          validation: { isRequired: true },
+        }),
+        facebookUrl: fields.text({
+          label: 'URL de Facebook',
+          validation: { isRequired: true },
+        }),
+        tiktokUrl: fields.text({
+          label: 'URL de TikTok',
+          validation: { isRequired: true },
+        }),
+        bankAccountHolder: fields.text({
+          label: 'Titular de la cuenta bancaria',
+          validation: { isRequired: true },
+        }),
+        bankName: fields.text({
+          label: 'Nombre del banco',
+          validation: { isRequired: true },
+        }),
+        bankIban: fields.text({
+          label: 'IBAN',
+          validation: { isRequired: true },
+        }),
+        bankBic: fields.text({
+          label: 'BIC/SWIFT',
+          validation: { isRequired: true },
+        }),
+      },
+    }),
+    homePage: singleton({
+      label: 'Página de Inicio',
+      path: 'src/content/home-page/',
+      format: { data: 'json' },
+      schema: {
+        heroTitle: fields.text({
+          label: 'Título principal',
+          validation: { isRequired: true },
+        }),
+        heroSubtitle: fields.text({
+          label: 'Subtítulo principal',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        heroCtaLabel: fields.text({
+          label: 'Texto del botón principal',
+          validation: { isRequired: true },
+        }),
+        missionTitle: fields.text({
+          label: 'Título de la sección Nuestro Proyecto',
+          validation: { isRequired: true },
+        }),
+        missionParagraph1: fields.text({
+          label: 'Nuestro Proyecto - Párrafo 1',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        missionParagraph2: fields.text({
+          label: 'Nuestro Proyecto - Párrafo 2',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        missionCtaLabel: fields.text({
+          label: 'Texto del botón Nuestro Proyecto',
+          validation: { isRequired: true },
+        }),
+        featuredRefugiosTitle: fields.text({
+          label: 'Título de la sección Refugios Destacados',
+          validation: { isRequired: true },
+        }),
+      },
+    }),
+    contactoPage: singleton({
+      label: 'Página de Contacto',
+      path: 'src/content/contacto-page/',
+      format: { data: 'json' },
+      schema: {
+        heroTitle: fields.text({
+          label: 'Título principal',
+          validation: { isRequired: true },
+        }),
+        heroSubtitle: fields.text({
+          label: 'Subtítulo principal',
+          validation: { isRequired: true },
+        }),
+        infoSectionTitle: fields.text({
+          label: 'Título de la sección de información',
+          validation: { isRequired: true },
+        }),
+        infoSectionText: fields.text({
+          label: 'Texto de la sección de información',
+          multiline: true,
+          validation: { isRequired: true },
         }),
       },
     }),
