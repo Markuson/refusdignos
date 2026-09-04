@@ -419,5 +419,127 @@ export default config({
         }),
       },
     }),
+    /**
+     * Story 2.3: proyectoPage singleton, mirroring Story 2.2's pattern above.
+     * `valores` and `impactoStats` are this repo's first `fields.array` of
+     * `fields.object` with `itemLabel` (the only prior array precedent,
+     * `refugios.imagenes` above, has no `itemLabel`); `impactoChecklist` is
+     * the first plain-scalar `fields.array` (an array of bare `fields.text`,
+     * not wrapped in an object).
+     *
+     * `historiaParagraph3` drops the inline `<strong>lo que es de todos,
+     * todos debemos cuidarlo</strong>` emphasis it has on disk today,
+     * flattened to plain text -- matching every other paragraph field in this
+     * repo (`homePage.missionParagraph1/2`, `contactoPage.infoSectionText`),
+     * none of which are rich text. A deliberate, low-risk content-fidelity
+     * trade rather than introducing a one-off rich-text field for a single
+     * phrase.
+     *
+     * `impactoStats[].numero` is `fields.text`, not `fields.integer` --
+     * current values are `"15"`, `"6"`, and `"~1000€"`, a mixed
+     * numeric/currency-string format that `fields.integer` can't represent.
+     */
+    proyectoPage: singleton({
+      label: 'Página de Proyecto',
+      path: 'src/content/proyecto-page/',
+      format: { data: 'json' },
+      schema: {
+        heroTitle: fields.text({
+          label: 'Título principal',
+          validation: { isRequired: true },
+        }),
+        heroSubtitle: fields.text({
+          label: 'Subtítulo principal',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        historiaTitle: fields.text({
+          label: 'Título de la sección Nuestra Historia',
+          validation: { isRequired: true },
+        }),
+        historiaParagraph1: fields.text({
+          label: 'Nuestra Historia - Párrafo 1',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        historiaParagraph2: fields.text({
+          label: 'Nuestra Historia - Párrafo 2',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        historiaParagraph3: fields.text({
+          label: 'Nuestra Historia - Párrafo 3',
+          description:
+            'El texto se muestra como texto plano; el énfasis en negrita del párrafo original no se conserva.',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        valores: fields.array(
+          fields.object({
+            icono: fields.text({
+              label: 'Icono (emoji)',
+              validation: { isRequired: true },
+            }),
+            titulo: fields.text({
+              label: 'Título',
+              validation: { isRequired: true },
+            }),
+            descripcion: fields.text({
+              label: 'Descripción',
+              multiline: true,
+              validation: { isRequired: true },
+            }),
+          }),
+          {
+            label: 'Valores',
+            itemLabel: (props) => props.fields.titulo.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        impactoTitle: fields.text({
+          label: 'Título de la sección de impacto',
+          validation: { isRequired: true },
+        }),
+        impactoChecklist: fields.array(
+          fields.text({
+            label: 'Elemento',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'Qué dejamos en cada refugio',
+            itemLabel: (props) => props.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        impactoStats: fields.array(
+          fields.object({
+            numero: fields.text({
+              label: 'Número',
+              description:
+                'Puede ser un número simple ("15") o incluir texto/símbolos ("~1000€").',
+              validation: { isRequired: true },
+            }),
+            etiqueta: fields.text({
+              label: 'Etiqueta',
+              validation: { isRequired: true },
+            }),
+          }),
+          {
+            label: 'Estadísticas de impacto',
+            itemLabel: (props) => props.fields.etiqueta.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        ctaTitle: fields.text({
+          label: 'Título de la sección Únete al Proyecto',
+          validation: { isRequired: true },
+        }),
+        ctaText: fields.text({
+          label: 'Texto de la sección Únete al Proyecto',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+      },
+    }),
   },
 });

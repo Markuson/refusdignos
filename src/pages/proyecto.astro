@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import nosotros1 from '../assets/images/nosotros1.webp';
 import nosotros2 from '../assets/images/nosotros2.webp';
+import proyectoPage from '../content/proyecto-page/index.json';
 ---
 
 <BaseLayout
@@ -16,9 +17,9 @@ import nosotros2 from '../assets/images/nosotros2.webp';
   <section class="bg-background-dark text-forest-green" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Nuestro Proyecto</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">{proyectoPage.heroTitle}</h1>
         <p class="text-xl md:text-2xl fade-in-up">
-          De una cuadra a un hotel: devolviendo dignidad a los refugios libres
+          {proyectoPage.heroSubtitle}
         </p>
       </div>
     </div>
@@ -29,13 +30,11 @@ import nosotros2 from '../assets/images/nosotros2.webp';
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6 text-center">
-          Nuestra Historia
+          {proyectoPage.historiaTitle}
         </h2>
         <div class="prose prose-lg">
           <p class="text-lg text-forest-green/90 mb-4">
-            Todo empezó en 2022 cuando siete amigos zaragozanos, antiguos monitores de montañismo
-            en el Valle de Pineta, decidimos volver a juntarnos para hacer una travesía. Planeamos dormir
-            en un refugio libre que conocíamos, y al llegar, decidimos adecentarlo un poco.
+            {proyectoPage.historiaParagraph1}
           </p>
           <div class="my-8 rounded-lg overflow-hidden max-w-2xl mx-auto">
             <Image
@@ -48,15 +47,10 @@ import nosotros2 from '../assets/images/nosotros2.webp';
             />
           </div>
           <p class="text-lg text-forest-green/90 mb-4">
-            Subimos maderas para hacer un banco y una mesa, pintamos las paredes, y el espacio quedó
-            tan acogedor que grabamos un vídeo y lo subimos a redes sociales. La repercusión fue tan
-            buena que nos planteamos hacer lo mismo en otros refugios de la zona.
+            {proyectoPage.historiaParagraph2}
           </p>
           <p class="text-lg text-forest-green/90 mb-4">
-            Hoy, nuestro proyecto lleva 15 refugios rehabilitados y nos hemos fijado el reto de
-            sumar seis nuevos cada año. Cada fin de semana que dedicamos a esto es una excusa perfecta
-            para pasar tiempo juntos, hacer el bien en la montaña, y transmitir un mensaje claro:
-            <strong>lo que es de todos, todos debemos cuidarlo</strong>.
+            {proyectoPage.historiaParagraph3}
           </p>
           <div class="my-8 rounded-lg overflow-hidden max-w-md mx-auto">
             <Image
@@ -80,41 +74,17 @@ import nosotros2 from '../assets/images/nosotros2.webp';
         Nuestros Valores
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Value 1 -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="text-4xl mb-4">🏔️</div>
-          <h3 class="text-xl font-semibold text-forest-green mb-3">
-            Dignidad
-          </h3>
-          <p class="text-forest-green/80">
-            Convertimos cuadras en hoteles. Cada refugio que rehabilitamos merece ser un espacio
-            acogedor donde cualquier montañero se sienta cómodo y respetado.
-          </p>
-        </div>
-
-        <!-- Value 2 -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="text-4xl mb-4">🤝</div>
-          <h3 class="text-xl font-semibold text-forest-green mb-3">
-            Responsabilidad Compartida
-          </h3>
-          <p class="text-forest-green/80">
-            Lo que es libre y de todos debe ser cuidado por todos. Creamos conciencia de que
-            estos espacios son responsabilidad de toda la comunidad montañera.
-          </p>
-        </div>
-
-        <!-- Value 3 -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="text-4xl mb-4">♻️</div>
-          <h3 class="text-xl font-semibold text-forest-green mb-3">
-            Materiales Reciclados
-          </h3>
-          <p class="text-forest-green/80">
-            Utilizamos materiales reciclados y donados. Cada refugio tiene su propia atmósfera
-            creada con piezas que tienen una segunda vida.
-          </p>
-        </div>
+        {proyectoPage.valores.map((valor) => (
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="text-4xl mb-4">{valor.icono}</div>
+            <h3 class="text-xl font-semibold text-forest-green mb-3">
+              {valor.titulo}
+            </h3>
+            <p class="text-forest-green/80">
+              {valor.descripcion}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -124,35 +94,22 @@ import nosotros2 from '../assets/images/nosotros2.webp';
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-8">
-          Qué Dejamos en Cada Refugio
+          {proyectoPage.impactoTitle}
         </h2>
         <div class="max-w-3xl mx-auto text-left mb-12">
           <ul class="space-y-3 text-lg text-forest-green/90">
-            <li>✓ Mesa con bancos y pequeña encimera con menaje</li>
-            <li>✓ Botiquín de primeros auxilios</li>
-            <li>✓ Pequeña biblioteca con libros donados</li>
-            <li>✓ Foco solar con entrada USB para emergencias</li>
-            <li>✓ Chimenea limpia con leña preparada</li>
-            <li>✓ Extintor de seguridad</li>
-            <li>✓ Panel de experiencias para que escribas tu historia</li>
-            <li>✓ Una guitarra</li>
-            <li>✓ Obras pictóricas o grabados relacionados con la montaña</li>
-            <li>✓ Atmósfera única y personalizada a cada refugio</li>
+            {proyectoPage.impactoChecklist.map((item) => (
+              <li>✓ {item}</li>
+            ))}
           </ul>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <div class="text-5xl font-bold text-sunrise-orange mb-2">15</div>
-            <p class="text-lg text-forest-green">Refugios rehabilitados</p>
-          </div>
-          <div>
-            <div class="text-5xl font-bold text-sunrise-orange mb-2">6</div>
-            <p class="text-lg text-forest-green">Nuevos refugios por año</p>
-          </div>
-          <div>
-            <div class="text-5xl font-bold text-sunrise-orange mb-2">~1000€</div>
-            <p class="text-lg text-forest-green">Inversión por refugio</p>
-          </div>
+          {proyectoPage.impactoStats.map((stat) => (
+            <div>
+              <div class="text-5xl font-bold text-sunrise-orange mb-2">{stat.numero}</div>
+              <p class="text-lg text-forest-green">{stat.etiqueta}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -163,12 +120,10 @@ import nosotros2 from '../assets/images/nosotros2.webp';
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
-          Únete al Proyecto
+          {proyectoPage.ctaTitle}
         </h2>
         <p class="text-lg text-forest-green/90 mb-8">
-          Hay muchas formas de colaborar: patrocinio económico, donación de materiales,
-          apadrinando un refugio, o simplemente cuidando estos espacios cuando pases por ellos.
-          Cada aporte cuenta.
+          {proyectoPage.ctaText}
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/unete" class="btn btn-secondary">
