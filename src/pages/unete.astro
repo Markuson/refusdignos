@@ -5,6 +5,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BankDetails from '../components/BankDetails.astro';
 import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
+import unetePage from '../content/unete-page/index.json';
 ---
 
 <BaseLayout
@@ -15,9 +16,9 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
   <section class="bg-background-dark text-forest-green" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">Únete a nosotros</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 fade-in-up">{unetePage.heroTitle}</h1>
         <p class="text-xl md:text-2xl fade-in-up">
-          Tu apoyo hace posible nuestra misión
+          {unetePage.heroSubtitle}
         </p>
       </div>
     </div>
@@ -28,10 +29,7 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <p class="text-lg text-forest-green/90">
-          Rehabilitar refugios libres requiere tiempo, esfuerzo y recursos. Cada refugio supone
-          una inversión en materiales, además del trabajo voluntario de
-          nuestro equipo. Con tu colaboración, podemos seguir devolviendo dignidad a estos
-          espacios de montaña.
+          {unetePage.introText}
         </p>
       </div>
     </div>
@@ -43,10 +41,10 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-10">
           <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">
-            Hazte Socio
+            {unetePage.haztesocioTitle}
           </h2>
           <p class="text-lg text-forest-green/90 max-w-2xl mx-auto">
-            Conviértete en parte activa del proyecto con una cuota anual
+            {unetePage.haztesocioSubtitle}
           </p>
         </div>
 
@@ -60,26 +58,16 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
           <!-- Benefits Card -->
           <div class="bg-white rounded-lg shadow-md p-6">
             <div class="text-center mb-4">
-              <div class="text-2xl md:text-3xl font-bold text-forest-green">Por solo <span class="text-sunrise-orange">20€</span> al año</div>
+              <div class="text-2xl md:text-3xl font-bold text-forest-green">{unetePage.haztesocioPriceText}</div>
             </div>
 
             <ul class="space-y-3 text-forest-green/90">
-              <li class="flex items-start gap-2">
-                <span class="text-meadow-green mt-1">✓</span>
-                <span>Acceso a actividades exclusivas y jornadas de voluntariado</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-meadow-green mt-1">✓</span>
-                <span>Sorteos de productos de nuestros colaboradores y descuentos exclusivos</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-meadow-green mt-1">✓</span>
-                <span>Acceso a nuestro grupo privado de WhatsApp con información prioritaria sobre proyectos y avances</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-meadow-green mt-1">✓</span>
-                <span>La satisfacción de contribuir a cuidar lo que es de todos</span>
-              </li>
+              {unetePage.haztesocioBenefits.map((benefit) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-meadow-green mt-1">✓</span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -204,11 +192,11 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
           <BankDetails concepto="Nombre y apellidos" />
 
           <div class="bg-tan/30 rounded-lg p-4">
-            <h4 class="font-semibold text-forest-green mb-2">Instrucciones:</h4>
+            <h4 class="font-semibold text-forest-green mb-2">{unetePage.transferInstructionsTitle}</h4>
             <ol class="list-decimal list-inside space-y-2 text-forest-green/90 text-sm">
-              <li>Realiza una transferencia de 20€ a la cuenta indicada</li>
-              <li>Indica en el concepto <strong>tu nombre y apellidos</strong></li>
-              <li>Verificaremos el pago y te añadiremos al grupo de WhatsApp</li>
+              {unetePage.transferInstructionsSteps.map((step) => (
+                <li>{step}</li>
+              ))}
             </ol>
           </div>
         </div>
@@ -222,29 +210,22 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-10">
           <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">
-            Conviértete en Patrocinador
+            {unetePage.patrocinadorTitle}
           </h2>
           <p class="text-lg text-forest-green/90">
-            ¿Tienes una empresa y quieres colaborar con nosotros? Asocia tu marca a un proyecto
-            que cuida la montaña y conecta con una comunidad comprometida.
+            {unetePage.patrocinadorText}
           </p>
         </div>
 
         <div class="bg-white rounded-lg shadow-md p-6 max-w-2xl mx-auto mb-8">
-          <h3 class="text-lg font-semibold text-forest-green mb-4 text-center">¿Qué ofrecemos a nuestros patrocinadores?</h3>
+          <h3 class="text-lg font-semibold text-forest-green mb-4 text-center">{unetePage.patrocinadorBenefitsTitle}</h3>
           <ul class="space-y-3 text-forest-green/90">
-            <li class="flex items-start gap-2">
-              <span class="text-meadow-green mt-1">✓</span>
-              <span>Visibilidad en nuestras redes sociales</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-meadow-green mt-1">✓</span>
-              <span>Tu logo en nuestra bandera oficial presente en cada refugio</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-meadow-green mt-1">✓</span>
-              <span>Aparición en cada reel de rehabilitación que publicamos</span>
-            </li>
+            {unetePage.patrocinadorBenefits.map((benefit) => (
+              <li class="flex items-start gap-2">
+                <span class="text-meadow-green mt-1">✓</span>
+                <span>{benefit}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -263,41 +244,27 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-10">
           <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-4">
-            Haz una Donación
+            {unetePage.donacionTitle}
           </h2>
           <p class="text-lg text-forest-green/90 max-w-2xl mx-auto">
-            Si prefieres una aportación puntual, cualquier cantidad ayuda a seguir adelante con el proyecto
+            {unetePage.donacionSubtitle}
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 items-stretch">
           <!-- Donation Info -->
           <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
-            <h3 class="text-lg font-semibold text-forest-green mb-4">¿Cómo ayuda tu donación?</h3>
+            <h3 class="text-lg font-semibold text-forest-green mb-4">{unetePage.donacionBenefitsTitle}</h3>
             <ul class="space-y-3 text-forest-green/90 flex-grow">
-              <li class="flex items-start gap-2">
-                <span class="text-sunrise-orange mt-1">•</span>
-                <span>Espacios más acogedores y dignos</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sunrise-orange mt-1">•</span>
-                <span>Seguridad para los montañeros (botiquín, extintor)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sunrise-orange mt-1">•</span>
-                <span>Luz en emergencias (focos solares)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sunrise-orange mt-1">•</span>
-                <span>Momentos de descanso (mobiliario, biblioteca)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-sunrise-orange mt-1">•</span>
-                <span>Mantener vivo el espíritu de montaña</span>
-              </li>
+              {unetePage.donacionBenefits.map((benefit) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-sunrise-orange mt-1">•</span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
             </ul>
             <p class="mt-auto pt-4 text-sm text-forest-green/70">
-              Cualquier cantidad, por pequeña que sea, suma y nos ayuda a seguir adelante.
+              {unetePage.donacionFooterNote}
             </p>
           </div>
 
@@ -319,29 +286,14 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
         </h2>
 
         <div class="space-y-6">
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <h3 class="font-semibold text-forest-green mb-2">¿Puedo dejar de ser socio cuando quiera?</h3>
-            <p class="text-forest-green/90">
-              Sí, puedes cancelar tu cuota en cualquier momento simplemente desactivando la transferencia
-              periódica en tu banco.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <h3 class="font-semibold text-forest-green mb-2">¿Puedo apadrinar un refugio específico?</h3>
-            <p class="text-forest-green/90">
-              Sí, puedes destinar tu donación a un refugio concreto. Indícalo en el concepto de la
-              transferencia o contáctanos para que te informemos de los proyectos en curso.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <h3 class="font-semibold text-forest-green mb-2">¿Puedo colaborar de otra forma?</h3>
-            <p class="text-forest-green/90">
-              ¡Por supuesto! Ayúdanos a difundir el proyecto en redes sociales o mediante el boca a boca.
-              Si quieres donar materiales (madera, pintura, herramientas), ponte en contacto con nosotros.
-            </p>
-          </div>
+          {unetePage.faqItems.map((item) => (
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h3 class="font-semibold text-forest-green mb-2">{item.pregunta}</h3>
+              <p class="text-forest-green/90">
+                {item.respuesta}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -352,10 +304,10 @@ import { WEB3FORMS_ACCESS_KEY } from '../config/constants';
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-forest-green mb-6">
-          ¿Tienes dudas?
+          {unetePage.finalCtaTitle}
         </h2>
         <p class="text-lg text-forest-green/90 mb-8">
-          Estamos encantados de resolver cualquier pregunta sobre cómo colaborar con nosotros.
+          {unetePage.finalCtaText}
         </p>
         <a href="/contacto" class="btn btn-primary">
           Contáctanos

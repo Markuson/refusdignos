@@ -1,0 +1,55 @@
+{
+  "heroTitle": "Únete a nosotros",
+  "heroSubtitle": "Tu apoyo hace posible nuestra misión",
+  "introText": "Rehabilitar refugios libres requiere tiempo, esfuerzo y recursos. Cada refugio supone una inversión en materiales, además del trabajo voluntario de nuestro equipo. Con tu colaboración, podemos seguir devolviendo dignidad a estos espacios de montaña.",
+  "haztesocioTitle": "Hazte Socio",
+  "haztesocioSubtitle": "Conviértete en parte activa del proyecto con una cuota anual",
+  "haztesocioPriceText": "Por solo 20€ al año",
+  "haztesocioBenefits": [
+    "Acceso a actividades exclusivas y jornadas de voluntariado",
+    "Sorteos de productos de nuestros colaboradores y descuentos exclusivos",
+    "Acceso a nuestro grupo privado de WhatsApp con información prioritaria sobre proyectos y avances",
+    "La satisfacción de contribuir a cuidar lo que es de todos"
+  ],
+  "transferInstructionsTitle": "Instrucciones:",
+  "transferInstructionsSteps": [
+    "Realiza una transferencia de 20€ a la cuenta indicada",
+    "Indica en el concepto tu nombre y apellidos",
+    "Verificaremos el pago y te añadiremos al grupo de WhatsApp"
+  ],
+  "patrocinadorTitle": "Conviértete en Patrocinador",
+  "patrocinadorText": "¿Tienes una empresa y quieres colaborar con nosotros? Asocia tu marca a un proyecto que cuida la montaña y conecta con una comunidad comprometida.",
+  "patrocinadorBenefitsTitle": "¿Qué ofrecemos a nuestros patrocinadores?",
+  "patrocinadorBenefits": [
+    "Visibilidad en nuestras redes sociales",
+    "Tu logo en nuestra bandera oficial presente en cada refugio",
+    "Aparición en cada reel de rehabilitación que publicamos"
+  ],
+  "donacionTitle": "Haz una Donación",
+  "donacionSubtitle": "Si prefieres una aportación puntual, cualquier cantidad ayuda a seguir adelante con el proyecto",
+  "donacionBenefitsTitle": "¿Cómo ayuda tu donación?",
+  "donacionBenefits": [
+    "Espacios más acogedores y dignos",
+    "Seguridad para los montañeros (botiquín, extintor)",
+    "Luz en emergencias (focos solares)",
+    "Momentos de descanso (mobiliario, biblioteca)",
+    "Mantener vivo el espíritu de montaña"
+  ],
+  "donacionFooterNote": "Cualquier cantidad, por pequeña que sea, suma y nos ayuda a seguir adelante.",
+  "faqItems": [
+    {
+      "pregunta": "¿Puedo dejar de ser socio cuando quiera?",
+      "respuesta": "Sí, puedes cancelar tu cuota en cualquier momento simplemente desactivando la transferencia periódica en tu banco."
+    },
+    {
+      "pregunta": "¿Puedo apadrinar un refugio específico?",
+      "respuesta": "Sí, puedes destinar tu donación a un refugio concreto. Indícalo en el concepto de la transferencia o contáctanos para que te informemos de los proyectos en curso."
+    },
+    {
+      "pregunta": "¿Puedo colaborar de otra forma?",
+      "respuesta": "¡Por supuesto! Ayúdanos a difundir el proyecto en redes sociales o mediante el boca a boca. Si quieres donar materiales (madera, pintura, herramientas), ponte en contacto con nosotros."
+    }
+  ],
+  "finalCtaTitle": "¿Tienes dudas?",
+  "finalCtaText": "Estamos encantados de resolver cualquier pregunta sobre cómo colaborar con nosotros."
+}

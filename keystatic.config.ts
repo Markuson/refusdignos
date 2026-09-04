@@ -541,5 +541,166 @@ export default config({
         }),
       },
     }),
+    /**
+     * Story 2.4: unetePage singleton, mirroring Story 2.3's pattern above.
+     * Reuses the plain-scalar `fields.array` pattern (`proyectoPage.impactoChecklist`)
+     * for `haztesocioBenefits`, `transferInstructionsSteps`, `patrocinadorBenefits`,
+     * and `donacionBenefits`. `faqItems` is this repo's first `fields.array` of
+     * `fields.object` modeling a two-field Q&A shape, following the same
+     * `itemLabel` pattern proven by `proyectoPage.valores`/`impactoStats`, keyed
+     * off `pregunta` instead of `titulo`/`etiqueta`.
+     *
+     * `haztesocioPriceText` and `transferInstructionsSteps[1]` each flatten
+     * inline emphasis (`<span class="text-sunrise-orange">`, `<strong>`) to
+     * plain text on migration -- same documented content-fidelity trade as
+     * `proyectoPage.historiaParagraph3` above, rather than introducing one-off
+     * rich-text fields for two phrases.
+     *
+     * The membership form's fields/validation/Web3Forms wiring and both
+     * `BankDetails.astro` usages (which read from `globalSettings`, Story 2.2)
+     * stay entirely out of this schema.
+     */
+    unetePage: singleton({
+      label: 'Página de Únete',
+      path: 'src/content/unete-page/',
+      format: { data: 'json' },
+      schema: {
+        heroTitle: fields.text({
+          label: 'Título principal',
+          validation: { isRequired: true },
+        }),
+        heroSubtitle: fields.text({
+          label: 'Subtítulo principal',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        introText: fields.text({
+          label: 'Texto de introducción',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        haztesocioTitle: fields.text({
+          label: 'Título de la sección Hazte Socio',
+          validation: { isRequired: true },
+        }),
+        haztesocioSubtitle: fields.text({
+          label: 'Subtítulo de la sección Hazte Socio',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        haztesocioPriceText: fields.text({
+          label: 'Texto del precio',
+          description:
+            'El texto se muestra como texto plano; el énfasis de color del "20€" del original no se conserva.',
+          validation: { isRequired: true },
+        }),
+        haztesocioBenefits: fields.array(
+          fields.text({
+            label: 'Beneficio',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'Beneficios de hacerse socio',
+            itemLabel: (props) => props.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        transferInstructionsTitle: fields.text({
+          label: 'Título de las instrucciones de transferencia',
+          validation: { isRequired: true },
+        }),
+        transferInstructionsSteps: fields.array(
+          fields.text({
+            label: 'Paso',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'Pasos de la transferencia',
+            itemLabel: (props) => props.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        patrocinadorTitle: fields.text({
+          label: 'Título de la sección Patrocinador',
+          validation: { isRequired: true },
+        }),
+        patrocinadorText: fields.text({
+          label: 'Texto de la sección Patrocinador',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        patrocinadorBenefitsTitle: fields.text({
+          label: 'Título de los beneficios para patrocinadores',
+          validation: { isRequired: true },
+        }),
+        patrocinadorBenefits: fields.array(
+          fields.text({
+            label: 'Beneficio',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'Beneficios para patrocinadores',
+            itemLabel: (props) => props.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        donacionTitle: fields.text({
+          label: 'Título de la sección Donación',
+          validation: { isRequired: true },
+        }),
+        donacionSubtitle: fields.text({
+          label: 'Subtítulo de la sección Donación',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        donacionBenefitsTitle: fields.text({
+          label: 'Título de los beneficios de la donación',
+          validation: { isRequired: true },
+        }),
+        donacionBenefits: fields.array(
+          fields.text({
+            label: 'Beneficio',
+            validation: { isRequired: true },
+          }),
+          {
+            label: 'En qué ayuda tu donación',
+            itemLabel: (props) => props.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        donacionFooterNote: fields.text({
+          label: 'Nota al pie de la sección Donación',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        faqItems: fields.array(
+          fields.object({
+            pregunta: fields.text({
+              label: 'Pregunta',
+              validation: { isRequired: true },
+            }),
+            respuesta: fields.text({
+              label: 'Respuesta',
+              multiline: true,
+              validation: { isRequired: true },
+            }),
+          }),
+          {
+            label: 'Preguntas Frecuentes',
+            itemLabel: (props) => props.fields.pregunta.value,
+            validation: { length: { min: 1 } },
+          },
+        ),
+        finalCtaTitle: fields.text({
+          label: 'Título final de llamada a la acción',
+          validation: { isRequired: true },
+        }),
+        finalCtaText: fields.text({
+          label: 'Texto final de llamada a la acción',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+      },
+    }),
   },
 });
