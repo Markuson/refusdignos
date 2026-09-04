@@ -21,3 +21,27 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-1-3-migrate-refugio-images-to-cloudinary-and-enable-upload-via-keystatic.md`
   summary: Harden `cloudinaryField`'s upload UX -- no XHR timeout (a stalled request leaves the field stuck showing "uploading" forever) and no guard against a second file being selected while an upload is still in flight.
   evidence: `src/components/admin/cloudinary-field.tsx`'s `UploadFieldInput` has no `xhr.timeout`/`ontimeout` handler and no `isUploading` guard at the top of its file-change handler. Confirmed working for the normal single-upload case via live QA in `/keystatic` (success, failure-preset, and validation-blocked-save paths all verified), but these two failure modes weren't exercised and remain unguarded.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: Fix admin-panel accessibility gaps in the new `logoField`: labels aren't associated via `htmlFor`/`id` to their inputs, the URL/Upload mode toggle uses `role="radiogroup"`/`role="radio"` with no arrow-key navigation, and error/validation messages have no `role="alert"`/`aria-live`.
+  evidence: Confirmed by reading `src/components/admin/logo-field.tsx`'s `LogoFieldInput`. This is an internal `/keystatic` admin control (not the public site, so it's outside the epic's public-site Lighthouse/accessibility constraint), and mirrors gaps already present in the sibling `cloudinary-field.tsx` shipped in Story 1.3, so it isn't a regression -- but both should get an accessibility pass together.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: Abort the in-flight Cloudinary `XMLHttpRequest` (and guard callbacks against a since-unmounted component) in `logo-field.tsx` if the editor navigates away from the entry mid-upload.
+  evidence: Same unguarded pattern already exists in `cloudinary-field.tsx` (Story 1.3), so this isn't unique to this story, but the new file duplicates it. Low real-world impact (uploads are seconds long) -- worth fixing both together rather than only the new one.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: `logoField`'s hardcoded inline hex colors (matching `cloudinaryField`'s existing style) aren't theme-aware; revisit if the Keystatic admin UI ever adds a dark theme.
+  evidence: Same styling approach as `cloudinary-field.tsx`, not a regression introduced by this story -- both custom fields would need the pass together.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: Add unit/component tests for the custom Keystatic field components (`cloudinary-field.tsx`, `logo-field.tsx`), which contain non-trivial async upload/error-handling logic and currently have zero test coverage.
+  evidence: This repo has no test runner configured at all (confirmed: `pnpm lint` fails on a missing ESLint v9 config, and there's no Vitest/Jest/Playwright setup) -- establishing one is a repo-wide decision out of scope for a single story.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: Replace `colaboradores.tipo` free text with a fixed-option field (e.g. `fields.select`) since `colaboradores.astro`'s Patrocinadores/Colaboradores split depends on a substring match against "patrocinador"/"sponsor" in that value -- a typo or synonym silently misclassifies an entry.
+  evidence: Pre-existing behavior in `colaboradores.astro`, not introduced by Story 2.1 -- but the field is now client-editable via Keystatic for the first time, raising the odds of a stray typo causing a silent misclassification.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
+  summary: Review whether Cloudinary-uploaded SVG logos (allowed by `logoField`'s default `formats`) need server-side sanitization.
+  evidence: Rendering is always via `<img src>` (not inline `<svg>`), which mitigates script execution in modern browsers, but this is the first story to let an SVG reach Cloudinary via an unsigned upload with no sanitization step -- worth a deliberate security review rather than silent inclusion.

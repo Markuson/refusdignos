@@ -3,6 +3,7 @@
 
 import { collection, config, fields } from '@keystatic/core';
 import { cloudinaryField } from './src/components/admin/cloudinary-field';
+import { logoField } from './src/components/admin/logo-field';
 
 /**
  * Access control note (Story 1.1):
@@ -207,6 +208,79 @@ export default config({
         // `getDataFileExtension`); without a contentField it defaults to `.yaml`.
         // Declared last so it renders at the bottom of the form, not right
         // under the title where it reads as a mysterious empty rich-text box.
+        content: fields.markdoc({
+          label: 'Contenido (no utilizado)',
+          extension: 'md',
+        }),
+      },
+    }),
+    /**
+     * Story 2.1: colaboradores collection, matching
+     * `src/content/colaboradores/*.md` and `src/content/config.ts`'s
+     * `colaboradoresCollection` Zod schema exactly (nombre, tipo,
+     * descripcion, logo, url, orden). `nombre` is the slug field so the
+     * filename stays independent of the display name, matching all 13
+     * existing files (e.g. `bellota.md` has `nombre: "Bellota"`) -- same
+     * `title`/slug independence pattern as `refugios.title` above.
+     *
+     * `logo` uses the hand-built `logoField` (dual-mode: URL text input OR
+     * Cloudinary upload) instead of `cloudinaryField`, because -- unlike
+     * refugio images -- existing colaborador logos are legitimately a mix of
+     * external URLs and local `/logos/*.webp` paths; see
+     * `src/components/admin/logo-field.tsx` for the full rationale.
+     *
+     * `content` gets the same empty-body `fields.markdoc` treatment as
+     * `refugios.content` above, purely so Keystatic derives `.md` output
+     * instead of defaulting to `.yaml` -- every existing colaborador file
+     * has an empty body.
+     */
+    colaboradores: collection({
+      label: 'Colaboradores',
+      path: 'src/content/colaboradores/*',
+      slugField: 'nombre',
+      format: { contentField: 'content' },
+      entryLayout: 'form',
+      schema: {
+        nombre: fields.slug({
+          name: {
+            label: 'Nombre',
+            validation: { isRequired: true },
+          },
+          slug: {
+            description:
+              'No cambies esto en un colaborador que ya existe: cambiará el nombre de su archivo.',
+          },
+        }),
+        tipo: fields.text({
+          label: 'Tipo',
+          description:
+            'Ej.: "Patrocinador" o "Herramientas". La página de colaboradores agrupa las entradas cuyo tipo contiene "patrocinador" o "sponsor" en la sección de Patrocinadores; el resto aparece en Colaboradores.',
+          validation: { isRequired: true },
+        }),
+        descripcion: fields.text({
+          label: 'Descripción',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        logo: logoField({
+          label: 'Logo',
+          description:
+            'Usa una URL externa si el logo ya está alojado en otro sitio, o sube un archivo nuevo a Cloudinary.',
+          folder: 'colaboradores',
+          required: true,
+        }),
+        url: fields.url({
+          label: 'URL',
+          description: 'Enlace al sitio web o red social del colaborador.',
+          validation: { isRequired: true },
+        }),
+        orden: fields.integer({
+          label: 'Orden',
+          description: 'Orden de aparición dentro de su sección (menor primero). Opcional.',
+        }),
+        // Unused in practice -- every existing entry has an empty body. Same
+        // reasoning as `refugios.content` above: exists only so Keystatic
+        // derives `.md` output via `getDataFileExtension`.
         content: fields.markdoc({
           label: 'Contenido (no utilizado)',
           extension: 'md',
