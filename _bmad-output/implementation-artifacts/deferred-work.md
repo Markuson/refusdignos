@@ -39,9 +39,5 @@
   evidence: This repo has no test runner configured at all (confirmed: `pnpm lint` fails on a missing ESLint v9 config, and there's no Vitest/Jest/Playwright setup) -- establishing one is a repo-wide decision out of scope for a single story.
 
 - source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
-  summary: Replace `colaboradores.tipo` free text with a fixed-option field (e.g. `fields.select`) since `colaboradores.astro`'s Patrocinadores/Colaboradores split depends on a substring match against "patrocinador"/"sponsor" in that value -- a typo or synonym silently misclassifies an entry.
-  evidence: Pre-existing behavior in `colaboradores.astro`, not introduced by Story 2.1 -- but the field is now client-editable via Keystatic for the first time, raising the odds of a stray typo causing a silent misclassification.
-
-- source_spec: `_bmad-output/implementation-artifacts/spec-2-1-manage-colaboradores-via-keystatic.md`
   summary: Review whether Cloudinary-uploaded SVG logos (allowed by `logoField`'s default `formats`) need server-side sanitization.
   evidence: Rendering is always via `<img src>` (not inline `<svg>`), which mitigates script execution in modern browsers, but this is the first story to let an SVG reach Cloudinary via an unsigned upload with no sanitization step -- worth a deliberate security review rather than silent inclusion.

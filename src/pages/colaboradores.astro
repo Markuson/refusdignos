@@ -11,19 +11,12 @@ const colaboradoresSort = colaboradoresRaw.sort(
   (a, b) => (a.data.orden || 999) - (b.data.orden || 999)
 );
 
-// Split into Patrocinadores and Colaboradores
-const patrocinadores = colaboradoresSort.filter(
-  (c) =>
-    c.data.tipo.toLowerCase().includes('patrocinador') ||
-    c.data.tipo.toLowerCase().includes('sponsor')
-);
-const colaboradores = colaboradoresSort.filter(
-  (c) =>
-    !(
-      c.data.tipo.toLowerCase().includes('patrocinador') ||
-      c.data.tipo.toLowerCase().includes('sponsor')
-    )
-);
+// Split into Patrocinadores and Colaboradores by the explicit `categoria`
+// field (Story 2.1 follow-up) -- previously inferred from a substring match
+// on the free-text `tipo` field, which silently misclassified any entry
+// whose `tipo` didn't happen to contain "patrocinador"/"sponsor".
+const patrocinadores = colaboradoresSort.filter((c) => c.data.categoria === 'patrocinador');
+const colaboradores = colaboradoresSort.filter((c) => c.data.categoria === 'colaborador');
 ---
 
 <BaseLayout

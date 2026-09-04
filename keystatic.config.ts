@@ -251,10 +251,20 @@ export default config({
               'No cambies esto en un colaborador que ya existe: cambiará el nombre de su archivo.',
           },
         }),
+        categoria: fields.select({
+          label: 'Categoría',
+          description:
+            'Determina si aparece en la sección "Patrocinadores" o "Colaboradores" de la página pública.',
+          options: [
+            { label: 'Colaborador', value: 'colaborador' },
+            { label: 'Patrocinador', value: 'patrocinador' },
+          ],
+          defaultValue: 'colaborador',
+        }),
         tipo: fields.text({
           label: 'Tipo',
           description:
-            'Ej.: "Patrocinador" o "Herramientas". La página de colaboradores agrupa las entradas cuyo tipo contiene "patrocinador" o "sponsor" en la sección de Patrocinadores; el resto aparece en Colaboradores.',
+            'Descripción breve de qué aporta (ej.: "Herramientas", "Aceites de oliva"). Se muestra en la tarjeta de Colaborador; no afecta a la sección en la que aparece (usa "Categoría" para eso).',
           validation: { isRequired: true },
         }),
         descripcion: fields.text({

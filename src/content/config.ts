@@ -69,6 +69,12 @@ const colaboradoresCollection = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
     nombre: z.string(),
+    // Drives the Patrocinadores/Colaboradores split on `/colaboradores`.
+    // Separate from `tipo` below: `categoria` is the fixed classification,
+    // `tipo` stays a free-text descriptive label (e.g. "Herramientas") shown
+    // only on colaborador cards. Files without `categoria` (pre-Story-2.1)
+    // default to 'colaborador', matching the Keystatic field's default.
+    categoria: z.enum(['colaborador', 'patrocinador']).default('colaborador'),
     tipo: z.string(),
     descripcion: z.string(),
     logo: z.string(), // Can be external URL or local path
