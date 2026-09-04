@@ -11,6 +11,7 @@
 #   - in-progress: Developer actively working on implementation
 #   - review: Implementation complete, ready for review
 #   - done: Story completed
+#   - dropped: Descoped by client decision, will not be built
 
 # Retrospective Status:
 #   - optional: Can be completed but not required
@@ -42,10 +43,10 @@ development_status:
   1-4-client-onboarding-guide-for-adding-refugios: done
   epic-1-retrospective: optional
 
-  epic-2: in-progress
+  epic-2: done
   2-1-manage-colaboradores-via-keystatic: done
   2-2-manage-global-settings-homepage-and-contact-page-copy-via-ke: done
   2-3-manage-proyecto-page-copy-via-keystatic: done
-  2-4-manage-únete-page-copy-via-keystatic: review
-  2-5-manage-legal-page-copy-via-keystatic: backlog
+  2-4-manage-únete-page-copy-via-keystatic: done
+  2-5-manage-legal-page-copy-via-keystatic: dropped # 2026-09-04: client decided legal copy changes are rare enough to keep as a dev task, not worth CMS-managing
   epic-2-retrospective: optional

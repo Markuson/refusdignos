@@ -251,6 +251,8 @@ So that I can adjust pricing, benefits, and FAQs without a developer.
 
 ### Story 2.5: Manage Legal Page Copy via Keystatic
 
+> **Dropped (2026-09-04):** Client decided legal copy changes are rare and low-risk enough to keep as a developer task rather than CMS-managing them. Not built; kept here for record only.
+
 As the client,
 I want to edit the privacy policy, terms, and cookie policy text from Keystatic,
 So that I can update legal copy (e.g. a changed "last updated" date or a wording fix) without a developer.
